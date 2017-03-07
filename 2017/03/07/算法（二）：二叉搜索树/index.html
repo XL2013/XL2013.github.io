@@ -1,0 +1,727 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="算法," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="一、性质二叉搜索树是以一颗二叉树来组织的。对任何节点x，其左子树的关键字不大于x.key，其右子树的关键字不小于x.key（二叉搜索树性质）。
+二叉搜索树的基本操作和一般的二叉树类似，分为查询操作（找到x节点，x节点的前驱，后继等等），增删操作。但是二叉搜索树和一般的二叉树不同，二叉搜索树操作的耗时与二叉树的高度相关，一般为O(h)。而普通二叉树需要遍历整个树，耗时为O(n)。相比下，二叉搜索树耗">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法(二)：二叉搜索树">
+<meta property="og:url" content="https://xl2013.github.io/2017/03/07/算法（二）：二叉搜索树/index.html">
+<meta property="og:site_name" content="Shan's Blog">
+<meta property="og:description" content="一、性质二叉搜索树是以一颗二叉树来组织的。对任何节点x，其左子树的关键字不大于x.key，其右子树的关键字不小于x.key（二叉搜索树性质）。
+二叉搜索树的基本操作和一般的二叉树类似，分为查询操作（找到x节点，x节点的前驱，后继等等），增删操作。但是二叉搜索树和一般的二叉树不同，二叉搜索树操作的耗时与二叉树的高度相关，一般为O(h)。而普通二叉树需要遍历整个树，耗时为O(n)。相比下，二叉搜索树耗">
+<meta property="og:updated_time" content="2017-03-07T12:21:53.233Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="算法(二)：二叉搜索树">
+<meta name="twitter:description" content="一、性质二叉搜索树是以一颗二叉树来组织的。对任何节点x，其左子树的关键字不大于x.key，其右子树的关键字不小于x.key（二叉搜索树性质）。
+二叉搜索树的基本操作和一般的二叉树类似，分为查询操作（找到x节点，x节点的前驱，后继等等），增删操作。但是二叉搜索树和一般的二叉树不同，二叉搜索树操作的耗时与二叉树的高度相关，一般为O(h)。而普通二叉树需要遍历整个树，耗时为O(n)。相比下，二叉搜索树耗">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xl2013.github.io/2017/03/07/算法（二）：二叉搜索树/"/>
+
+
+
+
+
+  <title> 算法(二)：二叉搜索树 | Shan's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Shan's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://xl2013.github.io/2017/03/07/算法（二）：二叉搜索树/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shan's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                算法(二)：二叉搜索树
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-07T20:02:31+08:00">
+                2017-03-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="一、性质"><a href="#一、性质" class="headerlink" title="一、性质"></a>一、性质</h3><p>二叉搜索树是以一颗二叉树来组织的。对任何节点x，其左子树的关键字不大于x.key，其右子树的关键字不小于x.key（二叉搜索树性质）。</p>
+<p>二叉搜索树的基本操作和一般的二叉树类似，分为查询操作（找到x节点，x节点的前驱，后继等等），增删操作。但是二叉搜索树和一般的二叉树不同，二叉搜索树操作的耗时与二叉树的高度相关，一般为O(h)。而普通二叉树需要遍历整个树，耗时为O(n)。相比下，二叉搜索树耗时大大减少。</p>
+<p>由于二叉搜索树性质，所以各种操作也有相应的特点。</p>
+<h3 id="二、查询操作"><a href="#二、查询操作" class="headerlink" title="二、查询操作"></a>二、查询操作</h3><ol>
+<li>找到二叉搜索树种的x节点，这很简单，直接上代码：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function">TreeNode <span class="title">search</span><span class="params">(TreeNode root,<span class="keyword">int</span> val)</span></span>&#123;</div><div class="line"></div><div class="line">		<span class="keyword">while</span>(root!=<span class="keyword">null</span>&amp;&amp;root.val!=val)&#123;</div><div class="line">			<span class="keyword">if</span>(root.val&lt;val)</div><div class="line">				root=root.right;</div><div class="line">			<span class="keyword">else</span> &#123;</div><div class="line">				root=root.left;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> root;</div><div class="line"></div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>找到前驱：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function">TreeNode <span class="title">successor</span><span class="params">(TreeNode node)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(node.right!=<span class="keyword">null</span>)</div><div class="line">			<span class="keyword">return</span> minimum(node.right);</div><div class="line">		TreeNode parent=node.parent;</div><div class="line">		<span class="comment">//如果node==parent.left，且node无右子树，则很明显，node的后继为其parent</span></div><div class="line">		<span class="keyword">while</span>(parent!=<span class="keyword">null</span>&amp;&amp;node==parent.right)&#123;</div><div class="line">			node=parent;</div><div class="line">			parent=parent.parent;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> parent;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<p>x节点的后继为第一个比x节点大的节点，由二叉搜索树性质，可知：如果x节点有右子树，则x节点的后继则为右子树中最小的节点。如果x节点没有右子树，因为x节点的左子树都比x节点小，所以只能往x节点的祖先去找 了。如果x节点是父节点的左子树，因为父节点的右子树节点比父节点和左子树节点都大，所以父节点必是x节点的后继。如果x节点是父节点的右子树，则只能继续往父节点的祖先去找。直到找到x节点为父节点的左子树为止。</p>
+<p>3.前驱（类似后继）：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function">TreeNode <span class="title">predecessor</span><span class="params">(TreeNode node)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span>(node.left!=<span class="keyword">null</span>)</div><div class="line">		<span class="keyword">return</span> maximum(node.left);</div><div class="line">	TreeNode parent=node.parent;</div><div class="line">	<span class="keyword">while</span>(parent!=<span class="keyword">null</span>&amp;&amp;node==parent.left)&#123;</div><div class="line">		node=parent;</div><div class="line">		parent=parent.parent;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> parent;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ol>
+<li>最小节点最大节点:</li>
+</ol>
+<p>由于二叉搜索树的性质，可以很简单的找出树中的最大关键字元素和最小的关键字元素即最左或最右。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//返回最小的关键字元素</span></div><div class="line">	<span class="function">TreeNode <span class="title">minimum</span><span class="params">(TreeNode root)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">		<span class="keyword">while</span>(root.left!=<span class="keyword">null</span>)&#123;</div><div class="line">			root=root.left;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> root;</div><div class="line"></div><div class="line">	&#125;</div><div class="line">	<span class="comment">//返回最大的关键字元素</span></div><div class="line">	<span class="function">TreeNode <span class="title">maximum</span><span class="params">(TreeNode root)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">		<span class="keyword">while</span>(root.right!=<span class="keyword">null</span>)&#123;</div><div class="line">			root=root.right;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> root;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<h3 id="三、插入操作"><a href="#三、插入操作" class="headerlink" title="三、插入操作"></a>三、插入操作</h3><p>插入一个节点也很简单，如果当前节点比需插入的节点大，则往该节点的左子树插入，直到发现空节点。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//向二叉搜索树中插入元素</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(Tree tree,TreeNode node)</span></span>&#123;</div><div class="line">	TreeNode temp=<span class="keyword">null</span>;</div><div class="line">	TreeNode root=tree.root;</div><div class="line"></div><div class="line">	<span class="keyword">while</span>(root!=<span class="keyword">null</span>)&#123;</div><div class="line">		<span class="keyword">if</span>(root.val&lt;node.val)&#123;</div><div class="line">			temp=root;</div><div class="line">			root=root.right;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span>&#123;</div><div class="line">			temp=root;</div><div class="line">			root=root.left;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	node.parent=temp;</div><div class="line">	<span class="keyword">if</span>(temp==<span class="keyword">null</span>)<span class="comment">//树为空</span></div><div class="line">		tree.root=node;</div><div class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(temp.val&lt;node.val)</div><div class="line">		temp.right=node;</div><div class="line">	<span class="keyword">else</span> &#123;</div><div class="line">		temp.left=node;</div><div class="line">	&#125;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在编写该函数时，我发现有两种解决方法，一种是遍历树，找到可插入的空节点后直接插入。另一种是遍历树，找到可插入的空节点后，保存节点信息，然后在进行插入操作。上诉代码就是第二种方法，而我第一次写的是第一种方法。仔细想了下，第二种方法其实更好，它将寻找插入节点和插入两种操作代码分隔开来，降低了代码的耦合度。而我的那种方法直接将两种操作合二为一，代码看起来既繁琐又不美观。以后要注意将不同操作解耦的思想。（先明确有多少种操作，在明确是否可以将操作分隔进行）</p>
+<h3 id="四、删除操作"><a href="#四、删除操作" class="headerlink" title="四、删除操作"></a>四、删除操作</h3><p>删除是二叉搜索树中比较麻烦的一种操作。在删除节点的过程中，由于该节点可能还有子节点，所以还需对树的结构进行调整。具体先分为4种情况：</p>
+<ol>
+<li>该节点的右子树为空</li>
+<li>该节点的左子树为空</li>
+<li>该节点的左右子树都不为空</li>
+<li>该节点的左右子树都为空</li>
+</ol>
+<p>1,2两种情况都类似，直接将节点的非空子树与该节点调换即可。由于需涉及了很多子树调换操作，所以为了解耦，直接将该操作模块化(注意边界情况)：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这个是用子树v代替子树u</span></div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">transplant</span><span class="params">(Tree tree,TreeNode u,TreeNode v)</span></span>&#123;</div><div class="line">		<span class="comment">//如果u是树的根</span></div><div class="line">		<span class="keyword">if</span>(u.parent==<span class="keyword">null</span>)&#123;</div><div class="line">			tree.root=v;</div><div class="line"></div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(u==u.parent.left)&#123;</div><div class="line">			u.parent.left=v;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(u==u.parent.right)</div><div class="line">			u.parent.right=v;</div><div class="line"></div><div class="line">		<span class="keyword">if</span>(v!=<span class="keyword">null</span>)</div><div class="line">			v.parent=u.parent;</div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
+<p>仔细思考下，第四种情况和1,2类似，直接将空子树和节点即可。所以第四种情况包含在1,2中，之后不需为之编写代码。再考虑第三种情况：该节点左右子树都不为空。如果像1,2中情况直接将子树对换的话，势必会丢失另一子树的信息，所以必须对结构进行调整。那么怎么调整呢，可以想到先摘出一个子树作为另一子树中一个节点的子树，那么就变成了1,2中的情况。摘出左右都行，这里选择摘出左子树。</p>
+<p>假设摘出了左子树，那么该怎么选择右子树中的节点呢？其实很简单，因为右子树中的节点都比左子树大，所以摘出的左子树可直接作为右子树中节点的左子树。那么问题就变成了找出右子树中的左孩子为空的节点，而左孩子为空，则表明该节点是右子树中最小的节点。</p>
+<p>这样做是可以保证树的二叉搜索树性质，但是可以发现，每删除一个节点，树的高度就会增大许多。这是因为直接将删除节点的左子树插入到右子树最左节点，很明显，树的高度增加了许多。为了防止这种情况，需要调整删除后的树的结构。</p>
+<p>需要调整的情况分为两种：一是右子树的最左节点即为删除节点的右孩子，这种情况下不需调整，高度最多变化1。<br>二是右子树的最左节点不为删除节点的右孩子，这种情况如果不调整，高度变化最大为左子树的高度，所以需要调整。<br>这里设删除节点为x，左子树根节点（x左孩子）为l，右子树根节点为r，则右子树的最小节点为y=minimum(r);调整代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(y!=r)&#123;</div><div class="line">    transplant(T,y,y.right);</div><div class="line">    y.right=r;</div><div class="line">    r.parent=y;</div><div class="line">&#125;</div><div class="line">y.left=x.left;</div><div class="line">x.left.parent=y;</div><div class="line">transplant(T,x,y);</div></pre></td></tr></table></figure></p>
+<p>第二种情况下，做出这样的调整：将y和它的右子树对换，这样摘出了y节点。然后将y节点作为x节点左右子树的父节点。如此一来相当于x和y节点对换，高度最多变化1。</p>
+<p>综上删除节点的代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">delete</span><span class="params">(Tree tree,TreeNode root)</span></span>&#123;</div><div class="line">		<span class="comment">//case:a</span></div><div class="line">		<span class="keyword">if</span>(root.left==<span class="keyword">null</span>)&#123;</div><div class="line">			transplant(tree,root, root.right);</div><div class="line">		&#125;</div><div class="line">		<span class="comment">//case:b</span></div><div class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(root.right==<span class="keyword">null</span>)&#123;</div><div class="line">			transplant(tree,root, root.left);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span>&#123;</div><div class="line">			TreeNode minimumNode=minimum(root.right);</div><div class="line">			<span class="comment">//case :d</span></div><div class="line">			<span class="keyword">if</span>(minimumNode!=root.right)&#123;</div><div class="line">				transplant(tree, minimumNode, minimumNode.right);</div><div class="line">				minimumNode.right=root.right;</div><div class="line">				root.right.parent=minimumNode;</div><div class="line"></div><div class="line">			&#125;</div><div class="line">			<span class="comment">//case :c</span></div><div class="line">			minimumNode.left=root.left;</div><div class="line">			root.left.parent=minimumNode;</div><div class="line">			transplant(tree, root, minimumNode);</div><div class="line">		&#125;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h3><p>在删除操作了解到，光保持二叉搜索树性质有时候还不够，还需要保持树的高度，保证在进行插入删除操作时，树的高度不能增长太快，毕竟二叉搜索树的操作的效率和树的高度有关（都是O(n)）。</p>
+<p>在4中的删除操作进行了一定调整来保证树高，但是不能总是保证树的高度合理。并且在插入过程中没有做出任何措施去维护树高。为了保证树的平均高度，可以通过“随机构建二叉搜索树”即插入的过程是随机的，还可以通过创建一个新的性质的二叉搜索树-<strong>红黑树</strong>。详情见《算法：红黑树》</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/07/算法（一）：分治、动态规划与贪心算法/" rel="next" title="算法(一)：分治、动态规划与贪心算法">
+                <i class="fa fa-chevron-left"></i> 算法(一)：分治、动态规划与贪心算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Shan" />
+          <p class="site-author-name" itemprop="name">Shan</p>
+           
+              <p class="site-description motion-element" itemprop="description">less is More</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、性质"><span class="nav-number">1.</span> <span class="nav-text">一、性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、查询操作"><span class="nav-number">2.</span> <span class="nav-text">二、查询操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、插入操作"><span class="nav-number">3.</span> <span class="nav-text">三、插入操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、删除操作"><span class="nav-number">4.</span> <span class="nav-text">四、删除操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、总结"><span class="nav-number">5.</span> <span class="nav-text">五、总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shan</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

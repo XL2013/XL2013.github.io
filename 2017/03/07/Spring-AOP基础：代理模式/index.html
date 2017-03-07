@@ -1,0 +1,733 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Spring," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="代理模式
+代理模式：在对已有方法进行改进时，不直接修改原有方法或代码，而是提供第三方。该第三方含有代理角色的引用，并根据需求增加相应的功能。代理模式在程序设计中有非常重要的应用，AOP就是针对代理的一种应用。在生活中代理也无处不在，比如翻墙，比如开代理打韩服等等。学习代理模式，先从简单的代码开始。
+
+先定义一个简单的接口123public interface Hello&amp;#123;     voi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring AOP基础：代理模式">
+<meta property="og:url" content="https://xl2013.github.io/2017/03/07/Spring-AOP基础：代理模式/index.html">
+<meta property="og:site_name" content="Shan's Blog">
+<meta property="og:description" content="代理模式
+代理模式：在对已有方法进行改进时，不直接修改原有方法或代码，而是提供第三方。该第三方含有代理角色的引用，并根据需求增加相应的功能。代理模式在程序设计中有非常重要的应用，AOP就是针对代理的一种应用。在生活中代理也无处不在，比如翻墙，比如开代理打韩服等等。学习代理模式，先从简单的代码开始。
+
+先定义一个简单的接口123public interface Hello&amp;#123;     voi">
+<meta property="og:updated_time" content="2017-03-07T12:21:39.928Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring AOP基础：代理模式">
+<meta name="twitter:description" content="代理模式
+代理模式：在对已有方法进行改进时，不直接修改原有方法或代码，而是提供第三方。该第三方含有代理角色的引用，并根据需求增加相应的功能。代理模式在程序设计中有非常重要的应用，AOP就是针对代理的一种应用。在生活中代理也无处不在，比如翻墙，比如开代理打韩服等等。学习代理模式，先从简单的代码开始。
+
+先定义一个简单的接口123public interface Hello&amp;#123;     voi">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xl2013.github.io/2017/03/07/Spring-AOP基础：代理模式/"/>
+
+
+
+
+
+  <title> Spring AOP基础：代理模式 | Shan's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Shan's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://xl2013.github.io/2017/03/07/Spring-AOP基础：代理模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shan's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Spring AOP基础：代理模式
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-07T20:00:22+08:00">
+                2017-03-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Spring/" itemprop="url" rel="index">
+                    <span itemprop="name">Spring</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h1><blockquote>
+<h4 id="代理模式：在对已有方法进行改进时，不直接修改原有方法或代码，而是提供第三方。该第三方含有代理角色的引用，并根据需求增加相应的功能。"><a href="#代理模式：在对已有方法进行改进时，不直接修改原有方法或代码，而是提供第三方。该第三方含有代理角色的引用，并根据需求增加相应的功能。" class="headerlink" title="代理模式：在对已有方法进行改进时，不直接修改原有方法或代码，而是提供第三方。该第三方含有代理角色的引用，并根据需求增加相应的功能。"></a>代理模式：在对已有方法进行改进时，不直接修改原有方法或代码，而是提供第三方。该第三方含有代理角色的引用，并根据需求增加相应的功能。</h4><p>代理模式在程序设计中有非常重要的应用，AOP就是针对代理的一种应用。在生活中代理也无处不在，比如翻墙，比如开代理打韩服等等。<br>学习代理模式，先从简单的代码开始。</p>
+</blockquote>
+<h5 id="先定义一个简单的接口"><a href="#先定义一个简单的接口" class="headerlink" title="先定义一个简单的接口"></a>先定义一个简单的接口</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Hello</span></span>&#123;</div><div class="line">     <span class="function"><span class="keyword">void</span> <span class="title">sayHello</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="再实现一个基本的Hello实现"><a href="#再实现一个基本的Hello实现" class="headerlink" title="再实现一个基本的Hello实现"></a>再实现一个基本的Hello实现</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloImpl</span> <span class="keyword">implements</span> <span class="title">Hello</span></span>&#123;</div><div class="line">    <span class="meta">@override</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> sayHello&#123;</div><div class="line">        System.out.println(<span class="string">"Hello"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果要在println方法前分别需要一些处理逻辑，该怎么么做呢？如果是以前的我，我会直接将处理逻辑写死在在HelloImpl的sayHello方法中。但是这样的写法在大多数情况下是不妥的，就好像没学面向对象以前，将所有的方法逻辑写在一个类里面。这样的写法，会使得一个方法越来越长，处理逻辑的实现也会将类变得越来越庞大，而且这样处理逻辑可能与该类的其他方法无关。所以最好的方法是将这些处理逻辑交于代理处理。</p>
+<h5 id="对于我们的HelloImpl类，我们写一个HelloProxy类，让该类调用HelloImpl的sayHello方法，并在调用的前后进行相应的逻辑处理。"><a href="#对于我们的HelloImpl类，我们写一个HelloProxy类，让该类调用HelloImpl的sayHello方法，并在调用的前后进行相应的逻辑处理。" class="headerlink" title="对于我们的HelloImpl类，我们写一个HelloProxy类，让该类调用HelloImpl的sayHello方法，并在调用的前后进行相应的逻辑处理。"></a>对于我们的HelloImpl类，我们写一个HelloProxy类，让该类调用HelloImpl的sayHello方法，并在调用的前后进行相应的逻辑处理。</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloProxy</span> <span class="keyword">implements</span> <span class="title">Hello</span></span>&#123;</div><div class="line">        Hello helloImpl;</div><div class="line">        HelloProxy()&#123;</div><div class="line">            helloImpl=<span class="keyword">new</span> HelloImpl();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">()</span></span>&#123;</div><div class="line">            before();</div><div class="line">            helloImpl.sayHello();</div><div class="line">            after();</div><div class="line">        &#125;</div><div class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">before</span><span class="params">()</span></span>&#123;</div><div class="line">            System.out.println(<span class="string">"before"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">after</span><span class="params">()</span></span>&#123;</div><div class="line">            System.out.println(<span class="string">"after"</span>);</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在这段代码中，我们用HelloProxy实现Hello接口（和HelloImpl实现相同的接口），并且在构造方法中new出HelloImpl实例，则我们可以在HelloProxy的sayHello()方法中调用HelloImpl的sayHello()方法。这样的话，我们就可以在调用前后添加相应的before和after方法，并在这两个方法中去实现相应的前后处理逻辑。</p>
+<h5 id="我们再用main方法测试一下"><a href="#我们再用main方法测试一下" class="headerlink" title="我们再用main方法测试一下"></a>我们再用main方法测试一下</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</div><div class="line">        HelloProxy helloProxy=<span class="keyword">new</span> HelloProxy();</div><div class="line">        helloProxy.sayHello();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="结果如下"><a href="#结果如下" class="headerlink" title="结果如下"></a>结果如下</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">before</div><div class="line">hello</div><div class="line">after</div></pre></td></tr></table></figure>
+<p>这个HelloProxy就是简单的代理。这样的代理称为静态代理。所谓静态，就是在程序运行前就已经存在代理类的字节码文件，代理类和委托类的关系在运行前就确定了。<br>这样的静态代理几个缺点：</p>
+<ol>
+<li>如果要代理的方法很多,那么静态代理类的规模也势必很大。</li>
+<li>如果接口增加一个方法，那么所有代理类也必须实现此方法，如此就增加了代码维护的复杂度</li>
+</ol>
+<p>为了解决静态代理的问题，我们使用JDK提供的动态代理方案DynamicProxy:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DynamicProxy</span>  <span class="keyword">implements</span> <span class="title">InvocationHandler</span></span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> Object object;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">DynamicProxy</span><span class="params">(Object object)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.object=object;</div><div class="line">	&#125;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span></span></div><div class="line">			<span class="keyword">throws</span> Throwable &#123;</div><div class="line">		<span class="comment">// TODO Auto-generated method stub</span></div><div class="line">		before();</div><div class="line">		Object result=method.invoke(object, args);</div><div class="line">		after();</div><div class="line">		<span class="keyword">return</span> result;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">before</span><span class="params">()</span></span>&#123;</div><div class="line">		System.out.println(<span class="string">"before"</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">after</span><span class="params">()</span></span>&#123;</div><div class="line">		System.out.println(<span class="string">"after"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>DynamicProxy实现了InvocationHandler接口，那么必须实现invoke方法，在invoke方法中，直接通过反射去调用被包装类的方法，在调用前后实现 分别处理before和after，最后将result返回。</p>
+<h5 id="在main中测试："><a href="#在main中测试：" class="headerlink" title="在main中测试："></a>在main中测试：</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</div><div class="line">		Hello hello=<span class="keyword">new</span> HelloImpl();</div><div class="line">		DynamicProxy dynamicProxy=<span class="keyword">new</span> DynamicProxy(hello);</div><div class="line">		Hello helloProxy=(Hello) Proxy.newProxyInstance(hello.getClass().getClassLoader(), hello.getClass().getInterfaces(), dynamicProxy);</div><div class="line">		helloProxy.sayHello();</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<h5 id="结果如下："><a href="#结果如下：" class="headerlink" title="结果如下："></a>结果如下：</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">before</div><div class="line">hello</div><div class="line">after</div></pre></td></tr></table></figure>
+<p>在上述代码中，我们用这个通用的DynamicProxy类去包装HelloImpl实例，然后调用JDK给我们提供的Proxy类工厂方法newProxyInstance去动态的创建一个Hello接口的代理类，最后调用这个代理类的sayHello方法。结果和静态代理结果一样。<br>其实，动态代理就是动态生成XxxProxy。和静态代理相比，动态代理类的源码是在程序运行期间由JVM根据反射等机制动态生成的。<br>代理类和委托类的关系是在程序运行时确定的，所有如果需要在不同类的不同方法增加相同的处理逻辑，我们只需要一个动态代理类就可以实现，这就是动态代理的优点。<br>在main方法中我们可以看到，Proxy.newProxyInstance方法要有三个参数：</p>
+<ol>
+<li>ClassLoader;</li>
+<li>该实现类的所有接口</li>
+<li>动态代理对象</li>
+</ol>
+<p>在调用结束后还需要类型的强制转换。如果我们的动态代理需要代理多个对象，那么上述代码需要重复多次。</p>
+<h5 id="为了避免Proxy-newInstance方法出现多次（减少代码量和简化动态代理类的使用），我们将动态代理对象实例化部分代码封装起来-使用泛型-："><a href="#为了避免Proxy-newInstance方法出现多次（减少代码量和简化动态代理类的使用），我们将动态代理对象实例化部分代码封装起来-使用泛型-：" class="headerlink" title="为了避免Proxy.newInstance方法出现多次（减少代码量和简化动态代理类的使用），我们将动态代理对象实例化部分代码封装起来(使用泛型)："></a>为了避免Proxy.newInstance方法出现多次（减少代码量和简化动态代理类的使用），我们将动态代理对象实例化部分代码封装起来(使用泛型)：</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">   <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</div><div class="line"><span class="keyword">public</span> &lt;T&gt; <span class="function">T <span class="title">getProxy</span><span class="params">()</span></span>&#123;		</div><div class="line">	<span class="keyword">return</span> (T)Proxy.newProxyInstance(object.getClass().getClassLoader(),</div><div class="line">			object.getClass().getInterfaces(), <span class="keyword">this</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="如此一来，我们的DynamicProxy的使用将更加方便-代码也看起来简洁清晰多了："><a href="#如此一来，我们的DynamicProxy的使用将更加方便-代码也看起来简洁清晰多了：" class="headerlink" title="如此一来，我们的DynamicProxy的使用将更加方便,代码也看起来简洁清晰多了："></a>如此一来，我们的DynamicProxy的使用将更加方便,代码也看起来简洁清晰多了：</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</div><div class="line">		DynamicProxy dynamicProxy=<span class="keyword">new</span> DynamicProxy(<span class="keyword">new</span> HelloImpl());</div><div class="line">		Hello helloProxy=dynamicProxy.getProxy();</div><div class="line">		helloProxy.sayHello();</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<p>除了减少代理类这个优点，相对于静态代理，动态代理在接口变化的时候，代理类不需要变化，而静态代理类则需要相对应的改动。<br>但是，我们发现，上述JDK动态代理只能代理有接口的类，如果需要代理的类没有接口，那么JDK动态代理就无用武之地。</p>
+<h5 id="为了解决代理没有接口的类的问题，我们使用开源的CGLIB类库。"><a href="#为了解决代理没有接口的类的问题，我们使用开源的CGLIB类库。" class="headerlink" title="为了解决代理没有接口的类的问题，我们使用开源的CGLIB类库。"></a>为了解决代理没有接口的类的问题，我们使用开源的CGLIB类库。</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CGLIBProxy</span> <span class="keyword">implements</span>  <span class="title">MethodInterceptor</span></span>&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> CGLIBProxy instance=<span class="keyword">new</span> CGLIBProxy();</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="title">CGLIBProxy</span><span class="params">()</span> </span>&#123;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> CGLIBProxy <span class="title">getInstance</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> instance;</div><div class="line">	&#125;</div><div class="line">	<span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</div><div class="line">	<span class="keyword">public</span> &lt;T&gt; <span class="function">T <span class="title">getProxy</span><span class="params">(Class&lt;T&gt;cls)</span></span>&#123;</div><div class="line">		<span class="keyword">return</span> (T)Enhancer.create(cls, <span class="keyword">this</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">intercept</span><span class="params">(Object target, Method method, Object[] args,</span></span></div><div class="line">			MethodProxy proxy) <span class="keyword">throws</span> Throwable &#123;</div><div class="line">		before();</div><div class="line">		Object result=proxy.invokeSuper(target, args);</div><div class="line">		after();</div><div class="line">		<span class="keyword">return</span> result;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">before</span><span class="params">()</span></span>&#123;</div><div class="line">		System.out.println(<span class="string">"before"</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">after</span><span class="params">()</span></span>&#123;</div><div class="line">		System.out.println(<span class="string">"after"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>从上述代码可以看出，CGLIB类库的使用和JDK动态代理类似。但是CGLIB类库可以代理没有接口的类，且速度相较于JDK DynamicProxy更快。</p>
+<h5 id="测试使用及运行结果如下："><a href="#测试使用及运行结果如下：" class="headerlink" title="测试使用及运行结果如下："></a>测试使用及运行结果如下：</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Greet</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">(String str)</span></span>&#123;</div><div class="line">		System.out.println(<span class="string">"hello"</span>+str);</div><div class="line">	&#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</div><div class="line">		Greet greetProxy=CGLIBProxy.getInstance().getProxy(Greet.class);</div><div class="line">		greetProxy.say(<span class="string">"shan"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">运行结果：</div><div class="line">before</div><div class="line">helloshan</div><div class="line">after</div></pre></td></tr></table></figure>
+<h4 id="至此，代理模式基本内容也就介绍完毕。AOP是基于JDK-DynamicProxy和CGLIB代理，但是又不仅限于这些。要学好spring，AOP是重中之重。而代理又是AOP的基石，所以对代理理解并学以致用才是王道。"><a href="#至此，代理模式基本内容也就介绍完毕。AOP是基于JDK-DynamicProxy和CGLIB代理，但是又不仅限于这些。要学好spring，AOP是重中之重。而代理又是AOP的基石，所以对代理理解并学以致用才是王道。" class="headerlink" title="至此，代理模式基本内容也就介绍完毕。AOP是基于JDK DynamicProxy和CGLIB代理，但是又不仅限于这些。要学好spring，AOP是重中之重。而代理又是AOP的基石，所以对代理理解并学以致用才是王道。"></a>至此，代理模式基本内容也就介绍完毕。AOP是基于JDK DynamicProxy和CGLIB代理，但是又不仅限于这些。要学好spring，AOP是重中之重。而代理又是AOP的基石，所以对代理理解并学以致用才是王道。</h4>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Spring/" rel="tag"># Spring</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/07/Spring-AOP学习笔记（一）：PointCut、Advice及Advisor/" rel="next" title="Spring AOP学习笔记（一）：PointCut、Advice及Advisor">
+                <i class="fa fa-chevron-left"></i> Spring AOP学习笔记（一）：PointCut、Advice及Advisor
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/07/java（二）：运行期类型检查与反射/" rel="prev" title="java（二）：运行期类型检查与反射">
+                java（二）：运行期类型检查与反射 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Shan" />
+          <p class="site-author-name" itemprop="name">Shan</p>
+           
+              <p class="site-description motion-element" itemprop="description">less is More</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#代理模式"><span class="nav-number">1.</span> <span class="nav-text">代理模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代理模式：在对已有方法进行改进时，不直接修改原有方法或代码，而是提供第三方。该第三方含有代理角色的引用，并根据需求增加相应的功能。"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">代理模式：在对已有方法进行改进时，不直接修改原有方法或代码，而是提供第三方。该第三方含有代理角色的引用，并根据需求增加相应的功能。</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#先定义一个简单的接口"><span class="nav-number">1.0.0.1.1.</span> <span class="nav-text">先定义一个简单的接口</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#再实现一个基本的Hello实现"><span class="nav-number">1.0.0.1.2.</span> <span class="nav-text">再实现一个基本的Hello实现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#对于我们的HelloImpl类，我们写一个HelloProxy类，让该类调用HelloImpl的sayHello方法，并在调用的前后进行相应的逻辑处理。"><span class="nav-number">1.0.0.1.3.</span> <span class="nav-text">对于我们的HelloImpl类，我们写一个HelloProxy类，让该类调用HelloImpl的sayHello方法，并在调用的前后进行相应的逻辑处理。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#我们再用main方法测试一下"><span class="nav-number">1.0.0.1.4.</span> <span class="nav-text">我们再用main方法测试一下</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#结果如下"><span class="nav-number">1.0.0.1.5.</span> <span class="nav-text">结果如下</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#在main中测试："><span class="nav-number">1.0.0.1.6.</span> <span class="nav-text">在main中测试：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#结果如下："><span class="nav-number">1.0.0.1.7.</span> <span class="nav-text">结果如下：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#为了避免Proxy-newInstance方法出现多次（减少代码量和简化动态代理类的使用），我们将动态代理对象实例化部分代码封装起来-使用泛型-："><span class="nav-number">1.0.0.1.8.</span> <span class="nav-text">为了避免Proxy.newInstance方法出现多次（减少代码量和简化动态代理类的使用），我们将动态代理对象实例化部分代码封装起来(使用泛型)：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如此一来，我们的DynamicProxy的使用将更加方便-代码也看起来简洁清晰多了："><span class="nav-number">1.0.0.1.9.</span> <span class="nav-text">如此一来，我们的DynamicProxy的使用将更加方便,代码也看起来简洁清晰多了：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#为了解决代理没有接口的类的问题，我们使用开源的CGLIB类库。"><span class="nav-number">1.0.0.1.10.</span> <span class="nav-text">为了解决代理没有接口的类的问题，我们使用开源的CGLIB类库。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#测试使用及运行结果如下："><span class="nav-number">1.0.0.1.11.</span> <span class="nav-text">测试使用及运行结果如下：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#至此，代理模式基本内容也就介绍完毕。AOP是基于JDK-DynamicProxy和CGLIB代理，但是又不仅限于这些。要学好spring，AOP是重中之重。而代理又是AOP的基石，所以对代理理解并学以致用才是王道。"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">至此，代理模式基本内容也就介绍完毕。AOP是基于JDK DynamicProxy和CGLIB代理，但是又不仅限于这些。要学好spring，AOP是重中之重。而代理又是AOP的基石，所以对代理理解并学以致用才是王道。</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shan</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

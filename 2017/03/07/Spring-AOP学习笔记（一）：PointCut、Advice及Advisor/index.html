@@ -1,0 +1,721 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Spring," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="前言：AOP学习笔记之方法拦截器（Advisor）。这些是AOP中很重要的概念
+
+一、Advice1.概念要实现AOP的方法增强，首先要确定的是如何增强方法，也就是围绕方法调用注入我们新增加的方法。这里使用Advice（通知）概念，++定义在连接点做什么，为切面增强提供织入接口++。
+2.分类Advice是AOP联盟定义的一个接口，在Spring AOP实现中，使用这个统一的接口，为AOP切面增">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring AOP学习笔记（一）：PointCut、Advice及Advisor">
+<meta property="og:url" content="https://xl2013.github.io/2017/03/07/Spring-AOP学习笔记（一）：PointCut、Advice及Advisor/index.html">
+<meta property="og:site_name" content="Shan's Blog">
+<meta property="og:description" content="前言：AOP学习笔记之方法拦截器（Advisor）。这些是AOP中很重要的概念
+
+一、Advice1.概念要实现AOP的方法增强，首先要确定的是如何增强方法，也就是围绕方法调用注入我们新增加的方法。这里使用Advice（通知）概念，++定义在连接点做什么，为切面增强提供织入接口++。
+2.分类Advice是AOP联盟定义的一个接口，在Spring AOP实现中，使用这个统一的接口，为AOP切面增">
+<meta property="og:updated_time" content="2017-03-07T12:21:50.399Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring AOP学习笔记（一）：PointCut、Advice及Advisor">
+<meta name="twitter:description" content="前言：AOP学习笔记之方法拦截器（Advisor）。这些是AOP中很重要的概念
+
+一、Advice1.概念要实现AOP的方法增强，首先要确定的是如何增强方法，也就是围绕方法调用注入我们新增加的方法。这里使用Advice（通知）概念，++定义在连接点做什么，为切面增强提供织入接口++。
+2.分类Advice是AOP联盟定义的一个接口，在Spring AOP实现中，使用这个统一的接口，为AOP切面增">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xl2013.github.io/2017/03/07/Spring-AOP学习笔记（一）：PointCut、Advice及Advisor/"/>
+
+
+
+
+
+  <title> Spring AOP学习笔记（一）：PointCut、Advice及Advisor | Shan's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Shan's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://xl2013.github.io/2017/03/07/Spring-AOP学习笔记（一）：PointCut、Advice及Advisor/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shan's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Spring AOP学习笔记（一）：PointCut、Advice及Advisor
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-07T20:00:22+08:00">
+                2017-03-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Spring/" itemprop="url" rel="index">
+                    <span itemprop="name">Spring</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>前言：AOP学习笔记之方法拦截器（Advisor）。这些是AOP中很重要的概念</p>
+</blockquote>
+<h3 id="一、Advice"><a href="#一、Advice" class="headerlink" title="一、Advice"></a>一、Advice</h3><h4 id="1-概念"><a href="#1-概念" class="headerlink" title="1.概念"></a>1.概念</h4><p>要实现AOP的方法增强，首先要确定的是如何增强方法，也就是围绕方法调用注入我们新增加的方法。这里使用Advice（通知）概念，++定义在连接点做什么，为切面增强提供织入接口++。</p>
+<h4 id="2-分类"><a href="#2-分类" class="headerlink" title="2.分类"></a>2.分类</h4><p>Advice是AOP联盟定义的一个接口，在Spring AOP实现中，使用这个统一的接口，为AOP切面增强的织入功能做了更多的细化和扩展。在这里我们介绍主要的几个类型：Interception around advice，Before Advice,Throws Advice,After Returning Advice,Introduction advice。</p>
+<h5 id="Interception-around-advice"><a href="#Interception-around-advice" class="headerlink" title="Interception around advice"></a>Interception around advice</h5><p>这是Spring中最基本的Advice类型，它和之前笔记中的AOP动态代理类似，要实现这个advice，需要继承一个接口实现invoke方法，不过invoke方法参数不一样。具体接口如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MethodInterceptor</span> <span class="keyword">extends</span> <span class="title">Interceptor</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function">Object <span class="title">invoke</span><span class="params">(MethodInvocation invocation)</span> <span class="keyword">throws</span> Throwable</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>中间的MethodInvocation参数暴露了调用的方法，我们需要在invoke方法中通过invocation.proceed()来执行方法和得到返回值，例子如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DebugInterceptor</span> <span class="keyword">implements</span> <span class="title">MethodInterceptor</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(MethodInvocation invocation)</span> <span class="keyword">throws</span> Throwable </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Before: invocation=["</span> + invocation + <span class="string">"]"</span>);</div><div class="line">		Object rval = invocation.proceed();</div><div class="line">		System.out.println(<span class="string">"Invocation returned"</span>);</div><div class="line">		<span class="keyword">return</span> rval;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h5 id="Before-advice"><a href="#Before-advice" class="headerlink" title="Before advice"></a>Before advice</h5><p>before advice 是一个比较简单的接口，和名字表示的一样，它在方法执行之前调用。BeforeAdvice是一个标记接口，没有任何方法，实现before advice需要继承MethodBeforeAdvice,代码如下<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MethodBeforeAdvice</span> <span class="keyword">extends</span> <span class="title">BeforeAdvice</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">before</span><span class="params">(Method m, Object[] args, Object target)</span> <span class="keyword">throws</span> Throwable</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h5 id="ThrowsAdvice，AfterAdvice"><a href="#ThrowsAdvice，AfterAdvice" class="headerlink" title="ThrowsAdvice，AfterAdvice"></a>ThrowsAdvice，AfterAdvice</h5><p>这两个advice type和before advice类似，本身是一个标记接口，但都需要实现一个对应接口，代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RemoteThrowsAdvice</span> <span class="keyword">implements</span> <span class="title">ThrowsAdvice</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterThrowing</span><span class="params">(RemoteException ex)</span> <span class="keyword">throws</span> Throwable </span>&#123;</div><div class="line">		<span class="comment">// Do something with remote exception</span></div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AfterReturningAdvice</span> <span class="keyword">extends</span> <span class="title">Advice</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">afterReturning</span><span class="params">(Object returnValue, Method m, Object[] args, Object target)</span></span></div><div class="line">			<span class="keyword">throws</span> Throwable;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h5 id="Introduction-advice"><a href="#Introduction-advice" class="headerlink" title="Introduction advice"></a>Introduction advice</h5><p>这个接口我们这里不学习，以后有兴趣在看</p>
+<h3 id="二、Pointcut"><a href="#二、Pointcut" class="headerlink" title="二、Pointcut"></a>二、Pointcut</h3><h4 id="1-概念-1"><a href="#1-概念-1" class="headerlink" title="1.概念"></a>1.概念</h4><p>Pointcut独立于Advice，它定义了Advice应该作用于哪个连接点。它筛选出需要被增强的方法的集合。同一个Pointcut匹配不同的Advice</p>
+<p>Pointcut是一个AOP中一个核心接口，它筛选出增强方法的集合，也就是使advices作用于特定的类和方法。<br>具体实现如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Pointcut</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function">ClassFilter <span class="title">getClassFilter</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">	<span class="function">MethodMatcher <span class="title">getMethodMatcher</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Pointcut分解为两个模块ClassFilter和MethodMathcer,这样做的目的是类和方法匹配模块的复用和颗粒化组合操作（比如不同的method matcher的联合使用）。</p>
+<p>ClassFilter接口约束切点的目标类的集合。 matches方法返回true则表示目标类被匹配：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ClassFilter</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">matches</span><span class="params">(Class clazz)</span></span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>MethodMathcer接口更加重要，代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MethodMatcher</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">boolean</span> <span class="title">matches</span><span class="params">(Method m, Class targetClass)</span></span>;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">boolean</span> <span class="title">isRuntime</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">boolean</span> <span class="title">matches</span><span class="params">(Method m, Class targetClass, Object[] args)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>matches方法用来测试切点是否匹配目标类的目标方法。三个参数的matches方法只有当isRuntime()方法返回true且二参数方法返回true时才会调用。也就是说三参数matches方法只有方法是动态方法时才会调用，因为大部分的方法都是静态的，所以我们这里也只考虑二参数matches方法。</p>
+<h4 id="2-实现"><a href="#2-实现" class="headerlink" title="2.实现"></a>2.实现</h4><p>我们这里只考虑静态切点的实现（大部分情况下够用）比如：JDKRegexpMethodPointcut,NameMatchMethodPointcut等等。对于这些切点，ClassFilter一般设置为ClassFilter.TRUE，表示匹配所有的类。而MethodMatcher则通过复写matches方法提供自己的相应实现。比如JDKRegexpMethodPointcut的matches方法如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">matches</span><span class="params">(String pattern,<span class="keyword">int</span> patternIndex)</span></span>&#123;</div><div class="line">    Matcher matcher=<span class="keyword">this</span>.compiledPatterns[patternIndex].matcher(pattern);</div><div class="line">    <span class="keyword">return</span> matcher.matches();</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>NameMatchMethodPointcut的matches方法如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">matches</span><span class="params">(Method method, Class&lt;?&gt; targetClass)</span> </span>&#123;</div><div class="line">		<span class="keyword">for</span> (String mappedName : <span class="keyword">this</span>.mappedNames) &#123;</div><div class="line">			<span class="keyword">if</span> (mappedName.equals(method.getName()) || isMatch(method.getName(), mappedName)) &#123;</div><div class="line">				<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">	&#125;</div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">isMatch</span><span class="params">(String methodName, String mappedName)</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> PatternMatchUtils.simpleMatch(mappedName, methodName);</div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="三、Advisor"><a href="#三、Advisor" class="headerlink" title="三、Advisor"></a>三、Advisor</h3><h4 id="1-概念-2"><a href="#1-概念-2" class="headerlink" title="1.概念"></a>1.概念</h4><p>完成对目标方法的切面增强设计（Advice）和关注点的设计（Pointcut）后，需要一个对象把他们结合起来，完成这个作用的就是Advisor（通知器）。<br>所以一个Advisor拥有一个单一的advice和一个pointcut。通过Advisor，我们将pointcut和advice结合起来，为IOC容器配置AOP提供便利</p>
+<h4 id="2-实现-1"><a href="#2-实现-1" class="headerlink" title="2.实现"></a>2.实现</h4><p>一个最常用的advisor是org.springframework.aop.support.DefaultPointcutAdvisor，代码就不展示了。基本上就是拥有Pointcut和Advice，然后提供set和get方法。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Spring/" rel="tag"># Spring</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/07/Spring-AOP学习笔记（二）：创建代理对象/" rel="next" title="Spring AOP学习笔记（二）：创建代理对象">
+                <i class="fa fa-chevron-left"></i> Spring AOP学习笔记（二）：创建代理对象
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/07/Spring-AOP基础：代理模式/" rel="prev" title="Spring AOP基础：代理模式">
+                Spring AOP基础：代理模式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Shan" />
+          <p class="site-author-name" itemprop="name">Shan</p>
+           
+              <p class="site-description motion-element" itemprop="description">less is More</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、Advice"><span class="nav-number">1.</span> <span class="nav-text">一、Advice</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-概念"><span class="nav-number">1.1.</span> <span class="nav-text">1.概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-分类"><span class="nav-number">1.2.</span> <span class="nav-text">2.分类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Interception-around-advice"><span class="nav-number">1.2.1.</span> <span class="nav-text">Interception around advice</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Before-advice"><span class="nav-number">1.2.2.</span> <span class="nav-text">Before advice</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ThrowsAdvice，AfterAdvice"><span class="nav-number">1.2.3.</span> <span class="nav-text">ThrowsAdvice，AfterAdvice</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Introduction-advice"><span class="nav-number">1.2.4.</span> <span class="nav-text">Introduction advice</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、Pointcut"><span class="nav-number">2.</span> <span class="nav-text">二、Pointcut</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-概念-1"><span class="nav-number">2.1.</span> <span class="nav-text">1.概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-实现"><span class="nav-number">2.2.</span> <span class="nav-text">2.实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、Advisor"><span class="nav-number">3.</span> <span class="nav-text">三、Advisor</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-概念-2"><span class="nav-number">3.1.</span> <span class="nav-text">1.概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-实现-1"><span class="nav-number">3.2.</span> <span class="nav-text">2.实现</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shan</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

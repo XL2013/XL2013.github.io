@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hexo</title>
+  <title>算法(三)：红黑树 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="一、红黑树是什么？之前了解到，二叉搜索树可以以O(h)的复杂度来执行查询插入删除等操作。但是由于数据插入顺序的不同，高度往往不同，甚至如果按从小到大或者从大到小顺序插入，高度则为n，效率并没有得到提升。所以为了保证高度稳定，提出了特殊的二叉树：红黑树。
 红黑树是一颗具有红黑性质的二叉搜索树。它给节点增加了一个存储位来表示颜色，可以是RED或BLACK，通过对任何一条从根到叶节点的简单路径上节点颜色">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="算法(三)：红黑树">
 <meta property="og:url" content="https://xl2013.github.io/2017/03/07/算法（三）：红黑树/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="一、红黑树是什么？之前了解到，二叉搜索树可以以O(h)的复杂度来执行查询插入删除等操作。但是由于数据插入顺序的不同，高度往往不同，甚至如果按从小到大或者从大到小顺序插入，高度则为n，效率并没有得到提升。所以为了保证高度稳定，提出了特殊的二叉树：红黑树。
 红黑树是一颗具有红黑性质的二叉搜索树。它给节点增加了一个存储位来表示颜色，可以是RED或BLACK，通过对任何一条从根到叶节点的简单路径上节点颜色">
-<meta property="og:updated_time" content="2017-03-07T01:02:37.360Z">
+<meta property="og:updated_time" content="2017-03-07T01:11:59.913Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="算法(三)：红黑树">
 <meta name="twitter:description" content="一、红黑树是什么？之前了解到，二叉搜索树可以以O(h)的复杂度来执行查询插入删除等操作。但是由于数据插入顺序的不同，高度往往不同，甚至如果按从小到大或者从大到小顺序插入，高度则为n，效率并没有得到提升。所以为了保证高度稳定，提出了特殊的二叉树：红黑树。
 红黑树是一颗具有红黑性质的二叉搜索树。它给节点增加了一个存储位来表示颜色，可以是RED或BLACK，通过对任何一条从根到叶节点的简单路径上节点颜色">
   
@@ -55,9 +55,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://xl2013.github.io"></form>
@@ -69,12 +69,22 @@
         <section id="main"><article id="post-算法（三）：红黑树" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/03/07/算法（三）：红黑树/" class="article-date">
-  <time datetime="2017-03-06T16:00:00.000Z" itemprop="datePublished">2017-03-07</time>
+  <time datetime="2017-03-07T00:59:57.645Z" itemprop="datePublished">2017-03-07</time>
 </a>
     
   </div>
   <div class="article-inner">
     
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      算法(三)：红黑树
+    </h1>
+  
+
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
@@ -159,24 +169,22 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://xl2013.github.io/2017/03/07/算法（三）：红黑树/" data-id="cizytzvhu000bbguq2v2hbng8" class="article-share-link">Share</a>
+      <a data-url="https://xl2013.github.io/2017/03/07/算法（三）：红黑树/" data-id="cizyud4ds0001mwuqnqkhgg31" class="article-share-link">Partager</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2017/03/07/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Hello World
-        
-      </div>
-    </a>
   
+    <a href="/2017/03/07/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
   
 </nav>
 
@@ -188,19 +196,26 @@
           <aside id="sidebar">
   
     
+
+  
+    
   <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
+    <h3 class="widget-title">Mot-clés</h3>
     <div class="widget">
-      <ul class="category-list"></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li></ul>
     </div>
   </div>
 
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/算法/" style="font-size: 10px;">算法</a>
+    </div>
+  </div>
 
-  
-    
   
     
   <div class="widget-wrap">
@@ -214,16 +229,16 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
         
           <li>
-            <a href="/2017/03/07/hello-world/">Hello World</a>
+            <a href="/2017/03/07/算法（三）：红黑树/">算法(三)：红黑树</a>
           </li>
         
           <li>
-            <a href="/2017/03/07/算法（三）：红黑树/">(no title)</a>
+            <a href="/2017/03/07/hello-world/">Hello World</a>
           </li>
         
       </ul>
@@ -239,7 +254,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>

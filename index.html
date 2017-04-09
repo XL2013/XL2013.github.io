@@ -260,6 +260,223 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://xl2013.github.io/2017/04/09/LinearRegression/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/naruto.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shan's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/09/LinearRegression/" itemprop="url">
+                  LinearRegression
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-09T16:42:01+08:00">
+                2017-04-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Machine-Learning-algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">Machine Learning algorithms</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="知识准备"><a href="#知识准备" class="headerlink" title="知识准备"></a>知识准备</h2><h3 id="基础数学知识"><a href="#基础数学知识" class="headerlink" title="基础数学知识"></a>基础数学知识</h3><ol>
+<li><p>最小二乘法（least square）</p>
+<p> 最小二乘法是一种数学优化技术。它通过最小化误差的平方和寻找数据的最佳函数匹配。<br> 利用最小二乘法可以简便地求得未知的数据，并使得这些求得的数据与实际数据之间误差的平方和为最小.</p>
+</li>
+</ol>
+<p>$$ min \sum<em>{i=1}^m (y</em>\theta(x)-y)^2 $$</p>
+<ol>
+<li><p>likehood 似然（最大似然评估 ）</p>
+<p> likehood function：<br> $L(\theta \mid x) = f(x \mid \theta)$</p>
+<p> 在上式中，如果x已经给出，预测 $\theta$ 的值，则该函数为似然函数。如果 $\theta$ 已经给出，预测x的值，那么这就是普通的概率函数。</p>
+<p> 而最大似然估计就是取一定的 $\theta$值，使得似然函数最大，即：<br> $$ arg  \;max \;L(\theta \mid X)$$</p>
+</li>
+</ol>
+<ol>
+<li><p>矩阵的迹及其部分等式</p>
+<p> 定义：矩阵的迹 $tr(A) = \sum<em>{i=1}^m a</em>{ii}$ 为标量且A为标量或方阵<br> 一些公式：<br>   $$ tr(ABC) = tr(CAB) = tr(BCA)$$<br>   $$ tr(A+B) = tr(A) + tr(B)$$<br>   $$\Delta<em>A tr(AB) = B^T $$<br>   $$ \Delta</em>{A^T}f(A) = (\Delta_Af(A))^T $$<br>   $$ \Delta_Atr(ABA^TC) = CAB+C^TAB^T$$<br>   $$ \Delta_A|A| = |A|(A^{-1})^T$$</p>
+<p> 等式的证明见参考资料链接</p>
+</li>
+<li><p>矩阵求导公式<br> 矩阵A对矩阵B求导，就是矩阵A中的每个值对矩阵B中的每个值求导，向量同理。</p>
+<p> 一些重要的公式：<br> $$ \frac{d X}{d X^T } = I $$<br> $$ \frac{d X^T}{d X } = I $$<br> $$ \frac{d AX}{d X^T } = A $$<br> $$ \frac{d AX^T}{d X } = A $$<br> $$ \frac{d U^TV}{d X } = \frac{d U^T}{d X}V + \frac{d V^T}{d X }U$$</p>
+<p> 等式的证明见参考资料链接</p>
+<h3 id="基础机器学习知识"><a href="#基础机器学习知识" class="headerlink" title="基础机器学习知识"></a>基础机器学习知识</h3></li>
+<li><p>学习过程</p>
+</li>
+<li>hypothesis</li>
+<li>classification、regression</li>
+<li>loss function(error function)</li>
+</ol>
+<h2 id="LinearRegression"><a href="#LinearRegression" class="headerlink" title="LinearRegression"></a>LinearRegression</h2><h3 id="理论模型"><a href="#理论模型" class="headerlink" title="理论模型"></a>理论模型</h3><blockquote>
+<p>在统计学中，线性回归是利用称为线性回归方程的最小二乘函数对一个或多个自变量和因变量之间关系进行建模的一种回归分析。</p>
+</blockquote>
+<p>在线性回归中，数据使用线性预测函数来建模，并且未知的模型参数也是通过数据来估计。这些模型被叫做线性模型。在机器学习算法中，我们使用如下的线性函数来预测y：<br>$$ h_\theta(x) = \theta_0 + \theta_1x_1 + \theta_2x<em>2 …$$<br>即：<br>$$ h</em>\theta(X) = \theta^T x$$<br>其中：<br>$$ \theta = \begin{bmatrix} \theta_0\ \theta_1\… \end{bmatrix}<br>   x =  \begin{bmatrix} x_0\ x_1\… \end{bmatrix}<br>$$<br>也可写成：<br>$$ y = Wx + b$$</p>
+<p>上面式子中,$\theta$ 和W都是一个意思，称为参数或者权重(weight)。其中 $\theta<em>0$和b表示偏差（bias），也可称为误差项。之后我们统一使用$h</em>\theta(X) = \theta^T x$</p>
+<p>为了评估线性模型的性能，线性回归使用最小二乘法来作为损失函数（loss function | cost function）：<br>$$ J(\theta) = 1/2m\sum_{i=1}^m (h(x^i)-y^i)^2$$</p>
+<p>至于为什么如此选择，后面再进行解释。</p>
+<h3 id="minimize-J-θ"><a href="#minimize-J-θ" class="headerlink" title="minimize J(θ)"></a>minimize J(θ)</h3><p>为了提升预测准确度或者时候模型性能，我们需要选择 $\theta$ 来最小化损失函数即：<br>$$ \theta = arg \; min \; J(\theta)$$</p>
+<p>一般有两种方法求解：</p>
+<h4 id="gradient-descent"><a href="#gradient-descent" class="headerlink" title="gradient descent"></a>gradient descent</h4><p>为了选择 $\theta$ 最小化  $J(\theta)$,先给 $\theta$一个初始值，然后重复的改变它,直到收敛得到一个 $\theta$,使得 $J(\theta)$ 最小。</p>
+<p>gradient descent就是这样一个算法，从一个初始 $\theta$开始，然后重复的执行如下更新：<br>$$  \theta_j = \theta_j - \alpha \frac{\delta}{\delta\theta_j}J(\theta) $$</p>
+<p>表达式中 $\alpha$代表学习速率，表示 $\theta$值收敛步长。$\frac{\delta}{\delta\theta_j}J(\theta_j)$ 代表 $J(\theta_j)$ 对 $\theta$的偏导。</p>
+<p>对于这个偏导，我们可以很容易的求解：<br>$$<br>  \begin{align}<br>    \frac{\delta}{\delta\theta_j}J(\theta) &amp; = \frac{\delta}{\delta\theta_j}J(\theta) \<br>    &amp; =   \frac{\delta}{\delta\theta<em>j}(1/2m\sum</em>{i=1}^m (h(x^i)-y^i)^2) \<br>    &amp; =  1/m(\sum_{i=1}^m (h(x^i)-y^i)x_j^i)<br>  \end{align}</p>
+<p>$$<br>向量化表示：<br>$$<br>    \frac{\delta}{\delta\theta<em>j}J(\theta)  = 1/m(\sum</em>{i=1}^m (h(x^i)-y^i)x_j^i)<br>$$<br>$$<br>     \begin{align}<br>        \frac{\delta}{\delta\theta}J(\theta) &amp;=<br>        \begin{bmatrix}<br>           \frac{\delta}{\delta\theta_1}J(\theta) \ \frac{\delta}{\delta\theta_2}J(\theta) \<br>           …\<br>           \frac{\delta}{\delta\theta_n}J(\theta)<br>        \end{bmatrix} \</p>
+<pre><code>&amp; = 1/m \;\sum_{i=1}^m
+\begin{bmatrix}  (h(x^i)-y^i)x_1^i \\
+  (h(x^i)-y^i)x_2^i\\
+...\\
+(h(x^i)-y^i)x_n^i
+ \end{bmatrix} \\
+
+&amp; = 1/m\sum_{i=1}^m((h(x^i)-y^i)x^i) \\
+
+&amp; = 1/m\;X^T(h(X)-y) \\
+&amp; = 1/m\;X^T(X\theta - y)
+
+\end{align}
+</code></pre><p>$$</p>
+<p>所以根据gradient descent：<br>$$<br>  for \;i \;in \;range(niteration):\<br>      \qquad \theta = \theta - \alpha/m\;X^T(X\theta - y)<br>$$</p>
+<h4 id="normal-equation-least-square"><a href="#normal-equation-least-square" class="headerlink" title="normal equation(least square)"></a>normal equation(least square)</h4><p>normal equation 其实就是解方程，使得梯度为0即达到最优值，上面我们已经求出梯度表达式：<br>$$<br>1/m\;X^T(X\theta - y)<br>$$<br>令它为0可求：<br>$$<br>\begin{align}</p>
+<p> 1/m\;X^T(X\theta - y) &amp;= 0\<br> X^TX\theta &amp; = X^Ty \<br> \theta &amp;= (X^TX)^{-1}X^Ty<br>\end{align}<br>$$<br>如此一来，不需迭代，直接根据输入的X和y求得预测函数</p>
+<p>除了上面这种解法求梯度，还有两种方法：</p>
+<h4 id="直接矩阵求导"><a href="#直接矩阵求导" class="headerlink" title="直接矩阵求导"></a>直接矩阵求导</h4><p>$$<br>\begin{align}</p>
+<p>  J(\theta) &amp;= 1/2m(X\theta-y)^T(X\theta-y) \<br>  \frac{\delta}{\delta\theta}J(\theta) &amp;= 1/2m(2\frac{\delta}{\delta\theta}(X\theta-y)^T) (X\theta-y)\<br>  &amp; = 1/mX^T(X\theta-y)</p>
+<p>\end{align}<br>$$</p>
+<h4 id="利用矩阵的迹求导"><a href="#利用矩阵的迹求导" class="headerlink" title="利用矩阵的迹求导"></a>利用矩阵的迹求导</h4><p>$$<br>  J(\theta) = 1/2m(X\theta-y)^T(X\theta-y)<br>$$<br>这是一个标量，所以它的迹即为它本身，所以我们可以直接用迹来求解：<br>$$<br>\begin{align}<br>tr J(\theta) &amp;= 1/2m tr(X\theta-y)^T(X\theta-y)\<br>             &amp;= 1/2mtr(\theta^TX^T-y^T)(X\theta-y)\<br>             &amp;= 1/2mtr(\theta^TX^TX\theta - y^TX\theta-\theta^TX^Ty-y^Ty) \<br>=&gt; \<br>\frac{\delta}{\delta\theta}J(\theta)<br>  &amp;= 1/2m\frac{\delta}{\delta\theta}tr(\theta^TX^TX\theta - y^TX\theta-\theta^TX^Ty-y^Ty) \<br>  &amp;= 1/2m\frac{\delta}{\delta\theta}tr(\theta^TX^TX\theta - 2y^TX\theta)\<br>  &amp;= 1/2m(X^TX\theta +X^TX\theta -2X^Ty)  \<br>  &amp;= 1/m(X^TX\theta - X^Ty)<br>\end{align}<br>$$</p>
+<h2 id="python代码实现"><a href="#python代码实现" class="headerlink" title="python代码实现"></a>python代码实现</h2><h3 id="基本numpy函数解释"><a href="#基本numpy函数解释" class="headerlink" title="基本numpy函数解释"></a>基本numpy函数解释</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="number">1.</span> np.insert(X,<span class="number">0</span>,<span class="number">1</span>,axis=<span class="number">1</span>):</div><div class="line">    X: numpy narray</div><div class="line">    <span class="number">0</span>: 插入的位置</div><div class="line">    <span class="number">1</span>：初始化的值</div><div class="line">    axis：<span class="number">0</span>为row，<span class="number">1</span>为col</div><div class="line"><span class="number">2.</span> np.random.random((x,y))</div><div class="line">    (row,col) 随机生成值为(<span class="number">0</span>,<span class="number">1</span>)，大小为row*col的数组</div><div class="line"></div><div class="line"><span class="number">3.</span> X.dot：矩阵乘法</div><div class="line">   X.T ： 矩阵转置</div><div class="line">   np.linalg.pinv:矩阵求伪逆</div></pre></td></tr></table></figure>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyLinearRegression</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    params:    </div><div class="line">    n_iterations:</div><div class="line">    learning_rate:</div><div class="line">    gradient_descent:</div><div class="line">    """</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, n_iterations=<span class="number">100</span>, learning_rate=<span class="number">0.01</span>, gradient_descent=True )</span>:</span></div><div class="line">        self.w = <span class="keyword">None</span></div><div class="line">        self.n_iterations = n_iterations</div><div class="line">        self.learning_rate = learning_rate</div><div class="line">        self.gradient_descent = gradient_descent</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self,X,y)</span>:</span></div><div class="line">        <span class="comment"># X :m*n =&gt; m*(n+1) for bias weight</span></div><div class="line">        X = np.insert(X,<span class="number">0</span>,<span class="number">1</span>,axis=<span class="number">1</span>)</div><div class="line">        <span class="comment"># gradient descent</span></div><div class="line">        <span class="keyword">if</span> self.gradient_descent :</div><div class="line">            n_features = np.shape(X)[<span class="number">1</span>]</div><div class="line">            self.w = np.random.random((n_features,))  <span class="comment"># 注意这里col还不能填1</span></div><div class="line">            <span class="keyword">for</span> _ <span class="keyword">in</span> range(self.n_iterations):</div><div class="line">                w_gradient = X.T.dot(X.dot(self.w)-y)</div><div class="line">                self.w = self.w - self.learning_rate * w_gradient</div><div class="line">        <span class="comment"># normal equation  </span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            self.w = (np.linalg.pinv(X.T.dot(X))).dot(X.T.dot(y))</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">predict</span><span class="params">(self,X)</span>:</span></div><div class="line">        X = np.insert(X,<span class="number">0</span>,<span class="number">1</span>,axis=<span class="number">1</span>)</div><div class="line">        y_pred = X.dot(self.w)</div><div class="line">        <span class="keyword">return</span> y_pred</div></pre></td></tr></table></figure>
+<h3 id="验证："><a href="#验证：" class="headerlink" title="验证："></a>验证：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</div><div class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> linear_model</div><div class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_squared_error</div><div class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeRegressor</div><div class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</div><div class="line">X,y = datasets.make_regression(n_features=<span class="number">1</span>,n_samples=<span class="number">200</span>,bias=<span class="number">100</span>,noise=<span class="number">5</span>)</div><div class="line">X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=<span class="number">0.2</span>)</div><div class="line"></div><div class="line"><span class="comment">#clf = MyLinearRegression(gradient_descent=False)</span></div><div class="line">clf = MyLinearRegression(n_iterations=<span class="number">100</span>)</div><div class="line">clf.fit(X_train,y_train)</div><div class="line">y_pred = clf.predict(X_test)</div><div class="line">mse = mean_squared_error(y_pred,y_test)</div><div class="line">print(mse)</div><div class="line">clf2 = linear_model.LinearRegression()</div><div class="line">clf2.fit(X_train,y_train)</div><div class="line">y_pred2 = clf2.predict(X_test)</div><div class="line">mse2 = mean_squared_error(y_pred2,y_test)</div><div class="line">print(mse2)</div><div class="line"></div><div class="line">clf3 = DecisionTreeRegressor(max_depth=<span class="number">20</span>)</div><div class="line">clf3.fit(X_train,y_train)</div><div class="line">mse3 = mean_squared_error(clf3.predict(X_test),y_test)</div><div class="line">print(mse3)</div></pre></td></tr></table></figure>
+<p>可以从结果中看出，在数据集较小的情况下三个效果差不多，说明我们的算法没有问题。</p>
+<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><h3 id="why-choose-least-squares"><a href="#why-choose-least-squares" class="headerlink" title="why choose least squares"></a>why choose least squares</h3><h3 id="Locally-weighted-linear-regression"><a href="#Locally-weighted-linear-regression" class="headerlink" title="Locally weighted linear regression"></a>Locally weighted linear regression</h3><h3 id="non-parametric-algorithm-and-parametric-algorithm"><a href="#non-parametric-algorithm-and-parametric-algorithm" class="headerlink" title="non-parametric algorithm and parametric algorithm"></a>non-parametric algorithm and parametric algorithm</h3><p>这三个问题比较上面略微复杂，直接看参考资料中 Andrew Ng的讲义。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li><a href="https://zh.wikipedia.org/wiki/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95" target="_blank" rel="external">wiki：最小二乘法</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Likelihood_function" target="_blank" rel="external">wiki：似然函数</a></li>
+<li><a href="http://dawenl.github.io/files/mat_deriv.pdf" target="_blank" rel="external">矩阵的迹公式证明1</a></li>
+<li><a href="http://math.stackexchange.com/questions/277151/prove-that-gradient-of-operatornametra-cdot-b-cdot-at-cdot-c-with-r?rq=1" target="_blank" rel="external">矩阵的迹公式证明2</a></li>
+<li><a href="https://wenku.baidu.com/view/a90e4c61453610661ed9f479" target="_blank" rel="external">矩阵求导</a></li>
+<li><a href="https://github.com/eriklindernoren/ML-From-Scratch/blob/master/supervised_learning/linear_regression.py" target="_blank" rel="external">github 上linearRegession的实现</a></li>
+<li><a href="http://cs229.stanford.edu/notes/cs229-notes1.pdf" target="_blank" rel="external">Andrew Ng 关于Linear regression和logistic Regression的讲义</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://xl2013.github.io/2017/03/07/算法（二）：二叉搜索树/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1848,225 +2065,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://xl2013.github.io/2017/03/07/算法（三）：红黑树/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Shan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/naruto.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shan's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/07/算法（三）：红黑树/" itemprop="url">
-                  算法(三)：红黑树
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-07T08:59:57+08:00">
-                2017-03-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="一、红黑树是什么？"><a href="#一、红黑树是什么？" class="headerlink" title="一、红黑树是什么？"></a>一、红黑树是什么？</h3><p>之前了解到，二叉搜索树可以以O(h)的复杂度来执行查询插入删除等操作。但是由于数据插入顺序的不同，高度往往不同，甚至如果按从小到大或者从大到小顺序插入，高度则为n，效率并没有得到提升。所以为了保证高度稳定，提出了特殊的二叉树：<strong>红黑树</strong>。</p>
-<p>红黑树是一颗具有红黑性质的二叉搜索树。它给节点增加了一个存储位来表示颜色，可以是RED或BLACK，通过对任何一条从根到叶节点的简单路径上节点颜色的限制 ，红黑树确保了没有一条路径会比另一条长两倍，因而近似平衡。</p>
-<p>红黑树的红黑性质有5点：</p>
-<ol>
-<li>节点必须是红色或者黑色</li>
-<li>根节点必须是黑色</li>
-<li>叶子节点都是黑色即null节点的颜色默认为黑色</li>
-<li>红色节点的孩子必须是黑色</li>
-<li>对于每个节点，从该节点到其后代的所有叶节点，均包含相同的黑色节点</li>
-</ol>
-<p>通过这5点红黑性质，红黑树的高度也就得到了限制，下面对红黑树高度得到限制进行证明。</p>
-<h3 id="二、红黑树高度限制的证明-操作算法复杂度为O-lg-n-的证明"><a href="#二、红黑树高度限制的证明-操作算法复杂度为O-lg-n-的证明" class="headerlink" title="二、红黑树高度限制的证明(操作算法复杂度为O(lg(n))的证明)"></a>二、红黑树高度限制的证明(操作算法复杂度为O(lg(n))的证明)</h3><p>首先了解一个概念：黑高（BH）。黑高是指从某个节点出发x（不包含节点）到达一个叶节点的任意一条节点路径上的黑色节点的个数，记为BH(x)。</p>
-<p>有了这个概念后，先证明一个性质：以任一节点x为根的子树至少包含2^(bh(x)) - 1 个节点。</p>
-<p>用归纳法证明该定理：</p>
-<ol>
-<li>当x为叶子节点时，黑高为0=2^(0) -1 ,定理成立。</li>
-<li>当x不为根节点时，则x的孩子节点的黑高为bh(x)或者bh(x)-1，假设x孩子节点的子树满足定理，则每个孩子子树至少包含2^(bh(x)-1) -1 个节点，则包含x节点的子树的节点数至少为2*(2^(bh(x)-1)-1)+1=2^(bh(x))-1。则包含x节点的子树叶满足定理</li>
-<li>综1、2,得证。</li>
-</ol>
-<p>再根据性质4，一条路径上至少有一半为黑色节点，则黑高至少为树高h的一半：h/2。于是有：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">n&gt;=2^(h/2)-1    =&gt;</div><div class="line"></div><div class="line">lg(n+1)&gt;=h/2    =&gt;</div><div class="line"></div><div class="line">h&lt;=2lg(n+1)</div></pre></td></tr></table></figure>
-<p>从不等式中可以看出，红黑树的高度得到了限制，于是红黑树操作的算法复杂度O(h)=O(2lg(n+1))=O(lg(n))</p>
-<h3 id="三、红黑树的基本操作：旋转"><a href="#三、红黑树的基本操作：旋转" class="headerlink" title="三、红黑树的基本操作：旋转"></a>三、红黑树的基本操作：旋转</h3><p>旋转操作是红黑树中必不可少的操作，通过旋转，可以在不改变二叉树性质的情况下通过改变节点颜色来维护红黑树的性质。</p>
-<ul>
-<li>[ ] 这里加个旋转示意图</li>
-</ul>
-<p>根据示意图，可以发现，旋转实际上就是指针的改变，其余性质没有改变，而且左旋和右旋是相互对称的。所以可以写出如下旋转代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">leftRotate</span><span class="params">(RBTNode x)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span>(x==<span class="keyword">null</span>||x.right==<span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line">	RBTNode y=x.right;</div><div class="line">	x.right=y.left;</div><div class="line">	<span class="keyword">if</span>(y.left!=<span class="keyword">null</span>)&#123;</div><div class="line">		y.left.parent=x;</div><div class="line">	&#125;</div><div class="line">	y.left=x;</div><div class="line">	y.parent=x.parent;</div><div class="line"></div><div class="line">	<span class="keyword">if</span>(y.parent==<span class="keyword">null</span>)</div><div class="line">		rootNode=y;</div><div class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(x==x.parent.left)&#123;</div><div class="line">		x.parent.left=y;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span> &#123;</div><div class="line">		x.parent.right=y;</div><div class="line">	&#125;</div><div class="line">	x.parent = y;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">rightRotate</span><span class="params">(RBTNode x)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span>(x==<span class="keyword">null</span>||x.left==<span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line">	RBTNode y=x.left;</div><div class="line">	x.left=y.right;</div><div class="line">	<span class="keyword">if</span>(y.right!=<span class="keyword">null</span>)&#123;</div><div class="line">		y.right.parent=x;</div><div class="line">	&#125;</div><div class="line">	y.right=x;</div><div class="line">	y.parent=x.parent;</div><div class="line">	<span class="keyword">if</span>(y.parent==<span class="keyword">null</span>)</div><div class="line">		rootNode=y;</div><div class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(x==x.parent.left)&#123;</div><div class="line">		x.parent.left=y;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span> &#123;</div><div class="line">		x.parent.right=y;</div><div class="line">	&#125;</div><div class="line">	x.parent = y;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>事实上，旋转代码的逻辑很简单，就是指针的互换。但是，在写起来的过程中，容易会忘记parent的设置，以及边界条件。孩子指针会记得设置，但是设置完孩子指针后，孩子节点还要指向新的父节点。其中一共改变的是三个节点的位置，所以一共需要设置三次parent，改变三次孩子节点，这里需要注意一下。</p>
-<h3 id="四、插入"><a href="#四、插入" class="headerlink" title="四、插入"></a>四、插入</h3><p>对于红黑树的插入而言，它与二叉搜索树的插入大致一致。不同的是，插入的节点首先需要配色，然后插入并配色后的树可能会违反红黑树性质，这个时候就需要fixup红黑树以保持红黑性质。</p>
-<p>插入节点的代码和步骤和二叉搜索树的一致，这里不再赘述。首先要考虑的是，插入的节点该配什么颜色。如果插入的节点配成黑色，则很明显违背了性质5。插入节点的所有祖先节点都违背了性质5。如果不对插入节点的颜色进行改变，则它所有祖先节点的黑高都+1，而且另一支子树都比拥有该节点的子树的黑高少一。要进行修正只能对每一支子树进行加一黑高操作，这样一来又可能引起其他性质的改变，导致修正复杂度增高。而把插入节点设置成红色，则性质5不会被改变，改变的只有性质4或者性质4，这样修正起来较为简单，所以插入的节点选择涂成红色。</p>
-<p>插入红色节点可能违背性质2，4，如果插入的节点为根节点，则违背了性质2。如果插入节点的父节点为红色，则违背了性质4。先把修正代码贴出：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">fixAfterInsert</span><span class="params">(RBTNode x)</span></span>&#123;</div><div class="line">		x.color=RED;</div><div class="line"></div><div class="line">		<span class="keyword">while</span>(x!=rootNode&amp;&amp;x.parent.color==RED)&#123;</div><div class="line">			RBTNode p = x.parent.parent;</div><div class="line">			<span class="keyword">if</span>(x.parent == p.left)&#123;</div><div class="line">				RBTNode w = p.right;</div><div class="line"></div><div class="line">				<span class="comment">/**</span></div><div class="line">				 * case1：叔节点为红色</div><div class="line">				 * 因为空节点的颜色为黑色，所以不能直接使用color属性，这里使用getcolor函数</div><div class="line">				 */</div><div class="line"></div><div class="line">				<span class="keyword">if</span>(getColor(w)==RED)&#123;</div><div class="line">					setColor(w, BLACK);</div><div class="line">					setColor(x.parent, BLACK);</div><div class="line">					setColor(p, RED);</div><div class="line">					x=p;</div><div class="line">				&#125;</div><div class="line">				<span class="keyword">else</span>&#123;</div><div class="line">					<span class="comment">//case2: x为红色父节点的右孩子</span></div><div class="line">					<span class="keyword">if</span>(x==x.parent.right)&#123;</div><div class="line">						x=x.parent;</div><div class="line">						leftRotate(x);</div><div class="line">					&#125;</div><div class="line">					<span class="comment">//case3: x为红色父节点的左孩子</span></div><div class="line">					setColor(p, RED);</div><div class="line">					setColor(x.parent, BLACK);</div><div class="line">					rightRotate(p);</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			<span class="comment">//左右对称</span></div><div class="line">			<span class="keyword">else</span>&#123;</div><div class="line">				RBTNode w = p.left;			</div><div class="line"></div><div class="line">				<span class="keyword">if</span>(getColor(w)==RED)&#123;</div><div class="line">					setColor(w, BLACK);</div><div class="line">					setColor(x.parent, BLACK);</div><div class="line">					setColor(p, RED);</div><div class="line">					x=p;</div><div class="line">				&#125;</div><div class="line">				<span class="keyword">else</span>&#123;</div><div class="line"></div><div class="line">					<span class="keyword">if</span>(x == x.parent.left)&#123;</div><div class="line">						x = x.parent;</div><div class="line">						rightRotate(x);</div><div class="line">					&#125;</div><div class="line"></div><div class="line">					setColor(p, RED);</div><div class="line">					setColor(x.parent, BLACK);</div><div class="line">					leftRotate(p);</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		rootNode.color=BLACK;</div><div class="line"></div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
-<p>首先先考虑什么时候修正完毕。当插入节点为根节点的时候，直接将颜色设为黑色即修正完毕；当插入节点被修正成黑色时，修正完毕。所以这里的循环条件为x!=rootNode&amp;&amp;x.parent.color==RED。</p>
-<p>在考虑下在节点处于什么情况时，能够通过旋转和着色来修正。当插入一个红色节点x，且x.parent父节点为红色时，该子树多了一个红色节点。如果直接把x.parent涂成黑色，则会违背性质5（事实上，所有的操作都是为了保持性质5）。既然涂色不能解决，那么就想到通过旋转来解决。旋转点很明显是x.parent.parent，而且该节点必不为空。由于二叉树的对称性，直接假设x.parent=x.parent.parent.left。</p>
-<p>首先，先判断是左旋还是右旋。这里在草稿纸上画出示意图，可以看出，如果围绕x.parent.parent左旋的话，问题得不到解决，因为没有涉及到x和x.parent。所以只能选择右旋，</p>
-<p>再判断右旋前节点的颜色和x与x.parent的位置要求。(x.parent.parent颜色为黑色)</p>
-<ol>
-<li>如果x为x.parent的右子节点，那么右旋时，x将成为x.parent.parent的左节点。由于性质5的要求，x.parent的颜色必须涂为黑色，同时x.parent.parent的颜色必须涂为红色（否则右支黑色节点+1）。这时，又出现两个红色节点相连，问题没有得到解决。</li>
-<li>如果x为x.parent的左节点，那么右旋时x.parent涂为黑色，x.parent.parent涂为红色，x还在左支。这时黑高不变，但是如果x.parent.parent.left的颜色为红色，则又出现了两个红色节点相连问题。如果为黑色的话，可以看出性质4页没有违背，这时x.parent.color也为黑色，修正完毕，推出循环。</li>
-</ol>
-<p>综1、2，可以通过旋转着色解决的情况是：x=x.parent.left;x.parent.parent.color=BLACK;把这种情况称为目的情况。<br>其他情况则需要通过旋转和着色转换成目的情况，然后在目的情况修正。具体其他情况算法导论和其他博客有大量讲解，这里就不再赘述。至于如何转换，可以像上诉的1、2进行假设和尝试来获得转换方法。</p>
-<h3 id="五、删除"><a href="#五、删除" class="headerlink" title="五、删除"></a>五、删除</h3><p>红黑树的删除操作是在二叉搜索树的删除操作基础上做出些许改变得到的。它通过维护需要删除的节点，和代替删除节点位置的节点来进行fix操作。先看具体代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">	 * 由于和算法导论中不同，没有哨兵节点，所以实现也有不同，这里采用java库中的TreeMap中的写法</div><div class="line">	 * <span class="doctag">@param</span> y</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">delete</span><span class="params">(RBTNode p)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(p.left != <span class="keyword">null</span> &amp;&amp; p.right != <span class="keyword">null</span> )&#123;</div><div class="line">			RBTNode s = minimum(p.right);</div><div class="line">			p.val = s.val;</div><div class="line">			p=s;</div><div class="line">		&#125;</div><div class="line">		RBTNode replacement = p.left != <span class="keyword">null</span> ? p.left : p.right;</div><div class="line">		<span class="keyword">if</span>(replacement != <span class="keyword">null</span>)&#123;</div><div class="line">			transplant(p, replacement);</div><div class="line">			<span class="keyword">if</span>(p.color == BLACK)&#123;</div><div class="line">				fixAfterDelete(replacement);</div><div class="line">			&#125;</div><div class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span> (p.parent==<span class="keyword">null</span>) &#123;</div><div class="line">			rootNode = <span class="keyword">null</span>;</div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">			<span class="comment">/**</span></div><div class="line">			 * 如果没有子节点的话，就使用本身作为虚拟节点来参与fix过程，之后unlink就行</div><div class="line">			 * 在算法导论中所有的null节点都由哨兵节点代替，这里没有哨兵节点，所以直接使用本身</div><div class="line">			 */</div><div class="line">			<span class="keyword">if</span>(p.color == BLACK)</div><div class="line">				fixAfterDelete(p);</div><div class="line"></div><div class="line">			<span class="comment">//unlink p</span></div><div class="line">			<span class="keyword">if</span>(p == p.parent.left)&#123;</div><div class="line">				p.parent.left = <span class="keyword">null</span>;</div><div class="line">			&#125;<span class="keyword">else</span> &#123;</div><div class="line">				p.parent.right = <span class="keyword">null</span>;</div><div class="line">			&#125;</div><div class="line">			p.parent = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">		&#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
-<p>首先要做的就是找到删除的节点和代替的节点。和二叉搜索树一致，分为下列几种情况：</p>
-<ol>
-<li>删除节点有右孩子和左孩子。通过找到删除节点的后继，并且将删除节点的值设为后继的值。如此一来，就相当于删除节点为后继节点，代替节点为后继节点的右孩子。具体操作如代码所示</li>
-<li>删除节点有单一子节点，删除节点不变，删除节点为单一子节点</li>
-<li>删除节点没有孩子，那么没有代替节点。由于在代码中没有算法导论中的哨兵节点，先不删除节点，反用它作为代替节点，即用本身代替本身。在修正后再删除该节点。</li>
-</ol>
-<p>找到删除节点和代替节点后，需要进行判断是否需要fix。如果删除节点的颜色为红色，那么删除后黑高不变，而且也不会违反性质4(删除节点的父节点必为黑色)，所以无需fix。如果删除节点为黑色，由于子树少了一个黑色节点，违背了性质5，而且可能代替节点和删除节点的父节点都为红色，违背性质4。</p>
-<p>找到fix条件后，开始通过代替节点进行fixAfterDeletion。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">   <span class="comment">//对颜色的处理都使用getColor和setColor，因为空节点为黑色。如果直接使用x.color，则会出空指针错误</span></div><div class="line">   <span class="comment">//实际上，在java的TreeMap中，对left和right、parent都用函数代替。这里为了简便，没采用。</span></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">fixAfterDelete</span><span class="params">(RBTNode x)</span></span>&#123;</div><div class="line">	<span class="keyword">while</span>(x != rootNode &amp;&amp; getColor(x) != RED)&#123;</div><div class="line">		 <span class="keyword">if</span>(x == x.parent.left)&#123;</div><div class="line">			RBTNode w = x.parent.right;</div><div class="line">			<span class="keyword">if</span>(getColor(w) == RED)&#123;</div><div class="line">				setColor(w, BLACK);</div><div class="line">				setColor(x.parent, RED);</div><div class="line">				leftRotate(x.parent);</div><div class="line">				w = x.parent.right;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">if</span>(getColor(w.left)==BLACK &amp;&amp; getColor(w.right)== BLACK)&#123;</div><div class="line">				setColor(w, RED);</div><div class="line">				x = x.parent;</div><div class="line">			&#125;<span class="keyword">else</span> &#123;</div><div class="line">				<span class="keyword">if</span>(getColor(w.left) == RED &amp;&amp; getColor(w.right) == BLACK)&#123;</div><div class="line">					setColor(w.left, BLACK);</div><div class="line">					setColor(w, RED);</div><div class="line">					rightRotate(w);</div><div class="line">					w = x.parent.right;</div><div class="line">				&#125;</div><div class="line">				setColor(w, x.parent.color);</div><div class="line">				setColor(x.parent, BLACK);</div><div class="line">				setColor(w.right, BLACK);</div><div class="line">				leftRotate(x.parent);</div><div class="line">				x=rootNode;</div><div class="line">			&#125;</div><div class="line"></div><div class="line">		 &#125;<span class="comment">//对称</span></div><div class="line">		 <span class="keyword">else</span>&#123;</div><div class="line">			 RBTNode w = x.parent.left;</div><div class="line">		      <span class="keyword">if</span>(getColor(w) == RED)&#123;</div><div class="line">		        setColor(w, BLACK);</div><div class="line">		        setColor(x.parent, RED);</div><div class="line">		        rightRotate(x.parent);</div><div class="line">		        w = x.parent.left;</div><div class="line">		      &#125;</div><div class="line">		      <span class="keyword">if</span>(getColor(w.right)==BLACK &amp;&amp; getColor(w.left)== BLACK)&#123;</div><div class="line">		        setColor(w, RED);</div><div class="line">		        x = x.parent;</div><div class="line">		      &#125;<span class="keyword">else</span> &#123;</div><div class="line">		        <span class="keyword">if</span>(getColor(w.right) == RED &amp;&amp; getColor(w.left) == BLACK)&#123;</div><div class="line">		          setColor(w.right, BLACK);</div><div class="line">		          setColor(w, RED);</div><div class="line">		          leftRotate(w);</div><div class="line">		          w = x.parent.left;</div><div class="line">		        &#125;</div><div class="line">		        setColor(w, x.parent.color);</div><div class="line">		        setColor(x.parent, BLACK);</div><div class="line">		        setColor(w.left, BLACK);</div><div class="line">		        rightRotate(x.parent);</div><div class="line">		        x=rootNode;</div><div class="line">		      &#125;									 </div><div class="line">		 &#125;</div><div class="line"></div><div class="line">	&#125;</div><div class="line">	<span class="comment">//注意这个不在while循环内</span></div><div class="line">	setColor(x, BLACK);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>删除了黑色节点后，含有删除节点的所有祖先节点都违背了性质5，所以为了维护性质5。给代替节点多加一层黑色，以代表删除节点的黑色加在了代替节点上。如果代替节点x为根节点，则直接涂上黑色即可；如果代替节点颜色为红色，则直接涂为黑色，如此则给包含删除节点的路径补充了一个黑节点，而且也不会引起性质4的改变。所以循环条件为x != rootNode &amp;&amp; getColor(x) != RED。而且为了恢复性质，可以采取的方法就是将黑色不断上移，直到:</p>
-<ol>
-<li>x指向红黑节点，即getColor(x)==RED</li>
-<li>x值向根节点，即x==rootNode</li>
-</ol>
-<p>最终步骤就是给红黑节点或者根节点x涂上黑色。</p>
-<p>和insert的分析方法一致，先讨论目的情况即在什么情况下能通过旋转着色来恢复红黑性质。</p>
-<p>最终目的是将多出来的黑色消除掉，即给x节点所在增加一个节点，再涂为黑色。设x=x.parent.left,为了这个目的，很明显需要在x.parent处左旋以增加节点。为了旋转后保持性质5，需要对sib=x.parent.right,sib.left,sib.right有颜色要求。</p>
-<ol>
-<li><p>旋转后x.parent被涂为黑色，并且增加了一个sib.left为子节点。如果sib为红色，那么sib.left子树的黑高为2，旋转后的x.parent的黑高为3，不符要求，所以<strong>sib节点的颜色必须为黑色</strong>以占据一个黑高。</p>
-</li>
-<li><p>sib节点为黑色后，左旋后原右支的sib节点被旋转出，所以右支的黑高减1。为了保持性质5，则给sib.right涂为黑色以加1黑高，所以<strong>sib.right的颜色必须为红色</strong>。</p>
-</li>
-</ol>
-<p>总1、2，目的情况就是sib节点的颜色必须为黑色，sib.right的颜色必须为红色。其他情况通过旋转着色转换成这种情况即可完成红黑性质的恢复。具体情况和情况间的转换这里不做分析，详情可查看算法导论的解析。</p>
-<h3 id="六、红黑树的判断"><a href="#六、红黑树的判断" class="headerlink" title="六、红黑树的判断"></a>六、红黑树的判断</h3><p>判断一个二叉搜索树是否是红黑树，只需判断是否符合红黑树的5个性质。这里判断的是2,4,5。</p>
-<p>要进行判断，首先先定义黑高，采用的是树高的表示和求法，不同的是仅当当前节点为黑色时，高低才加一。而且null节点返回一：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getBH</span><span class="params">(RBTNode x)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(x == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">		<span class="keyword">int</span> i=<span class="number">0</span>;</div><div class="line">		<span class="keyword">if</span>(x.color == BLACK)</div><div class="line">			i=<span class="number">1</span>;</div><div class="line">		<span class="keyword">int</span> leftBH = i + getBH(x.left);</div><div class="line">		<span class="keyword">int</span> rightBH = i + getBH(x.right);</div><div class="line"></div><div class="line">		<span class="keyword">return</span> leftBH &gt; rightBH ? leftBH : rightBH;</div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
-<p>通过getBH函数来判断节点是否符合性质5：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span>  <span class="keyword">boolean</span> <span class="title">checkBH</span><span class="params">(RBTNode x)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(x==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">		<span class="keyword">if</span>(getColor(x) == RED)&#123;</div><div class="line">			<span class="keyword">if</span>(!(getColor(x.left) == BLACK &amp;&amp; getColor(x.right) == BLACK))&#123;</div><div class="line">				<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">else</span> &#123;</div><div class="line">				<span class="keyword">return</span> getBH(x.left) == getBH(x.right) &amp;&amp; checkBH(x.right) &amp;&amp; checkBH(x.left);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> getBH(x.left) == getBH(x.right)&amp;&amp; checkBH(x.right) &amp;&amp; checkBH(x.left);</div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
-<p>最后直接判断根节点是否为黑色：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">checkRBTree</span><span class="params">()</span></span>&#123;</div><div class="line">		<span class="keyword">return</span>  getColor(rootNode) == BLACK  &amp;&amp; checkBH(rootNode) ;</div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="七、总结"><a href="#七、总结" class="headerlink" title="七、总结"></a>七、总结</h3><ol>
-<li>在恢复红黑性质过程中，关键思想就是从子树的根到每棵子树之间的黑色节点数不会因变换改变。(旋转着色的要求)</li>
-<li>在写fixAfterDeleti和fixAfterinsert时，应该分为以下几个步骤：</li>
-</ol>
-<ul>
-<li>找到修正结束的标识，即循环条件</li>
-<li>找到目的情况，分析如何通过旋转着色恢复红黑性质</li>
-<li>列出其他情况，分析如何转换成目的情况</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
           
           </div>
@@ -2109,7 +2114,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2120,7 +2125,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -2131,7 +2136,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -2142,6 +2147,26 @@
         
 
         <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/XL2013" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/chu-shan-61-55/" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
           
         </div>
 

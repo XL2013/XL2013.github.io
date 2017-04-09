@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="算法," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -87,19 +87,15 @@
 
 
 
-<meta name="description" content="一、红黑树是什么？之前了解到，二叉搜索树可以以O(h)的复杂度来执行查询插入删除等操作。但是由于数据插入顺序的不同，高度往往不同，甚至如果按从小到大或者从大到小顺序插入，高度则为n，效率并没有得到提升。所以为了保证高度稳定，提出了特殊的二叉树：红黑树。
-红黑树是一颗具有红黑性质的二叉搜索树。它给节点增加了一个存储位来表示颜色，可以是RED或BLACK，通过对任何一条从根到叶节点的简单路径上节点颜色">
-<meta property="og:type" content="article">
-<meta property="og:title" content="算法(三)：红黑树">
-<meta property="og:url" content="https://xl2013.github.io/2017/03/07/算法（三）：红黑树/index.html">
+<meta name="description" content="less is More">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Shan's Blog">
+<meta property="og:url" content="https://xl2013.github.io/page/2/index.html">
 <meta property="og:site_name" content="Shan's Blog">
-<meta property="og:description" content="一、红黑树是什么？之前了解到，二叉搜索树可以以O(h)的复杂度来执行查询插入删除等操作。但是由于数据插入顺序的不同，高度往往不同，甚至如果按从小到大或者从大到小顺序插入，高度则为n，效率并没有得到提升。所以为了保证高度稳定，提出了特殊的二叉树：红黑树。
-红黑树是一颗具有红黑性质的二叉搜索树。它给节点增加了一个存储位来表示颜色，可以是RED或BLACK，通过对任何一条从根到叶节点的简单路径上节点颜色">
-<meta property="og:updated_time" content="2017-03-07T12:23:26.986Z">
+<meta property="og:description" content="less is More">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="算法(三)：红黑树">
-<meta name="twitter:description" content="一、红黑树是什么？之前了解到，二叉搜索树可以以O(h)的复杂度来执行查询插入删除等操作。但是由于数据插入顺序的不同，高度往往不同，甚至如果按从小到大或者从大到小顺序插入，高度则为n，效率并没有得到提升。所以为了保证高度稳定，提出了特殊的二叉树：红黑树。
-红黑树是一颗具有红黑性质的二叉搜索树。它给节点增加了一个存储位来表示颜色，可以是RED或BLACK，通过对任何一条从根到叶节点的简单路径上节点颜色">
+<meta name="twitter:title" content="Shan's Blog">
+<meta name="twitter:description" content="less is More">
 
 
 
@@ -127,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="https://xl2013.github.io/2017/03/07/算法（三）：红黑树/"/>
+  <link rel="canonical" href="https://xl2013.github.io/page/2/"/>
 
 
 
 
 
-  <title> 算法(三)：红黑树 | Shan's Blog </title>
+  <title> Shan's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -158,7 +154,9 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left 
+   page-home 
+ ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -251,9 +249,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -283,7 +281,10 @@
             
             
               
-                算法(三)：红黑树
+                
+                <a class="post-title-link" href="/2017/03/07/算法（三）：红黑树/" itemprop="url">
+                  算法(三)：红黑树
+                </a>
               
             
           </h1>
@@ -356,7 +357,9 @@
       
 
       
-        <h3 id="一、红黑树是什么？"><a href="#一、红黑树是什么？" class="headerlink" title="一、红黑树是什么？"></a>一、红黑树是什么？</h3><p>之前了解到，二叉搜索树可以以O(h)的复杂度来执行查询插入删除等操作。但是由于数据插入顺序的不同，高度往往不同，甚至如果按从小到大或者从大到小顺序插入，高度则为n，效率并没有得到提升。所以为了保证高度稳定，提出了特殊的二叉树：<strong>红黑树</strong>。</p>
+        
+          
+            <h3 id="一、红黑树是什么？"><a href="#一、红黑树是什么？" class="headerlink" title="一、红黑树是什么？"></a>一、红黑树是什么？</h3><p>之前了解到，二叉搜索树可以以O(h)的复杂度来执行查询插入删除等操作。但是由于数据插入顺序的不同，高度往往不同，甚至如果按从小到大或者从大到小顺序插入，高度则为n，效率并没有得到提升。所以为了保证高度稳定，提出了特殊的二叉树：<strong>红黑树</strong>。</p>
 <p>红黑树是一颗具有红黑性质的二叉搜索树。它给节点增加了一个存储位来表示颜色，可以是RED或BLACK，通过对任何一条从根到叶节点的简单路径上节点颜色的限制 ，红黑树确保了没有一条路径会比另一条长两倍，因而近似平衡。</p>
 <p>红黑树的红黑性质有5点：</p>
 <ol>
@@ -434,66 +437,43 @@
 <li>列出其他情况，分析如何转换成目的情况</li>
 </ul>
 
+          
+        
       
     </div>
 
     <div>
       
-        
-
-      
     </div>
 
     <div>
-      
-        
-
       
     </div>
 
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/算法/" rel="tag"># 算法</a>
-          
-        </div>
+
       
 
       
-        
-      
 
       
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/07/Spring-AOP学习笔记（二）：创建代理对象/" rel="prev" title="Spring AOP学习笔记（二）：创建代理对象">
-                Spring AOP学习笔记（二）：创建代理对象 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
 
           
           </div>
@@ -501,10 +481,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
@@ -524,17 +500,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/naruto.jpg"
@@ -616,22 +583,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、红黑树是什么？"><span class="nav-number">1.</span> <span class="nav-text">一、红黑树是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、红黑树高度限制的证明-操作算法复杂度为O-lg-n-的证明"><span class="nav-number">2.</span> <span class="nav-text">二、红黑树高度限制的证明(操作算法复杂度为O(lg(n))的证明)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、红黑树的基本操作：旋转"><span class="nav-number">3.</span> <span class="nav-text">三、红黑树的基本操作：旋转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、插入"><span class="nav-number">4.</span> <span class="nav-text">四、插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、删除"><span class="nav-number">5.</span> <span class="nav-text">五、删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、红黑树的判断"><span class="nav-number">6.</span> <span class="nav-text">六、红黑树的判断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、总结"><span class="nav-number">7.</span> <span class="nav-text">七、总结</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -737,10 +688,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
-
-
 
   
 

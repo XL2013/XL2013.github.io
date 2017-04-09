@@ -107,7 +107,7 @@ likehood 似然（最大似然评估 ）
 min \sum_{i=1}^m (y_\theta(x)-y)^2
 likehood 似然（最大似然评估 ）
  likehood function： $L">
-<meta property="og:updated_time" content="2017-04-09T09:24:28.966Z">
+<meta property="og:updated_time" content="2017-04-09T09:27:24.227Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LinearRegression">
 <meta name="twitter:description" content="知识准备基础数学知识
@@ -410,7 +410,7 @@ likehood 似然（最大似然评估 ）
 <script type="math/tex; mode=display">h_\theta(X) = \theta^T x</script><p>其中：</p>
 <script type="math/tex; mode=display">\theta = \begin{bmatrix} \theta_0\\ \theta_1\\... \end{bmatrix}
    x =  \begin{bmatrix} x_0\\ x_1\\... \end{bmatrix}</script><p>也可写成：</p>
-<script type="math/tex; mode=display">y = Wx + b</script><p>上面式子中,$\theta$ 和W都是一个意思,称为参数或者权重(weight)。其中 $\theta<em>0$ 和b表示偏差（bias）,也可称为误差项。之后我们统一使用<br>$h</em>\theta(X) = \theta^Tx$</p>
+<script type="math/tex; mode=display">y = Wx + b</script><p>上面式子中,$\theta$和W都是一个意思,称为参数或者权重(weight)。其中 $\theta<em>0$ 和b表示偏差(bias),也可称为误差项。之后我们统一使用$h</em>\theta(X) = \theta^Tx$</p>
 <p>为了评估线性模型的性能，线性回归使用最小二乘法来作为损失函数（loss function | cost function）：</p>
 <script type="math/tex; mode=display">J(\theta) = 1/2m\sum_{i=1}^m (h(x^i)-y^i)^2</script><p>至于为什么如此选择，后面再进行解释。</p>
 <h3 id="minimize-J-θ"><a href="#minimize-J-θ" class="headerlink" title="minimize J(θ)"></a>minimize J(θ)</h3><p>为了提升预测准确度或者时候模型性能，我们需要选择 $\theta$ 来最小化损失函数即：</p>

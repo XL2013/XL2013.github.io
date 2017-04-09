@@ -107,7 +107,7 @@ likehood 似然（最大似然评估 ）
 min \sum_{i=1}^m (y_\theta(x)-y)^2
 likehood 似然（最大似然评估 ）
  likehood function： $L">
-<meta property="og:updated_time" content="2017-04-09T09:15:01.934Z">
+<meta property="og:updated_time" content="2017-04-09T09:17:14.276Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LinearRegression">
 <meta name="twitter:description" content="知识准备基础数学知识
@@ -394,9 +394,10 @@ likehood 似然（最大似然评估 ）
 <li><p>矩阵求导公式<br> 矩阵A对矩阵B求导，就是矩阵A中的每个值对矩阵B中的每个值求导，向量同理。</p>
 <p> 一些重要的公式：</p>
 <script type="math/tex; mode=display">\frac{d X}{d X^T } = I</script><script type="math/tex; mode=display">\frac{d X^T}{d X } = I</script><script type="math/tex; mode=display">\frac{d AX}{d X^T } = A</script><script type="math/tex; mode=display">\frac{d AX^T}{d X } = A</script><script type="math/tex; mode=display">\frac{d U^TV}{d X } = \frac{d U^T}{d X}V + \frac{d V^T}{d X }U</script><p> 等式的证明见参考资料链接</p>
-<h3 id="基础机器学习知识"><a href="#基础机器学习知识" class="headerlink" title="基础机器学习知识"></a>基础机器学习知识</h3></li>
-<li><p>学习过程</p>
 </li>
+</ol>
+<h3 id="基础机器学习知识"><a href="#基础机器学习知识" class="headerlink" title="基础机器学习知识"></a>基础机器学习知识</h3><ol>
+<li>学习过程</li>
 <li>hypothesis</li>
 <li>classification、regression</li>
 <li>loss function(error function)</li>
@@ -409,7 +410,7 @@ likehood 似然（最大似然评估 ）
 <script type="math/tex; mode=display">h_\theta(X) = \theta^T x</script><p>其中：</p>
 <script type="math/tex; mode=display">\theta = \begin{bmatrix} \theta_0\\ \theta_1\\... \end{bmatrix}
    x =  \begin{bmatrix} x_0\\ x_1\\... \end{bmatrix}</script><p>也可写成：</p>
-<script type="math/tex; mode=display">y = Wx + b</script><p>上面式子中,$\theta$ 和W都是一个意思，称为参数或者权重(weight)。其中 $\theta<em>0$和b表示偏差（bias），也可称为误差项。之后我们统一使用$h</em>\theta(X) = \theta^T x$</p>
+<script type="math/tex; mode=display">y = Wx + b</script><p>上面式子中,$\theta$ 和W都是一个意思，称为参数或者权重(weight)。其中 $\theta<em>0$和b表示偏差（bias），也可称为误差项。之后我们统一使用 $h</em>\theta(X) = \theta^T x$</p>
 <p>为了评估线性模型的性能，线性回归使用最小二乘法来作为损失函数（loss function | cost function）：</p>
 <script type="math/tex; mode=display">J(\theta) = 1/2m\sum_{i=1}^m (h(x^i)-y^i)^2</script><p>至于为什么如此选择，后面再进行解释。</p>
 <h3 id="minimize-J-θ"><a href="#minimize-J-θ" class="headerlink" title="minimize J(θ)"></a>minimize J(θ)</h3><p>为了提升预测准确度或者时候模型性能，我们需要选择 $\theta$ 来最小化损失函数即：</p>

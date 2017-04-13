@@ -260,6 +260,204 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://xl2013.github.io/2017/04/12/LogisticsRegression/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/naruto.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shan's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/12/LogisticsRegression/" itemprop="url">
+                  LogisticRegression
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-12T21:47:29+08:00">
+                2017-04-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Machine-Learning-algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">Machine Learning algorithms</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="知识准备"><a href="#知识准备" class="headerlink" title="知识准备"></a>知识准备</h2><h3 id="基础数学知识"><a href="#基础数学知识" class="headerlink" title="基础数学知识"></a>基础数学知识</h3><h4 id="sigmoid-函数-logistic-function"><a href="#sigmoid-函数-logistic-function" class="headerlink" title="sigmoid 函数(logistic function)"></a>sigmoid 函数(logistic function)</h4><script type="math/tex; mode=display">
+  g(x) = \frac{1}{1+e^{-x}}</script><p>对应的数学曲线如下：<br><img src="../public/images/sigmoid.png" alt="image"></p>
+<h4 id="log-loss-function"><a href="#log-loss-function" class="headerlink" title="log loss function"></a>log loss function</h4><script type="math/tex; mode=display">
+L(Y,P(Y|X)) = -logP(Y|X)</script><h2 id="理论模型"><a href="#理论模型" class="headerlink" title="理论模型"></a>理论模型</h2><h4 id="预测函数"><a href="#预测函数" class="headerlink" title="预测函数"></a>预测函数</h4><p>在线性回归中，预测函数为$h<em>\theta(x)=\theta^Tx$。因为线性回归中的值是连续的，所以预测函数可以很好的拟合。但是在分类问题中，数据是离散的，且$y\in{0,1}$,所以不能使用之前的预测函数，而是用$h</em>\theta(x)=g(\theta^Tx)$ 代替。</p>
+<p>至于为什么用在sigmoid函数，因为它的范围在0,1之间，而且曲线平滑。当然，选择这个函数还有更深层次的原因，可以见后面的扩展GLM。</p>
+<h4 id="决策函数"><a href="#决策函数" class="headerlink" title="决策函数"></a>决策函数</h4><p>决策函数一般为</p>
+<script type="math/tex; mode=display">
+y = 1\ if\  P(y=1|x)>0.5</script><p>这里的0.5是一个阈值，可以改变。</p>
+<h4 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h4><p>我们定义了概率函数如下，很明显是一个伯努利分布。</p>
+<script type="math/tex; mode=display">
+p(y=1|x) = g(\theta^Tx) = \frac{1}{1+e^{-\theta^Tx}}</script><p>因此</p>
+<script type="math/tex; mode=display">
+p(y|x) = h_\theta(x)^y + (1-h_\theta(x))^{1-y}</script><p>假设样本独立，则可以得到似然函数如下：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+L(\theta) &= \prod_{i=1}^{m}p(y^i|x^i;\theta)\\
+          &= \prod_{i=1}^{m}(h_\theta(x)^y + (1-h_\theta(x))^{1-y})      
+\end{align}</script><p>取对数可以得到对数似然：</p>
+<script type="math/tex; mode=display">
+l(\theta) = \sum_{i=1}^m(ylog(h_\theta(x)+(1-y)(1-h_\theta(x))))</script><p>回顾线性回归，我们使用最小二乘法来得到损失函数$J(\theta)$。在这里，依旧要定义损失函数。常用的损失函数有0-1损失，log损失，hinge损失等。<br>逻辑回归使用的是log损失函数，得到:</p>
+<script type="math/tex; mode=display">
+J(\theta) = - \frac{1}{N}l(\theta)</script><p>所以最小化损失函数，即最大化对数似然，也就是最大似然求解：</p>
+<script type="math/tex; mode=display">
+\theta = arg \ min\  \sum_{i=1}^m(ylog(h_\theta(x))+(1-y)(1-h_\theta(x)))</script><h4 id="参数求解"><a href="#参数求解" class="headerlink" title="参数求解"></a>参数求解</h4><p>求解 $\theta$的过程和线性回归类似，常用的有gradient_descent。此外，常见的凸优化方法都可以求解该问题，比如共轭梯度下降，牛顿法，LBFGS等。这里介绍gradient_descent的解法。</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\frac{\delta}{\delta\theta_j}J(\theta) &= 1/m
+\frac{\delta}{\delta\theta_j}\sum_{i=1}^m(ylog(h_\theta(x))+(1-y)(1-h_\theta(x))) \\
+&=1/m\sum_{i=1}^m(\frac{y}{h_\theta(x)}+\frac{y-1}{1-h_\theta(x)})\frac{\delta}{\delta\theta_j}h_\theta(x) \\
+&= 1/m\sum_{i=1}^m(\frac{y-h_\theta(x)}{(1-h_\theta(x))h_\theta(x)})
+\frac{\delta}{\delta\theta_j}h_\theta(x) \\
+\end{align}</script><p>因为</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\frac{\delta}{\delta\theta_j}h_\theta(x) &=
+\frac{\delta}{\delta\theta_j}g(\theta^Tx) \\
+&= g(\theta^Tx)(1-g(\theta^Tx))\frac{\delta}{\delta\theta_j}(\theta^Tx) \\
+&= g(\theta^Tx)(1-g(\theta^Tx))x_j \\
+&= h_\theta(x)(1-h_\theta(x))x_j
+
+\end{align}</script><p>所以</p>
+<script type="math/tex; mode=display">
+\frac{\delta}{\delta\theta_j}J(\theta) =
+1/m\sum_{i=1}^m(y-h_\theta(x))x_j</script><p>我们可以发现，这个结果和我们之前线性回归的结果一样。因此，这里直接使用上次的结果：</p>
+<script type="math/tex; mode=display">
+\frac{\delta}{\delta\theta}J(\theta) =
+1/m(X^TX\theta - X^Ty)</script><p>所以根据gradient descent：</p>
+<script type="math/tex; mode=display">
+  for \;i \;in \;range(niteration):\\
+      \qquad \theta = \theta - \alpha/m\;X^T(X\theta - y)</script><h3 id="可能会出现的疑惑"><a href="#可能会出现的疑惑" class="headerlink" title="可能会出现的疑惑"></a>可能会出现的疑惑</h3><p>为什么线性回归和逻辑回归 $\theta$的偏导结果一致，为什么选择sigmoid函数。和线性回归中的疑惑：为什么选择最小二乘法作为损失函数一致，都可以在andrew ng的讲义中得到解释，这部分内容较为复杂，这里不再赘述。</p>
+<blockquote>
+<p>但是我还是要讲一下，损失函数选择与模型服从的分布有关，这两个模型服从的分布不一致，线性回归模型数据服从高斯分布（正态分布），逻辑回归模型数据服从伯努利分布（0-1分布），然后都用最大似然求解（对于损失函数）。而偏导一致的原因是，他们都是广义线性分布的例子。</p>
+</blockquote>
+<h2 id="python-代码实现"><a href="#python-代码实现" class="headerlink" title="python 代码实现"></a>python 代码实现</h2><p>和线性回归一致，这里依旧是最基础的实现，没有涉及其他优化方法和正规化。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">sigmoid</span><span class="params">(X)</span>:</span></div><div class="line">    <span class="keyword">return</span> <span class="number">1</span> / (<span class="number">1</span> + np.exp(-X))</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">LogisticRegression</span>:</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,n_iterations = <span class="number">10</span>, learning_rate=<span class="number">0.01</span>)</span>:</span></div><div class="line">        self.params = <span class="keyword">None</span></div><div class="line">        self.n_iterations = n_iterations</div><div class="line">        self.learning_rate = learning_rate</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self, X, y)</span>:</span></div><div class="line">        X = np.insert(X,<span class="number">0</span>,<span class="number">1</span>,axis=<span class="number">1</span>)</div><div class="line">        n_features = np.shape(X)[<span class="number">1</span>]</div><div class="line">        self.params = np.random.random((n_features,))</div><div class="line"></div><div class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> range(self.n_iterations):</div><div class="line">            y_pred = sigmoid(X.dot(self.params))</div><div class="line"></div><div class="line">            self.params += self.learning_rate * X.T.dot(y-y_pred)</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">predict</span><span class="params">(self,X)</span>:</span></div><div class="line">        X = np.insert(X,<span class="number">0</span>,<span class="number">1</span>,axis=<span class="number">1</span>)</div><div class="line">        y_pred = np.round(sigmoid(X.dot(self.params))).astype(int)</div><div class="line"></div><div class="line">        <span class="keyword">return</span> y_pred</div></pre></td></tr></table></figure></p>
+<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><h3 id="generalized-model-and-discriminative-model-生成模型和判别模型"><a href="#generalized-model-and-discriminative-model-生成模型和判别模型" class="headerlink" title="generalized model and discriminative model(生成模型和判别模型)"></a>generalized model and discriminative model(生成模型和判别模型)</h3><h3 id="Generalized-Linear-Model-广义线性模型"><a href="#Generalized-Linear-Model-广义线性模型" class="headerlink" title="Generalized Linear Model(广义线性模型)"></a>Generalized Linear Model(广义线性模型)</h3><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li><a href="http://cs229.stanford.edu/notes/cs229-notes1.pdf" target="_blank" rel="external">Andrew Ng 关于Linear regression和logistic Regression的讲义</a></li>
+<li><a href="http://tech.meituan.com/intro_to_logistic_regression.html" target="_blank" rel="external">一篇讲的不错的文章</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Logistic_regression" target="_blank" rel="external">wiki_logisticRegression(虽然好像没用到)</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://xl2013.github.io/2017/04/09/LinearRegression/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1936,180 +2134,6 @@ tr J(\theta) &= 1/2m tr(X\theta-y)^T(X\theta-y)\\
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://xl2013.github.io/2017/03/07/Spring-AOP学习笔记（二）：创建代理对象/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Shan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/naruto.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shan's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/07/Spring-AOP学习笔记（二）：创建代理对象/" itemprop="url">
-                  Spring AOP学习笔记（二）：创建代理对象
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-07T20:00:22+08:00">
-                2017-03-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spring/" itemprop="url" rel="index">
-                    <span itemprop="name">Spring</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>在Spring中，代理对象的生成是靠配置和调用Spring的ProxyFactoryBean来实现的。所以我们这里要学习的是ProxyFactoryBean的设计结构和如何生成代理对象及如何实现方法增强</p>
-<h3 id="一、类继承关系"><a href="#一、类继承关系" class="headerlink" title="一、类继承关系"></a>一、类继承关系</h3><ul>
-<li>[ ] 这里需要一张类继承关系图</li>
-</ul>
-</blockquote>
-<h3 id="二、代理对象的生成"><a href="#二、代理对象的生成" class="headerlink" title="二、代理对象的生成"></a>二、代理对象的生成</h3><ul>
-<li>[ ] 这里需要一张方法调用过程图</li>
-</ul>
-<h4 id="1-初始化AdvisedSupport"><a href="#1-初始化AdvisedSupport" class="headerlink" title="1. 初始化AdvisedSupport"></a>1. 初始化AdvisedSupport</h4><p>ProxyfactoryBean是AdvisedSupport的子类，所以初始化它就相当于得到一个AdvisedSupport对象，就像一中介绍，AdvisedSupport对象封装了对通知器的操作。这部分工作在函数initializeAdvisorChain中完成。</p>
-<p>ProxyfactoryBean中具有两个属性interceptorNames和targetName,这两个属性通过XML配置得到。XML的配置一般如下，我们通过配置类似如下的XML来使用AOP功能。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"testAdvisor"</span> <span class="attr">class</span>=<span class="string">"com.abc.TestAdvisor"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"testAOP"</span> <span class="attr">class</span>=<span class="string">"org.springframework.aop.ProxyFactoryBean"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"proxyInterfaces"</span>&gt;</span><span class="tag">&lt;<span class="name">value</span>&gt;</span>com.test.AbcInterface"&gt;<span class="tag">&lt;/<span class="name">value</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"target"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"com.abc.TestTarget"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"interceptorNames"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">list</span>&gt;</span><span class="tag">&lt;<span class="name">value</span>&gt;</span>testAdvisor<span class="tag">&lt;/<span class="name">value</span>&gt;</span><span class="tag">&lt;/<span class="name">list</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>ProxyfactoryBean通过实现BeanFactoryAware接口，从而实现了setBeanFactory()方法，同时设置一个属性来设置BeanFactory。IOC容器在对Bean初始化的时候，如果Bean是BeanFactoryAware类型的话，会调用这个bean的setBeanFactory方法，，从而bean持有IOC容器。所以我们在ProxyFactoryBean中可以看见如下代码:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">advice=<span class="keyword">this</span>.beanFactory.geteBean(name);</div></pre></td></tr></table></figure></p>
-<p>这样一来，我们通过IOC容器得到通知器实例并加入到属性advosors中，如此AdvisedSupport部分初始化完毕。</p>
-<h4 id="2-通过Jdk生成动态代理对象"><a href="#2-通过Jdk生成动态代理对象" class="headerlink" title="2. 通过Jdk生成动态代理对象"></a>2. 通过Jdk生成动态代理对象</h4><p>在之前的笔记中，记录了如何使用jdk动态代理方案生成动态代理。这里也类似，最后通过Proxy类库的函数实现：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">return</span> Proxy.newProxyInstance(classLoader,proxyInterfaces,<span class="keyword">this</span>);</div></pre></td></tr></table></figure></p>
-<p>在这里再解释一遍函数的参数的含义：</p>
-<p>a. classLoader :类加载器，这里使用的是ClassUtil的defaultClassLoader<br>b. proxyInterface : 目标类实现的所有接口<br>c this : 该动态代理对象本身</p>
-<p>那么如何到这一步呢？从图中我们可以看到调用流程，具体代码不再列出。这里截取关键代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function">ProxyCreateSupport <span class="title">createAopProxy</span><span class="params">()</span>:</span></div><div class="line">return <span class="title">getAopProxyFactory</span><span class="params">()</span>.<span class="title">createAopProxy</span><span class="params">(<span class="keyword">this</span>)</span>.</div><div class="line"><span class="comment">//这里我们可以看到，创建AOP代理的工作交给AopProxyFactory了(默认的是DefaultAopProxyFactory)，并且传递了this///，也就是传递了AdvisedSupport。</span></div><div class="line">DefaultAopProxyFactory <span class="title">createAopProxy</span><span class="params">(AdviserdSupport config)</span>:</div><div class="line">return new <span class="title">JdkDynamicAopProxy</span><span class="params">(config)</span>;</div><div class="line"><span class="comment">//这里判断了目标类是否是接口从而选择JDK还是CGLIB，我们这里通过JDK来学习</span></div><div class="line"></div><div class="line"><span class="function">JdkDynamicAopProxy <span class="title">getProxy</span><span class="params">(ClassLoader classLoader)</span>:</span></div><div class="line">return Proxy.<span class="title">newProxyInstance</span><span class="params">(classLoader,proxyInterfaces,<span class="keyword">this</span>)</span>;</div><div class="line"><span class="comment">//这样代理类生成，且AdvisedSupport对象也设置进代理类中</span></div></pre></td></tr></table></figure></p>
-<p>最后我们得到了持有AdvisedSupport对象的动态代理类。</p>
-<h3 id="三、拦截器调用的实现-以JdkDynamicAopProxy为例"><a href="#三、拦截器调用的实现-以JdkDynamicAopProxy为例" class="headerlink" title="三、拦截器调用的实现(以JdkDynamicAopProxy为例)"></a>三、拦截器调用的实现(以JdkDynamicAopProxy为例)</h3><h4 id="1-invoke拦截"><a href="#1-invoke拦截" class="headerlink" title="1. invoke拦截"></a>1. invoke拦截</h4><p>在代理模式笔记中我们知道，JDK动态代理对象通过invoke方法作为回调函数来实现对目标方法的拦截或者说增强。该invoke方法包含了完整的拦截器链对目标对象的拦截过程。包含获取拦截器链并对拦截器链中的拦截器进行配置，逐个运行拦截器链中的拦截增强，直到最后对目标对象的运行。</p>
-<h4 id="2-拦截器链的获取"><a href="#2-拦截器链的获取" class="headerlink" title="2. 拦截器链的获取"></a>2. 拦截器链的获取</h4><p>拦截器链的获取如下代码所示：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">List&lt;Object&gt; chain = <span class="keyword">this</span>.advised.getInterceptorAndDynamicInterceptionAdvice(method,targetClass);</div></pre></td></tr></table></figure></p>
-<p>拦截器链的是通过AdvisedSupport来获取的。</p>
-<h5 id="2-1-缓存机制"><a href="#2-1-缓存机制" class="headerlink" title="2.1 缓存机制"></a>2.1 缓存机制</h5><p>拦截器获取函数代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> List&lt;Object&gt; <span class="title">getInterceptorsAndDynamicInterceptionAdvice</span><span class="params">(Method method, Class&lt;?&gt; targetClass)</span> </span>&#123;</div><div class="line">	MethodCacheKey cacheKey = <span class="keyword">new</span> MethodCacheKey(method);</div><div class="line">	List&lt;Object&gt; cached = <span class="keyword">this</span>.methodCache.get(cacheKey);</div><div class="line">	<span class="keyword">if</span> (cached == <span class="keyword">null</span>) &#123;</div><div class="line">		cached = <span class="keyword">this</span>.advisorChainFactory.getInterceptorsAndDynamicInterceptionAdvice(</div><div class="line">				<span class="keyword">this</span>, method, targetClass);</div><div class="line">		<span class="keyword">this</span>.methodCache.put(cacheKey, cached);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> cached;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>在函数中，使用了内部类MethodCacheKey(为什么要封装起来？)，而且使用了缓存机制。因为invoke函数的调用是在原方法调用时回调使用，所以使用频率不低。为此在这里使用缓存机制，将提高拦截器链的获取效率。</p>
-<h5 id="2-2-适配器机制"><a href="#2-2-适配器机制" class="headerlink" title="2.2 适配器机制"></a>2.2 适配器机制</h5><p>在2.1中我们可以看到拦截器链的获取由advisorChainFactory来实现。而这个advisorChainFactory是一个工厂类对象，专门用来生产拦截器链。默认的实现是DefaultAdvisorChainFactor。getInterceptorsAndDynamicInterceptionAdvice函数的重要代码我们这里截取出来：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">		AdvisorAdapterRegistry registry = GlobalAdvisorAdapterRegistry.getInstance();</div><div class="line"><span class="comment">//这个通知器适配器注册器对于方法的增强起关键作用,拦截器链事实上是由其加入的。</span></div><div class="line">            ....</div><div class="line">        MethodInterceptor[] interceptors = registry.getInterceptors(advisor);</div></pre></td></tr></table></figure></p>
-<p>代码中的registry是AdvisorAdapterRegistry的实现。在DefaultAdvisorAdapterRegistry中，设置了一系列的adapter适配器，正式这些适配器的实现，为Spring AOP的advice提供编织功能。它提供如下适配器：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">final</span> List&lt;AdvisorAdapter&gt; adapters = <span class="keyword">new</span> ArrayList&lt;AdvisorAdapter&gt;(<span class="number">3</span>);</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Create a new DefaultAdvisorAdapterRegistry, registering well-known adapters.</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">DefaultAdvisorAdapterRegistry</span><span class="params">()</span> </span>&#123;</div><div class="line">	registerAdvisorAdapter(<span class="keyword">new</span> MethodBeforeAdviceAdapter());</div><div class="line">	registerAdvisorAdapter(<span class="keyword">new</span> AfterReturningAdviceAdapter());</div><div class="line">	registerAdvisorAdapter(<span class="keyword">new</span> ThrowsAdviceAdapter());</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>如名字所示，每个适配器对应相应的advice。比如MethodBeforeAdviceAdapter是adapter，MethodBeforeAdvice是adptee，这三个adapter共同实现接口AdvisorAdapter即target接口。很明显，这里使用了适配器模式。</p>
-<p>但是不同的是这些adapter不继承adaptee，即MethodBeforeAdviceAdapter不继承MethodBeforeAdvice。因为在拦截器链中的拦截器，我们需要的不是适配器，而是封装后的拦截器。以MethodBeforeAdviceAdapter为例：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MethodBeforeAdviceAdapter</span> <span class="keyword">implements</span> <span class="title">AdvisorAdapter</span>, <span class="title">Serializable</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">supportsAdvice</span><span class="params">(Advice advice)</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> (advice <span class="keyword">instanceof</span> MethodBeforeAdvice);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> MethodInterceptor <span class="title">getInterceptor</span><span class="params">(Advisor advisor)</span> </span>&#123;</div><div class="line">		MethodBeforeAdvice advice = (MethodBeforeAdvice) advisor.getAdvice();</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> MethodBeforeAdviceInterceptor(advice);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>它提供了两个函数，一个是用来判断advice归属的，另一个则是返回advice包装后的拦截器。这个拦截器则是实现方法增强的重要因素。以MethodBeforeAdviceInterceptor为例：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MethodBeforeAdviceInterceptor</span> <span class="keyword">implements</span> <span class="title">MethodInterceptor</span>, <span class="title">Serializable</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> MethodBeforeAdvice advice;</div><div class="line"></div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * Create a new MethodBeforeAdviceInterceptor for the given advice.</div><div class="line">	 * <span class="doctag">@param</span> advice the MethodBeforeAdvice to wrap</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MethodBeforeAdviceInterceptor</span><span class="params">(MethodBeforeAdvice advice)</span> </span>&#123;</div><div class="line">		Assert.notNull(advice, <span class="string">"Advice must not be null"</span>);</div><div class="line">		<span class="keyword">this</span>.advice = advice;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(MethodInvocation mi)</span> <span class="keyword">throws</span> Throwable </span>&#123;</div><div class="line">		<span class="keyword">this</span>.advice.before(mi.getMethod(), mi.getArguments(), mi.getThis() );</div><div class="line">		<span class="keyword">return</span> mi.proceed();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>它封装了advice，通过invoke方法实现了方法的织入。比如methodBeforeAdvice，其增强方法before调用在目标方法之前，即mi.proceed()之前。mi.proceed()中的mi是ReflectiveMethodInvocation的实现，它通过proceed方法实现了对拦截器链的调用。我们在3中详细介绍。得到methodInterceptor后，我们回到advisorChainFactory中：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (advisor <span class="keyword">instanceof</span> PointcutAdvisor) &#123;</div><div class="line">				<span class="comment">// Add it conditionally.</span></div><div class="line">				PointcutAdvisor pointcutAdvisor = (PointcutAdvisor) advisor;</div><div class="line">				<span class="keyword">if</span> (config.isPreFiltered() || pointcutAdvisor.getPointcut().getClassFilter().matches(actualClass)) &#123;</div><div class="line">					MethodInterceptor[] interceptors = registry.getInterceptors(advisor);</div><div class="line">					MethodMatcher mm = pointcutAdvisor.getPointcut().getMethodMatcher();</div><div class="line">					<span class="keyword">if</span> (MethodMatchers.matches(mm, method, actualClass, hasIntroductions)) &#123;</div><div class="line">						<span class="keyword">if</span> (mm.isRuntime()) &#123;</div><div class="line">							<span class="comment">// Creating a new object instance in the getInterceptors() method</span></div><div class="line">							<span class="comment">// isn't a problem as we normally cache created chains.</span></div><div class="line">							<span class="keyword">for</span> (MethodInterceptor interceptor : interceptors) &#123;</div><div class="line">								interceptorList.add(<span class="keyword">new</span> InterceptorAndDynamicMethodMatcher(interceptor, mm));</div><div class="line">							&#125;</div><div class="line">						&#125;</div><div class="line">						<span class="keyword">else</span> &#123;</div><div class="line">							interceptorList.addAll(Arrays.asList(interceptors));</div><div class="line">						&#125;</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">			&#125;</div></pre></td></tr></table></figure></p>
-<p>在得到MethodInterceptor[]后，还进行了一项工作，就是将methodInterceptor和methodmatcher组合起来。为什么要这样做呢，因为在封装advice后，就失去了advisor中的方法匹配功能，所以为了保存方法匹配功能，这里需要将methodINterceptor和methodMatcher组合起来使用，即得到InterceptorAndDynamicMethodMatcher。</p>
-<p>总结：advisor-&gt;adviceAdapter-&gt;methodInterceptor-&gt;InterceptorAndDynamicMethodMatcher</p>
-<h4 id="3-拦截器链的调用"><a href="#3-拦截器链的调用" class="headerlink" title="3. 拦截器链的调用"></a>3. 拦截器链的调用</h4><p>在Spring AOP中，拦截器链的调用靠类ReflectiveMethodInvocation来实现:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">invocation = <span class="keyword">new</span> ReflectiveMethodInvocation(proxy, target, method, args, targetClass, chain);</div><div class="line"><span class="comment">// Proceed to the joinpoint through the interceptor chain.</span></div><div class="line">retVal = invocation.proceed();</div></pre></td></tr></table></figure></p>
-<p>我们可以看到，reflectiveMethodInvocation得到了代理对象，目标类，拦截器链，目标方法。有了这些，就可以实现对拦截器链的调用，具体实现如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">proceed</span><span class="params">()</span> <span class="keyword">throws</span> Throwable </span>&#123;</div><div class="line">		<span class="comment">//	We start with an index of -1 and increment early.</span></div><div class="line">		<span class="keyword">if</span> (<span class="keyword">this</span>.currentInterceptorIndex == <span class="keyword">this</span>.interceptorsAndDynamicMethodMatchers.size() - <span class="number">1</span>) &#123;</div><div class="line">			<span class="keyword">return</span> invokeJoinpoint();</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		Object interceptorOrInterceptionAdvice =</div><div class="line">				<span class="keyword">this</span>.interceptorsAndDynamicMethodMatchers.get(++<span class="keyword">this</span>.currentInterceptorIndex);</div><div class="line">		<span class="keyword">if</span> (interceptorOrInterceptionAdvice <span class="keyword">instanceof</span> InterceptorAndDynamicMethodMatcher) &#123;</div><div class="line">			<span class="comment">// Evaluate dynamic method matcher here: static part will already have</span></div><div class="line">			<span class="comment">// been evaluated and found to match.</span></div><div class="line">			InterceptorAndDynamicMethodMatcher dm =</div><div class="line">					(InterceptorAndDynamicMethodMatcher) interceptorOrInterceptionAdvice;</div><div class="line">			<span class="keyword">if</span> (dm.methodMatcher.matches(<span class="keyword">this</span>.method, <span class="keyword">this</span>.targetClass, <span class="keyword">this</span>.arguments)) &#123;</div><div class="line">				<span class="keyword">return</span> dm.interceptor.invoke(<span class="keyword">this</span>);</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">else</span> &#123;</div><div class="line">				<span class="comment">// Dynamic matching failed.</span></div><div class="line">				<span class="comment">// Skip this interceptor and invoke the next in the chain.</span></div><div class="line">				<span class="keyword">return</span> proceed();</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span> &#123;</div><div class="line">			<span class="comment">// It's an interceptor, so we just invoke it: The pointcut will have</span></div><div class="line">			<span class="comment">// been evaluated statically before this object was constructed.</span></div><div class="line">			<span class="keyword">return</span> ((MethodInterceptor) interceptorOrInterceptionAdvice).invoke(<span class="keyword">this</span>);</div><div class="line">		&#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
-<p>代码使用了递归回溯的思想，如果方法匹配拦截器，则调用封装后的invoke方法。在2中我们可以看见，invoke方法中包含的mi.proceed()就是这里的proceed(),所以不管是前置增强还是后置增强，都可以通过递归回溯实现。</p>
-<h3 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h3>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2159,7 +2183,7 @@ tr J(\theta) &= 1/2m tr(X\theta-y)^T(X\theta-y)\\
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

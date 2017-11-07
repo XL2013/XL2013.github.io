@@ -6,84 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://xl2013.github.io">
-  <title>算法(一)：分治、动态规划与贪心算法 | Shan&#39;s Blog</title>
+  <title>随笔(一) | Shan&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="可能这里需要分开讲解三种算法，然后这里写他们的联系与区别以及什么时候使用。
-
-每个算法的标识问题
-分治：
-
-[ ] 归并排序
-[ ] 最大子数组
-
-动态规划：
-
-[ ] 最长公共子序列
-[ ] 最长回文子序列
-[ ] 钢条切割问题
-[ ] 最大子数组
-
-贪心：
-
-[ ] 活动选择问题
-[ ] huffman问题
-
-
-一、分治
-分治就是把大的问题分解成互不相交的子问题，递归的求解子问题，然后把子问">
+  <meta name="description" content="随笔">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法(一)：分治、动态规划与贪心算法">
-<meta property="og:url" content="https://xl2013.github.io/2017/03/07/算法（一）：分治、动态规划与贪心算法/index.html">
+<meta property="og:title" content="随笔(一)">
+<meta property="og:url" content="https://xl2013.github.io/2017/11/07/随笔-一/index.html">
 <meta property="og:site_name" content="Shan's Blog">
-<meta property="og:description" content="可能这里需要分开讲解三种算法，然后这里写他们的联系与区别以及什么时候使用。
-
-每个算法的标识问题
-分治：
-
-[ ] 归并排序
-[ ] 最大子数组
-
-动态规划：
-
-[ ] 最长公共子序列
-[ ] 最长回文子序列
-[ ] 钢条切割问题
-[ ] 最大子数组
-
-贪心：
-
-[ ] 活动选择问题
-[ ] huffman问题
-
-
-一、分治
-分治就是把大的问题分解成互不相交的子问题，递归的求解子问题，然后把子问">
-<meta property="og:updated_time" content="2017-03-07T12:23:16.778Z">
+<meta property="og:description" content="随笔">
+<meta property="og:updated_time" content="2017-11-07T07:45:53.181Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="算法(一)：分治、动态规划与贪心算法">
-<meta name="twitter:description" content="可能这里需要分开讲解三种算法，然后这里写他们的联系与区别以及什么时候使用。
-
-每个算法的标识问题
-分治：
-
-[ ] 归并排序
-[ ] 最大子数组
-
-动态规划：
-
-[ ] 最长公共子序列
-[ ] 最长回文子序列
-[ ] 钢条切割问题
-[ ] 最大子数组
-
-贪心：
-
-[ ] 活动选择问题
-[ ] huffman问题
-
-
-一、分治
-分治就是把大的问题分解成互不相交的子问题，递归的求解子问题，然后把子问">
+<meta name="twitter:title" content="随笔(一)">
+<meta name="twitter:description" content="随笔">
   
     <link rel="alternative" href="/atom.xml" title="Shan&#39;s Blog" type="application/atom+xml">
   
@@ -225,150 +159,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-算法（一）：分治、动态规划与贪心算法" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-随笔-一" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      算法(一)：分治、动态规划与贪心算法
+      随笔(一)
     </h1>
   
 
         
-        <a href="/2017/03/07/算法（一）：分治、动态规划与贪心算法/" class="archive-article-date">
-  	<time datetime="2017-03-07T12:02:31.897Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-07</time>
+        <a href="/2017/11/07/随笔-一/" class="archive-article-date">
+  	<time datetime="2017-11-07T07:45:03.296Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-07</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>可能这里需要分开讲解三种算法，然后这里写他们的联系与区别以及什么时候使用。</p>
-</blockquote>
-<p>每个算法的标识问题</p>
-<p>分治：</p>
-<ul>
-<li>[ ] 归并排序</li>
-<li>[ ] 最大子数组</li>
-</ul>
-<p>动态规划：</p>
-<ul>
-<li>[ ] 最长公共子序列</li>
-<li>[ ] 最长回文子序列</li>
-<li>[ ] 钢条切割问题</li>
-<li>[ ] 最大子数组</li>
-</ul>
-<p>贪心：</p>
-<ul>
-<li>[ ] 活动选择问题</li>
-<li>[ ] huffman问题</li>
-</ul>
-<hr>
-<h3 id="一、分治"><a href="#一、分治" class="headerlink" title="一、分治"></a>一、分治</h3><blockquote>
-<p>分治就是把大的问题分解成互不相交的子问题，递归的求解子问题，然后把子问题的解组合起来</p>
-</blockquote>
-<p>分治策略解决问题，分为三个步骤：</p>
-<ol>
-<li>分解：将问题划分为子问题，子问题和原问题一样，只是规模更小</li>
-<li>解决：步骤递归的求解子问题，如果子问题的规模够小，则停止递归，直接求解</li>
-<li>合并：将子问题的解直接合并成原问题的解</li>
-</ol>
-<p>在使用分治策略解决问题的时候，最重要的步骤就是分解问题。在划分子问题的时候，有的时候一般会出现与原问题不一样的问题，如果出现了，那么这个问题一般可以直接求解。如果这个问题不能直接求解，那么可能子问题的划分不合理，需要重新考虑。</p>
-<p>以归并排序为例，我们需要对数组进行排序。那么原问题就是数组排序，如果我们把数组分为几部分，分别对数组进行排序，那么原问题就划分为子数组的排序问题。当子数组排序完毕，即子问题解决完毕，则进行合并，将子问题的解合并成原问题的解。伪代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(arr,left,right)</span></span>&#123;</div><div class="line"> <span class="comment">//子问题的规模最小，停止递归</span></div><div class="line"> <span class="keyword">if</span>(left==right) <span class="keyword">return</span> arr[left];</div><div class="line"><span class="keyword">int</span> mid=(left+right)/<span class="number">2</span>;</div><div class="line"><span class="comment">//划分子问题，递归求解</span></div><div class="line">sort(arr,left,mid);</div><div class="line">sort(arr,mid+<span class="number">1</span>,right);</div><div class="line"><span class="comment">//求解完毕，合并子问题的解</span></div><div class="line">merge(arr,left,mid,right);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>再以最大子数组为例，要得到最大连续子数组，我们可以先划分成两个子数组的最大连续子数组的问题。但是我们发现，最大连续子数组还可能出现在两个子数组之间，所以又出现了新的问题：求解包含子数组之间的最大连续数组。我们可以发现，这个问题我们可以直接求解，而不需要再次递归求解。所以原问题的划分成功，我们得到了两个和原问题一致的子问题和一个可直接求解的问题。这样，我们就可以编码解决了。</p>
-<p>从这两个问题中，我们可以发现，分治策略是把原问题划分为规模更小的子问题。但是，我们需要注意的是，这两些子问题都是==不相交==的。同一层的子问题不涉及到另一个。那么，如果划分出的子问题之间存在==重叠==(即不同子问题拥有公共子问题)怎么办呢，如果继续使用分治策略，则会出现大量的重复计算的问题，导致耗时大幅增加。</p>
-<p>为了解决重复计算的问题，我们把已计算的子问题的解保存起来，当需使用的 时候不需再次计算，直接使用。这样的方法，我们称为动态规划（dynamic programming）。</p>
-<h3 id="二、动态规划-DP"><a href="#二、动态规划-DP" class="headerlink" title="二、动态规划(DP)"></a>二、动态规划(DP)</h3><blockquote>
-<p>动态规划通常用于最优解问题。</p>
-</blockquote>
-<p>动态规划和分治类似，都需划分子问题，求解子问题，然后合并子问题的解。但是不同的是，划分出的子问题存在重叠，为了不重复计算，动态规划算法只对子问题计算一次，并且保存其值。</p>
-<p>动态规划通常有以下四个步骤：</p>
-<ol>
-<li>刻画一个最优解的结构特征（得到子问题的状态，即如何表示子问题的最优解）（分治没有具体表示）</li>
-<li>递归的定义最优解的值（得到状态转移方程（递归求解公式））  （分治：概念表示）</li>
-<li>计算最优解的值（自顶向下（备忘录）（递归），自底向上（通常选用））（类似分治中的归并）</li>
-<li>利用计算出的信息构造最优解（如果只需要最优解的值，则不需要此步骤）</li>
-</ol>
-<p>上溯4个步骤中，1,2是最重要的。通常，得到子问题的最优解结构和递归求解公式，该DP问题就已解决。在别的资料中，也称为“找出子问题的状态和状态转移方程”。经典的DP问题有钢铁切割问题和最长公共子序列问题等，为了和分治比较，这里继续采用最大子数组作为例子。在分析该例之前，先学习一下动态规划原理：</p>
-<h4 id="最优子结构"><a href="#最优子结构" class="headerlink" title="最优子结构"></a>最优子结构</h4><p>动态规划的第一步就是刻画最优解结构。如果一个问题的最优解包含其子问题的最优解，那么我们就称该问题具有最优子结构。在使用动态规划方法时，我们需要使用子问题的最优解来构造原问题的最优解，所以我们需要考察最优解中使用的所有子问题。以下是发掘最优子结构性质的通用模式：</p>
-<ol>
-<li>做出一次选择。做出这次选择会产生一个或或多个待解问题。</li>
-<li>假定该选择得到最优解。</li>
-<li>确定最优解选择后，可以确定子问题，以及如何最好的刻画子问题空间</li>
-<li>利用“剪切-粘贴”（cut-paste）技术证明：作为构成原问题最优解的构成部分，每个子问题的解就是它本身的最优解。</li>
-</ol>
-<p>在发掘最优子结构的过程中，我们就已经刻画出了最优解的特征。所以这4个步骤也是在求解最优解问题时，首先应该做的。另外一个判断是否能用dp的性质是子问题的无关性。如果两个子问题不同时占用同一资源的话，我们就称两个子问题是无关的。如果子问题之间不是无关的，那么这个问题就不能用DP来解决。</p>
-<h4 id="重叠子问题"><a href="#重叠子问题" class="headerlink" title="重叠子问题"></a>重叠子问题</h4><p>适合动态规划求解的最优解问题应该具备的第二个性质是子问题空间必须足够小，即问题的递归算法会反复的求解相同的问题，而不是一直生成新的子问题。如果递归算法反复求解相同的子问题，我们就称最优化问题具有“重叠子问题”的性质。与之相对应的是，适合用分治解决的问题通常在每一步都生成不同的子问题。动态规划算法通常利用重叠子问题的性质，对每个子问题求解一次，并把每次的结果存入一个表中，当再次需要这个值时直接读表即可，每次查表的时间为常数。</p>
-<p>在了解了动态规划原理（使用动态规划的原因）后，我们再对最大子数组进行分析。首先先回顾最大子数组问题：</p>
-<blockquote>
-<p>给定一个整数数组，数组值有正数和负数。求数组中的和最大的连续子数组。</p>
-</blockquote>
-<p>第一步：刻画最优解的结构特征。我们先使用发掘最优子结构的四个步骤：</p>
-<ol>
-<li>做出一次选择。我们先选择a[i]最为连续子数组的最后一位。</li>
-<li>假设该选择得到最优解。我们假设f[i]为选择a[i]为最后一位后的最优解即最大和。</li>
-<li>确定子问题，刻画子问题空间。a[i-1]在最优解中，那么f[i]=f[i-1]+a[i].如果不在，则f[i]=a[i];那么原问题产生了一个子问题</li>
-<li>利用“剪切-粘贴”原理证明：作为构成原问题最优解的构成部分，每个子问题的解就是它本身的最优解。</li>
-</ol>
-<p>假设f[i-1]不是子问题的最优解，那么存在f’[i-1]&gt;f[i-1]，因为两者都是以a[i-1]为结尾，所以f’[i-1]+a[i]&gt;f[i-1]+a[i]，所以f[i]不是最优解，与原假设矛盾。</p>
-<p>综合上诉4步，我们确定了问题的最优子结构性质，而且同时也得到了最优解结构和递归求解公式。</p>
-<p>第二步：递归定义最优解的值：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">f[i]=  f[i-1]+a[i]   f[i-1]&gt;0</div><div class="line"></div><div class="line">    =  a[i]          f[i-1]&lt;0</div></pre></td></tr></table></figure>
-<p>(如果f[i-1]&lt; 0,那么a[i-1]必不在f[i]的最优解中)</p>
-<p>第三步：计算最优解的值</p>
-<ol>
-<li><p>备忘录（自顶向下）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">f[]=-A;</div><div class="line">f[<span class="number">0</span>]=a[<span class="number">0</span>];</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">getMaxSubArr</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> []a)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span>(f[i]&gt;-A)&#123;</div><div class="line">        <span class="keyword">return</span> f[i];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(getMaxSubArr(i-<span class="number">1</span>,a)&gt;<span class="number">0</span>)</div><div class="line">     f[i]=a[i]+f[i-<span class="number">1</span>];</div><div class="line">    <span class="keyword">else</span></div><div class="line">     f[i]=a[i];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>自底向上</p>
-</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">getMaxSubArr</span><span class="params">(<span class="keyword">int</span>[] a)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> []f=<span class="keyword">new</span> <span class="keyword">int</span>[a.length];</div><div class="line">    f[<span class="number">0</span>]=a[<span class="number">0</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;a.length;i++)&#123;</div><div class="line">        <span class="keyword">if</span>(f[i-<span class="number">1</span>]&lt;<span class="number">0</span>)</div><div class="line">            f[i]=a[i];</div><div class="line">        <span class="keyword">else</span></div><div class="line">            f[i]=f[i-<span class="number">1</span>]+a[i];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> max(f);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>通常情况下，在每个子问题都求解的情况下，自底向下必备忘录算法快（省去了递归的开销）。但是当有的子问题不必求解的时候，备忘录方法比自底向下快，因为备忘录方法只会求解必要的子问题。</p>
-<p>第四步：构造最优解</p>
-<p>构造最优解通常有两种方法，一是根据解的表来构造（即根据f[i]），二是在计算最优解的值时，顺便记录。</p>
-<ol>
-<li><p>根据f[i]:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span> []f)</span></span>&#123;    </div><div class="line">    <span class="keyword">int</span> max=<span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;f.length;i++)&#123;</div><div class="line">        <span class="keyword">if</span>(f[i]&gt;f[max])&#123;</div><div class="line">            max=i;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    print(f,max);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span> []f,<span class="keyword">int</span> index)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span>(index&lt;<span class="number">0</span>) <span class="keyword">return</span>;</div><div class="line">    <span class="keyword">if</span>(f[index]&gt;<span class="number">0</span>)&#123;</div><div class="line">        print(f,index-<span class="number">1</span>)</div><div class="line">        System.out.print(f[i]+<span class="string">" "</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>顺便记录：</p>
-</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">getMaxSubArr</span><span class="params">(<span class="keyword">int</span>[] a)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> []f=<span class="keyword">new</span> <span class="keyword">int</span>[a.length];</div><div class="line">    f[<span class="number">0</span>]=a[<span class="number">0</span>];</div><div class="line">    <span class="keyword">int</span> []begin=<span class="keyword">new</span> <span class="keyword">int</span>[a.length];</div><div class="line">    <span class="keyword">int</span> end=<span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> sum=f[<span class="number">0</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;a.length;i++)&#123;</div><div class="line">        <span class="keyword">if</span>(f[i-<span class="number">1</span>]&lt;<span class="number">0</span>)&#123;</div><div class="line">            f[i]=a[i];</div><div class="line">            begin[i]=i;</div><div class="line">            &#125;</div><div class="line">        <span class="keyword">else</span></div><div class="line">            f[i]=f[i-<span class="number">1</span>]+a[i];</div><div class="line">        <span class="keyword">if</span>(sum&lt;f[i])&#123;</div><div class="line">            sum=f[i];</div><div class="line">            end=i;</div><div class="line">            &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> sum;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span> []begin,<span class="keyword">int</span> end,<span class="keyword">int</span>[]a)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> b=begin[end];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=b;i&lt;=end;i++)</div><div class="line">        System.out.print(a[i]+<span class="string">","</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>两种方法都可以，一般在使用第二种的时候要多维护一个表。</p>
-<p>总的来说，动态规划步骤中，总是要经历选择。算法本身不筛选选择，而是比较选择后的子问题的最优解从而得到原问题的最优解。动态规划算法的复杂度与子问题的个数和选择的个数成线性相关。以钢条切割为例，以跟n长的钢条，则一共有n个子问题，子问题中最大的选择个数为n，则动态规划的算法复杂度为O(n^2).以最大子数组为例，长度为n的数组，一共有n个子问题，但是只有一种选择，即最后一个数字为最优解的子数组的结尾。所以算法复杂度为O(n)。</p>
-<p>那么，如果有一种选择可以使每次都得到最优解，算法复杂度就可以得到减少。这种选择就是“贪心”选择</p>
-<h3 id="三、贪心"><a href="#三、贪心" class="headerlink" title="三、贪心"></a>三、贪心</h3><blockquote>
-<p>贪心选择性质：通过做出局部最优（贪心）的选择来构造全局最优解。</p>
-</blockquote>
-<p>贪心算法通过做出一系列选择来求出问题的最优解。在每个决策点，它做出当时看起来最佳的选择。这种启发式策略并不能保证找到最优解。但是对有些问题确实有效，比如活动选择问题。贪心算法是基于动态规划算法的，每个贪心算法背后都有一个更繁琐的动态规划算法。</p>
-<p>贪心算法的设计过程如下：</p>
-<ol>
-<li>确定问题的最优解结构（和动态规划一致）</li>
-<li>设计一个递归算法（递归求解公式）(状态转移方程)（和动态规划一致）</li>
-<li>证明如果我们做出一个贪心选择，则只剩一个子问题</li>
-<li>证明贪心选择总是安全的（3,4步骤可以调换）</li>
-<li>设计一个递归算法实现贪心策略</li>
-<li>将递归算法改成迭代算法</li>
-</ol>
-<p>从贪心算法的设计步骤我们可以看出，1,2步骤和动态规划一致，3,4是贪心算法最重要的部分。如何做出一个贪心选择，和证明这个贪心选择是安全的使我们在使用贪心算法时最重要的两个步骤。那么上诉7个步骤可以简化话如下：</p>
-<ol>
-<li>将最优化问题转化为这样的形式：对其做出一次选择后只剩下一个子问题求解</li>
-<li>证明做出贪心选择后，原问题总是存在最优解（即贪心选择包含在原问题最优解中）（安全的贪心策略）</li>
-<li>证明做出贪心选择后剩余的子问题满足性质：其最优解与贪心选择组合即可得到原问题的最优解（即动态规划里的最优子结构性质）</li>
-</ol>
-<p>以活动选择为例，我们使用上诉三个步骤创建贪心算法。</p>
-<ol>
-<li>我们每次选择结束时间最早的活动a[k]，那么s[k]为在a[k]结束后的活动的集合，令A[k]为s[k]的最大兼容活动集。则做出选择后，只剩一个问题，在s[k]中求出A[k]</li>
-<li>设a[j]是A[k]中最早结束的活动，a[m]是s[k]中最早结束的活动。令A’[k]=(A[k]-a[j])Ua[k],因为A[k]中的活动互不相交，且a[j]是A[k]中结束最早的活动，f[m]&lt;=f[j],所以A[k]=A’[k]。所以A’[k]也是s[k]的一个最大兼容活动集，且它包含a[m]</li>
-<li>假设A[k]不是s[k]的最优解，A’[k]是s[k]的最优解。那么A’[k]+a[k]&lt;A[k]+a[k],则与原问题为最优解矛盾，所以存在最优子结构性质。</li>
-</ol>
-<p>由上诉三个步骤，可以得到递归算法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">activitySelect</span><span class="params">(<span class="keyword">int</span>[]s,<span class="keyword">int</span>[]f,k,n)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> m=k+<span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>(m&lt;n&amp;&amp;s[m]&lt;f[k])</div><div class="line">        m++;</div><div class="line">    <span class="keyword">if</span>(m&lt;n)</div><div class="line">        <span class="keyword">return</span> activitySelect(s,f,m,n)+<span class="number">1</span>;</div><div class="line">    <span class="keyword">else</span></div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>改进成迭代算法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">activitySelect</span><span class="params">(<span class="keyword">int</span>[]s,<span class="keyword">int</span>[]f)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span>(s.length==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> k=<span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> max=<span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;s.length;i++)&#123;</div><div class="line">        <span class="keyword">if</span>(s[i]&gt;f[k])&#123;</div><div class="line">            max++;</div><div class="line">            k=i;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> max;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
+        <h3 id="随笔"><a href="#随笔" class="headerlink" title="随笔"></a>随笔</h3>
       
 
       
@@ -402,7 +213,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
         		</li>
       		
 		</ul>
@@ -414,7 +225,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/算法//" class="article-tag-list-link color3">算法</a>
+        			<a href="/categories/随笔//" class="article-tag-list-link color3">随笔</a>
         		</li>
       		
 		</ul>
@@ -469,7 +280,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://xl2013.github.io/2017/03/07/算法（一）：分治、动态规划与贪心算法/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://xl2013.github.io/2017/11/07/随笔-一/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -483,18 +294,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/03/07/算法（二）：二叉搜索树/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          算法(二)：二叉搜索树
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/03/07/java（四）：内部类详解/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">java(四)：内部类</div>
+    <a href="/2017/04/12/LogisticsRegression/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">LogisticRegression</div>
       <i class="icon-circle-right"></i>
     </a>
   

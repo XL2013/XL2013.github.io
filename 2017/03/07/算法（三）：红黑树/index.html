@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Shan's Blog">
 <meta property="og:description" content="一、红黑树是什么？之前了解到，二叉搜索树可以以O(h)的复杂度来执行查询插入删除等操作。但是由于数据插入顺序的不同，高度往往不同，甚至如果按从小到大或者从大到小顺序插入，高度则为n，效率并没有得到提升。所以为了保证高度稳定，提出了特殊的二叉树：红黑树。
 红黑树是一颗具有红黑性质的二叉搜索树。它给节点增加了一个存储位来表示颜色，可以是RED或BLACK，通过对任何一条从根到叶节点的简单路径上节点颜色">
-<meta property="og:updated_time" content="2017-03-07T12:23:26.986Z">
+<meta property="og:updated_time" content="2017-11-07T08:36:35.771Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法(三)：红黑树">
 <meta name="twitter:description" content="一、红黑树是什么？之前了解到，二叉搜索树可以以O(h)的复杂度来执行查询插入删除等操作。但是由于数据插入顺序的不同，高度往往不同，甚至如果按从小到大或者从大到小顺序插入，高度则为n，效率并没有得到提升。所以为了保证高度稳定，提出了特殊的二叉树：红黑树。
@@ -63,16 +63,24 @@
 	        
 				<li><a href="/tags/随笔/">随笔</a></li>
 	        
-				<li><a href="/archives">文章</a></li>
+				<li><a href="/archives">归档</a></li>
+	        
+				<li><a href="/categories/">目录</a></li>
 	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
     		
     			
-            
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
     			
             
+    			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
+    			
+            
+    			
+    			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
     			
             
 		</nav>
@@ -117,6 +125,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -137,11 +147,13 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
+					<li style="width: 25%"><a href="/">主页</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 25%"><a href="/tags/随笔/">随笔</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/archives">文章</a></li>
+					<li style="width: 25%"><a href="/archives">归档</a></li>
+		        
+					<li style="width: 25%"><a href="/categories/">目录</a></li>
 		        
 				</ul>
 			</nav>
@@ -186,7 +198,7 @@
 <li>红色节点的孩子必须是黑色</li>
 <li>对于每个节点，从该节点到其后代的所有叶节点，均包含相同的黑色节点</li>
 </ol>
-<p>通过这5点红黑性质，红黑树的高度也就得到了限制，下面对红黑树高度得到限制进行证明。</p>
+<p>通过这5点红黑性质，红黑树的高度也就得到了限制，下面对红黑树高度得到限制进行证明。<br><a id="more"></a></p>
 <h3 id="二、红黑树高度限制的证明-操作算法复杂度为O-lg-n-的证明"><a href="#二、红黑树高度限制的证明-操作算法复杂度为O-lg-n-的证明" class="headerlink" title="二、红黑树高度限制的证明(操作算法复杂度为O(lg(n))的证明)"></a>二、红黑树高度限制的证明(操作算法复杂度为O(lg(n))的证明)</h3><p>首先了解一个概念：黑高（BH）。黑高是指从某个节点出发x（不包含节点）到达一个叶节点的任意一条节点路径上的黑色节点的个数，记为BH(x)。</p>
 <p>有了这个概念后，先证明一个性质：以任一节点x为根的子树至少包含2^(bh(x)) - 1 个节点。</p>
 <p>用归纳法证明该定理：</p>
@@ -394,13 +406,26 @@
         </div>
         
         
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、红黑树是什么？"><span class="toc-number">1.</span> <span class="toc-text">一、红黑树是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、红黑树高度限制的证明-操作算法复杂度为O-lg-n-的证明"><span class="toc-number">2.</span> <span class="toc-text">二、红黑树高度限制的证明(操作算法复杂度为O(lg(n))的证明)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、红黑树的基本操作：旋转"><span class="toc-number">3.</span> <span class="toc-text">三、红黑树的基本操作：旋转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、插入"><span class="toc-number">4.</span> <span class="toc-text">四、插入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、删除"><span class="toc-number">5.</span> <span class="toc-text">五、删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#六、红黑树的判断"><span class="toc-number">6.</span> <span class="toc-text">六、红黑树的判断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#七、总结"><span class="toc-number">7.</span> <span class="toc-text">七、总结</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
     </div>
 </aside>
 
 
 
   
-  
+
   
 
   
@@ -445,7 +470,7 @@
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
-		innerArchive: false,
+		innerArchive: true,
 		showTags: true
 	}
 </script>
@@ -483,9 +508,15 @@ MathJax.Hub.Queue(function() {
     
     
       
-    
+      
       
     
+      
+      
+      
+    
+      
+      
       
     
     
@@ -494,18 +525,113 @@ MathJax.Hub.Queue(function() {
     
     
       
-        
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
+      
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
+      
+        
+      
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
   </div>
   <div class="tools-wrap">
     
-
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Machine Learning algorithms</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            3、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: false
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
     
 
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me" q-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
     
   </div>
   

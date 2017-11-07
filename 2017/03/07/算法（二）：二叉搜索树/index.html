@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Shan's Blog">
 <meta property="og:description" content="一、性质二叉搜索树是以一颗二叉树来组织的。对任何节点x，其左子树的关键字不大于x.key，其右子树的关键字不小于x.key（二叉搜索树性质）。
 二叉搜索树的基本操作和一般的二叉树类似，分为查询操作（找到x节点，x节点的前驱，后继等等），增删操作。但是二叉搜索树和一般的二叉树不同，二叉搜索树操作的耗时与二叉树的高度相关，一般为O(h)。而普通二叉树需要遍历整个树，耗时为O(n)。相比下，二叉搜索树耗">
-<meta property="og:updated_time" content="2017-03-07T12:21:53.233Z">
+<meta property="og:updated_time" content="2017-11-07T08:38:14.995Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法(二)：二叉搜索树">
 <meta name="twitter:description" content="一、性质二叉搜索树是以一颗二叉树来组织的。对任何节点x，其左子树的关键字不大于x.key，其右子树的关键字不小于x.key（二叉搜索树性质）。
@@ -63,16 +63,24 @@
 	        
 				<li><a href="/tags/随笔/">随笔</a></li>
 	        
-				<li><a href="/archives">文章</a></li>
+				<li><a href="/archives">归档</a></li>
+	        
+				<li><a href="/categories/">目录</a></li>
 	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
     		
     			
-            
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
     			
             
+    			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
+    			
+            
+    			
+    			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
     			
             
 		</nav>
@@ -117,6 +125,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -137,11 +147,13 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
+					<li style="width: 25%"><a href="/">主页</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 25%"><a href="/tags/随笔/">随笔</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/archives">文章</a></li>
+					<li style="width: 25%"><a href="/archives">归档</a></li>
+		        
+					<li style="width: 25%"><a href="/categories/">目录</a></li>
 		        
 				</ul>
 			</nav>
@@ -179,6 +191,7 @@
         <h3 id="一、性质"><a href="#一、性质" class="headerlink" title="一、性质"></a>一、性质</h3><p>二叉搜索树是以一颗二叉树来组织的。对任何节点x，其左子树的关键字不大于x.key，其右子树的关键字不小于x.key（二叉搜索树性质）。</p>
 <p>二叉搜索树的基本操作和一般的二叉树类似，分为查询操作（找到x节点，x节点的前驱，后继等等），增删操作。但是二叉搜索树和一般的二叉树不同，二叉搜索树操作的耗时与二叉树的高度相关，一般为O(h)。而普通二叉树需要遍历整个树，耗时为O(n)。相比下，二叉搜索树耗时大大减少。</p>
 <p>由于二叉搜索树性质，所以各种操作也有相应的特点。</p>
+<a id="more"></a>
 <h3 id="二、查询操作"><a href="#二、查询操作" class="headerlink" title="二、查询操作"></a>二、查询操作</h3><ol>
 <li>找到二叉搜索树种的x节点，这很简单，直接上代码：</li>
 </ol>
@@ -358,13 +371,26 @@
         </div>
         
         
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、性质"><span class="toc-number">1.</span> <span class="toc-text">一、性质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、查询操作"><span class="toc-number">2.</span> <span class="toc-text">二、查询操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、插入操作"><span class="toc-number">3.</span> <span class="toc-text">三、插入操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、删除操作"><span class="toc-number">4.</span> <span class="toc-text">四、删除操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、总结"><span class="toc-number">5.</span> <span class="toc-text">五、总结</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
     </div>
 </aside>
 
 
 
   
-  
+
   
 
   
@@ -409,7 +435,7 @@
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
-		innerArchive: false,
+		innerArchive: true,
 		showTags: true
 	}
 </script>
@@ -447,9 +473,15 @@ MathJax.Hub.Queue(function() {
     
     
       
-    
+      
       
     
+      
+      
+      
+    
+      
+      
       
     
     
@@ -458,18 +490,113 @@ MathJax.Hub.Queue(function() {
     
     
       
-        
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
+      
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
+      
+        
+      
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
   </div>
   <div class="tools-wrap">
     
-
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Machine Learning algorithms</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            3、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: false
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
     
 
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me" q-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
     
   </div>
   

@@ -8,37 +8,19 @@
   <link rel="dns-prefetch" href="https://xl2013.github.io">
   <title>LinearRegression | Shan&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="知识准备基础数学知识
-最小二乘法（least square）
- 最小二乘法是一种数学优化技术。它通过最小化误差的平方和寻找数据的最佳函数匹配。 利用最小二乘法可以简便地求得未知的数据，并使得这些求得的数据与实际数据之间误差的平方和为最小.
-
-
-min \sum_{i=1}^m (y_\theta(x)-y)^2
-likehood 似然（最大似然评估 ）
- likehood function： $L">
+  <meta name="description" content="知识准备基础数学知识最小二乘法（least square）最小二乘法是一种数学优化技术。它通过最小化误差的平方和寻找数据的最佳函数匹配。利用最小二乘法可以简便地求得未知的数据，并使得这些求得的数据与实际数据之间误差的平方和为最小.
+min \sum_{i=1}^m (y_\theta(x)-y)^2likehood 似然（最大似然评估 ）likehood function：$L(\theta \m">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LinearRegression">
 <meta property="og:url" content="https://xl2013.github.io/2017/04/09/LinearRegression/index.html">
 <meta property="og:site_name" content="Shan's Blog">
-<meta property="og:description" content="知识准备基础数学知识
-最小二乘法（least square）
- 最小二乘法是一种数学优化技术。它通过最小化误差的平方和寻找数据的最佳函数匹配。 利用最小二乘法可以简便地求得未知的数据，并使得这些求得的数据与实际数据之间误差的平方和为最小.
-
-
-min \sum_{i=1}^m (y_\theta(x)-y)^2
-likehood 似然（最大似然评估 ）
- likehood function： $L">
-<meta property="og:updated_time" content="2017-04-09T09:30:54.768Z">
+<meta property="og:description" content="知识准备基础数学知识最小二乘法（least square）最小二乘法是一种数学优化技术。它通过最小化误差的平方和寻找数据的最佳函数匹配。利用最小二乘法可以简便地求得未知的数据，并使得这些求得的数据与实际数据之间误差的平方和为最小.
+min \sum_{i=1}^m (y_\theta(x)-y)^2likehood 似然（最大似然评估 ）likehood function：$L(\theta \m">
+<meta property="og:updated_time" content="2017-11-07T08:55:53.168Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LinearRegression">
-<meta name="twitter:description" content="知识准备基础数学知识
-最小二乘法（least square）
- 最小二乘法是一种数学优化技术。它通过最小化误差的平方和寻找数据的最佳函数匹配。 利用最小二乘法可以简便地求得未知的数据，并使得这些求得的数据与实际数据之间误差的平方和为最小.
-
-
-min \sum_{i=1}^m (y_\theta(x)-y)^2
-likehood 似然（最大似然评估 ）
- likehood function： $L">
+<meta name="twitter:description" content="知识准备基础数学知识最小二乘法（least square）最小二乘法是一种数学优化技术。它通过最小化误差的平方和寻找数据的最佳函数匹配。利用最小二乘法可以简便地求得未知的数据，并使得这些求得的数据与实际数据之间误差的平方和为最小.
+min \sum_{i=1}^m (y_\theta(x)-y)^2likehood 似然（最大似然评估 ）likehood function：$L(\theta \m">
   
     <link rel="alternative" href="/atom.xml" title="Shan&#39;s Blog" type="application/atom+xml">
   
@@ -81,16 +63,24 @@ likehood 似然（最大似然评估 ）
 	        
 				<li><a href="/tags/随笔/">随笔</a></li>
 	        
-				<li><a href="/archives">文章</a></li>
+				<li><a href="/archives">归档</a></li>
+	        
+				<li><a href="/categories/">目录</a></li>
 	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
     		
     			
-            
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
     			
             
+    			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
+    			
+            
+    			
+    			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
     			
             
 		</nav>
@@ -135,6 +125,8 @@ likehood 似然（最大似然评估 ）
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -155,11 +147,13 @@ likehood 似然（最大似然评估 ）
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
+					<li style="width: 25%"><a href="/">主页</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 25%"><a href="/tags/随笔/">随笔</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/archives">文章</a></li>
+					<li style="width: 25%"><a href="/archives">归档</a></li>
+		        
+					<li style="width: 25%"><a href="/categories/">目录</a></li>
 		        
 				</ul>
 			</nav>
@@ -194,28 +188,15 @@ likehood 似然（最大似然评估 ）
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="知识准备"><a href="#知识准备" class="headerlink" title="知识准备"></a>知识准备</h2><h3 id="基础数学知识"><a href="#基础数学知识" class="headerlink" title="基础数学知识"></a>基础数学知识</h3><ol>
-<li><p>最小二乘法（least square）</p>
-<p> 最小二乘法是一种数学优化技术。它通过最小化误差的平方和寻找数据的最佳函数匹配。<br> 利用最小二乘法可以简便地求得未知的数据，并使得这些求得的数据与实际数据之间误差的平方和为最小.</p>
-</li>
-</ol>
-<script type="math/tex; mode=display">min \sum_{i=1}^m (y_\theta(x)-y)^2</script><ol>
-<li><p>likehood 似然（最大似然评估 ）</p>
-<p> likehood function：<br> $L(\theta \mid x) = f(x \mid \theta)$</p>
-<p> 在上式中，如果x已经给出，预测 $\theta$ 的值，则该函数为似然函数。如果 $\theta$ 已经给出，预测x的值，那么这就是普通的概率函数。</p>
-<p> 而最大似然估计就是取一定的 $\theta$值，使得似然函数最大，即：</p>
-<script type="math/tex; mode=display">arg  \;max \;L(\theta \mid X)</script></li>
-</ol>
-<ol>
-<li><p>矩阵的迹及其部分等式</p>
-<p> 定义：矩阵的迹 $tr(A) = \sum<em>{i=1}^m a</em>{ii}$ 为标量且A为标量或方阵<br> 一些公式：</p>
-<script type="math/tex; mode=display">tr(ABC) = tr(CAB) = tr(BCA)</script><script type="math/tex; mode=display">tr(A+B) = tr(A) + tr(B)</script><script type="math/tex; mode=display">\Delta_A tr(AB) = B^T</script><script type="math/tex; mode=display">\Delta_{A^T}f(A) = (\Delta_Af(A))^T</script><script type="math/tex; mode=display">\Delta_Atr(ABA^TC) = CAB+C^TAB^T</script><script type="math/tex; mode=display">\Delta_A|A| = |A|(A^{-1})^T</script><p> 等式的证明见参考资料链接</p>
-</li>
-<li><p>矩阵求导公式<br> 矩阵A对矩阵B求导，就是矩阵A中的每个值对矩阵B中的每个值求导，向量同理。</p>
-<p> 一些重要的公式：</p>
-<script type="math/tex; mode=display">\frac{d X}{d X^T } = I</script><script type="math/tex; mode=display">\frac{d X^T}{d X } = I</script><script type="math/tex; mode=display">\frac{d AX}{d X^T } = A</script><script type="math/tex; mode=display">\frac{d AX^T}{d X } = A</script><script type="math/tex; mode=display">\frac{d U^TV}{d X } = \frac{d U^T}{d X}V + \frac{d V^T}{d X }U</script><p> 等式的证明见参考资料链接</p>
-</li>
-</ol>
+        <h2 id="知识准备"><a href="#知识准备" class="headerlink" title="知识准备"></a>知识准备</h2><h3 id="基础数学知识"><a href="#基础数学知识" class="headerlink" title="基础数学知识"></a>基础数学知识</h3><h4 id="最小二乘法（least-square）"><a href="#最小二乘法（least-square）" class="headerlink" title="最小二乘法（least square）"></a>最小二乘法（least square）</h4><p>最小二乘法是一种数学优化技术。它通过最小化误差的平方和寻找数据的最佳函数匹配。<br>利用最小二乘法可以简便地求得未知的数据，并使得这些求得的数据与实际数据之间误差的平方和为最小.</p>
+<script type="math/tex; mode=display">min \sum_{i=1}^m (y_\theta(x)-y)^2</script><h4 id="likehood-似然（最大似然评估-）"><a href="#likehood-似然（最大似然评估-）" class="headerlink" title="likehood 似然（最大似然评估 ）"></a>likehood 似然（最大似然评估 ）</h4><p>likehood function：$L(\theta \mid x) = f(x \mid \theta)$</p>
+<p>在上式中，如果x已经给出，预测 $\theta$ 的值，则该函数为似然函数。如果 $\theta$ 已经给出，预测x的值，那么这就是普通的概率函数。</p>
+<p>而最大似然估计就是取一定的 $\theta$值，使得似然函数最大，即：</p>
+<script type="math/tex; mode=display">arg  \;max \;L(\theta \mid X)</script><h4 id="矩阵的迹及其部分等式"><a href="#矩阵的迹及其部分等式" class="headerlink" title="矩阵的迹及其部分等式"></a>矩阵的迹及其部分等式</h4><p>定义：矩阵的迹 $tr(A) = \sum<em>{i=1}^m a</em>{ii}$ 为标量且A为标量或方阵<br>一些公式：</p>
+<script type="math/tex; mode=display">tr(ABC) = tr(CAB) = tr(BCA)</script><script type="math/tex; mode=display">tr(A+B) = tr(A) + tr(B)</script><script type="math/tex; mode=display">\Delta_A tr(AB) = B^T</script><script type="math/tex; mode=display">\Delta_{A^T}f(A) = (\Delta_Af(A))^T</script><script type="math/tex; mode=display">\Delta_Atr(ABA^TC) = CAB+C^TAB^T</script><script type="math/tex; mode=display">\Delta_A|A| = |A|(A^{-1})^T</script><p>等式的证明见参考资料链接</p>
+<h4 id="矩阵求导公式"><a href="#矩阵求导公式" class="headerlink" title="矩阵求导公式"></a>矩阵求导公式</h4><p>矩阵A对矩阵B求导，就是矩阵A中的每个值对矩阵B中的每个值求导，向量同理。</p>
+<p>一些重要的公式：</p>
+<script type="math/tex; mode=display">\frac{d X}{d X^T } = I</script><script type="math/tex; mode=display">\frac{d X^T}{d X } = I</script><script type="math/tex; mode=display">\frac{d AX}{d X^T } = A</script><script type="math/tex; mode=display">\frac{d AX^T}{d X } = A</script><script type="math/tex; mode=display">\frac{d U^TV}{d X } = \frac{d U^T}{d X}V + \frac{d V^T}{d X }U</script><p>等式的证明见参考资料链接<br><a id="more"></a></p>
 <h3 id="基础机器学习知识"><a href="#基础机器学习知识" class="headerlink" title="基础机器学习知识"></a>基础机器学习知识</h3><ol>
 <li>学习过程</li>
 <li>hypothesis</li>
@@ -307,7 +288,15 @@ tr J(\theta) &= 1/2m tr(X\theta-y)^T(X\theta-y)\\
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyLinearRegression</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    params:    </div><div class="line">    n_iterations:</div><div class="line">    learning_rate:</div><div class="line">    gradient_descent:</div><div class="line">    """</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, n_iterations=<span class="number">100</span>, learning_rate=<span class="number">0.01</span>, gradient_descent=True )</span>:</span></div><div class="line">        self.w = <span class="keyword">None</span></div><div class="line">        self.n_iterations = n_iterations</div><div class="line">        self.learning_rate = learning_rate</div><div class="line">        self.gradient_descent = gradient_descent</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self,X,y)</span>:</span></div><div class="line">        <span class="comment"># X :m*n =&gt; m*(n+1) for bias weight</span></div><div class="line">        X = np.insert(X,<span class="number">0</span>,<span class="number">1</span>,axis=<span class="number">1</span>)</div><div class="line">        <span class="comment"># gradient descent</span></div><div class="line">        <span class="keyword">if</span> self.gradient_descent :</div><div class="line">            n_features = np.shape(X)[<span class="number">1</span>]</div><div class="line">            self.w = np.random.random((n_features,))  <span class="comment"># 注意这里col还不能填1</span></div><div class="line">            <span class="keyword">for</span> _ <span class="keyword">in</span> range(self.n_iterations):</div><div class="line">                w_gradient = X.T.dot(X.dot(self.w)-y)</div><div class="line">                self.w = self.w - self.learning_rate * w_gradient</div><div class="line">        <span class="comment"># normal equation  </span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            self.w = (np.linalg.pinv(X.T.dot(X))).dot(X.T.dot(y))</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">predict</span><span class="params">(self,X)</span>:</span></div><div class="line">        X = np.insert(X,<span class="number">0</span>,<span class="number">1</span>,axis=<span class="number">1</span>)</div><div class="line">        y_pred = X.dot(self.w)</div><div class="line">        <span class="keyword">return</span> y_pred</div></pre></td></tr></table></figure>
 <h3 id="验证："><a href="#验证：" class="headerlink" title="验证："></a>验证：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</div><div class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> linear_model</div><div class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_squared_error</div><div class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeRegressor</div><div class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</div><div class="line">X,y = datasets.make_regression(n_features=<span class="number">1</span>,n_samples=<span class="number">200</span>,bias=<span class="number">100</span>,noise=<span class="number">5</span>)</div><div class="line">X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=<span class="number">0.2</span>)</div><div class="line"></div><div class="line"><span class="comment">#clf = MyLinearRegression(gradient_descent=False)</span></div><div class="line">clf = MyLinearRegression(n_iterations=<span class="number">100</span>)</div><div class="line">clf.fit(X_train,y_train)</div><div class="line">y_pred = clf.predict(X_test)</div><div class="line">mse = mean_squared_error(y_pred,y_test)</div><div class="line">print(mse)</div><div class="line">clf2 = linear_model.LinearRegression()</div><div class="line">clf2.fit(X_train,y_train)</div><div class="line">y_pred2 = clf2.predict(X_test)</div><div class="line">mse2 = mean_squared_error(y_pred2,y_test)</div><div class="line">print(mse2)</div><div class="line"></div><div class="line">clf3 = DecisionTreeRegressor(max_depth=<span class="number">20</span>)</div><div class="line">clf3.fit(X_train,y_train)</div><div class="line">mse3 = mean_squared_error(clf3.predict(X_test),y_test)</div><div class="line">print(mse3)</div></pre></td></tr></table></figure>
 <p>可以从结果中看出，在数据集较小的情况下三个效果差不多，说明我们的算法没有问题。</p>
-<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><h3 id="why-choose-least-squares"><a href="#why-choose-least-squares" class="headerlink" title="why choose least squares"></a>why choose least squares</h3><h3 id="Locally-weighted-linear-regression"><a href="#Locally-weighted-linear-regression" class="headerlink" title="Locally weighted linear regression"></a>Locally weighted linear regression</h3><h3 id="non-parametric-algorithm-and-parametric-algorithm"><a href="#non-parametric-algorithm-and-parametric-algorithm" class="headerlink" title="non-parametric algorithm and parametric algorithm"></a>non-parametric algorithm and parametric algorithm</h3><p>这三个问题比较上面略微复杂，直接看参考资料中Andrew Ng的讲义。</p>
+<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><ul>
+<li><p>why choose least squares?</p>
+</li>
+<li><p>Locally weighted linear regression?</p>
+</li>
+<li><p>non-parametric algorithm and parametric algorithm?</p>
+</li>
+</ul>
+<p>这三个问题比较上面略微复杂，直接看参考资料中Andrew Ng的讲义。</p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
 <li><a href="https://zh.wikipedia.org/wiki/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95" target="_blank" rel="external">wiki：最小二乘法</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Likelihood_function" target="_blank" rel="external">wiki：似然函数</a></li>
@@ -463,13 +452,26 @@ tr J(\theta) &= 1/2m tr(X\theta-y)^T(X\theta-y)\\
         </div>
         
         
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#知识准备"><span class="toc-number">1.</span> <span class="toc-text">知识准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基础数学知识"><span class="toc-number">1.1.</span> <span class="toc-text">基础数学知识</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#最小二乘法（least-square）"><span class="toc-number">1.1.1.</span> <span class="toc-text">最小二乘法（least square）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#likehood-似然（最大似然评估-）"><span class="toc-number">1.1.2.</span> <span class="toc-text">likehood 似然（最大似然评估 ）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#矩阵的迹及其部分等式"><span class="toc-number">1.1.3.</span> <span class="toc-text">矩阵的迹及其部分等式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#矩阵求导公式"><span class="toc-number">1.1.4.</span> <span class="toc-text">矩阵求导公式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基础机器学习知识"><span class="toc-number">1.2.</span> <span class="toc-text">基础机器学习知识</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LinearRegression"><span class="toc-number">2.</span> <span class="toc-text">LinearRegression</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#理论模型"><span class="toc-number">2.1.</span> <span class="toc-text">理论模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#minimize-J-θ"><span class="toc-number">2.2.</span> <span class="toc-text">minimize J(θ)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#gradient-descent"><span class="toc-number">2.2.1.</span> <span class="toc-text">gradient descent</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#normal-equation-least-square"><span class="toc-number">2.2.2.</span> <span class="toc-text">normal equation(least square)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#直接矩阵求导"><span class="toc-number">2.2.3.</span> <span class="toc-text">直接矩阵求导</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#利用矩阵的迹求导"><span class="toc-number">2.2.4.</span> <span class="toc-text">利用矩阵的迹求导</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python代码实现"><span class="toc-number">3.</span> <span class="toc-text">python代码实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本numpy函数解释"><span class="toc-number">3.1.</span> <span class="toc-text">基本numpy函数解释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码"><span class="toc-number">3.2.</span> <span class="toc-text">代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#验证："><span class="toc-number">3.3.</span> <span class="toc-text">验证：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展"><span class="toc-number">4.</span> <span class="toc-text">扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">5.</span> <span class="toc-text">参考资料</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
     </div>
 </aside>
 
 
 
   
-  
+
   
 
   
@@ -514,7 +516,7 @@ tr J(\theta) &= 1/2m tr(X\theta-y)^T(X\theta-y)\\
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
-		innerArchive: false,
+		innerArchive: true,
 		showTags: true
 	}
 </script>
@@ -552,9 +554,15 @@ MathJax.Hub.Queue(function() {
     
     
       
-    
+      
       
     
+      
+      
+      
+    
+      
+      
       
     
     
@@ -563,18 +571,113 @@ MathJax.Hub.Queue(function() {
     
     
       
-        
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
+      
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
+      
+        
+      
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
   </div>
   <div class="tools-wrap">
     
-
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Machine Learning algorithms</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            3、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: false
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
     
 
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me" q-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
     
   </div>
   

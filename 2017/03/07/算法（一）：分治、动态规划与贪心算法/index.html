@@ -13,24 +13,20 @@
 每个算法的标识问题
 分治：
 
-[ ] 归并排序
-[ ] 最大子数组
+归并排序
+最大子数组
 
 动态规划：
 
-[ ] 最长公共子序列
-[ ] 最长回文子序列
-[ ] 钢条切割问题
-[ ] 最大子数组
+最长公共子序列
+最长回文子序列
+钢条切割问题
+最大子数组
 
 贪心：
 
-[ ] 活动选择问题
-[ ] huffman问题
-
-
-一、分治
-分治就是把大的问题分解成互不相交的子问题，递归的求解子问题，然后把子问">
+活动选择问题
+huffman问题">
 <meta property="og:type" content="article">
 <meta property="og:title" content="算法(一)：分治、动态规划与贪心算法">
 <meta property="og:url" content="https://xl2013.github.io/2017/03/07/算法（一）：分治、动态规划与贪心算法/index.html">
@@ -40,25 +36,21 @@
 每个算法的标识问题
 分治：
 
-[ ] 归并排序
-[ ] 最大子数组
+归并排序
+最大子数组
 
 动态规划：
 
-[ ] 最长公共子序列
-[ ] 最长回文子序列
-[ ] 钢条切割问题
-[ ] 最大子数组
+最长公共子序列
+最长回文子序列
+钢条切割问题
+最大子数组
 
 贪心：
 
-[ ] 活动选择问题
-[ ] huffman问题
-
-
-一、分治
-分治就是把大的问题分解成互不相交的子问题，递归的求解子问题，然后把子问">
-<meta property="og:updated_time" content="2017-03-07T12:23:16.778Z">
+活动选择问题
+huffman问题">
+<meta property="og:updated_time" content="2017-11-07T08:39:37.055Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法(一)：分治、动态规划与贪心算法">
 <meta name="twitter:description" content="可能这里需要分开讲解三种算法，然后这里写他们的联系与区别以及什么时候使用。
@@ -66,24 +58,20 @@
 每个算法的标识问题
 分治：
 
-[ ] 归并排序
-[ ] 最大子数组
+归并排序
+最大子数组
 
 动态规划：
 
-[ ] 最长公共子序列
-[ ] 最长回文子序列
-[ ] 钢条切割问题
-[ ] 最大子数组
+最长公共子序列
+最长回文子序列
+钢条切割问题
+最大子数组
 
 贪心：
 
-[ ] 活动选择问题
-[ ] huffman问题
-
-
-一、分治
-分治就是把大的问题分解成互不相交的子问题，递归的求解子问题，然后把子问">
+活动选择问题
+huffman问题">
   
     <link rel="alternative" href="/atom.xml" title="Shan&#39;s Blog" type="application/atom+xml">
   
@@ -126,16 +114,24 @@
 	        
 				<li><a href="/tags/随笔/">随笔</a></li>
 	        
-				<li><a href="/archives">文章</a></li>
+				<li><a href="/archives">归档</a></li>
+	        
+				<li><a href="/categories/">目录</a></li>
 	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
     		
     			
-            
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
     			
             
+    			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
+    			
+            
+    			
+    			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
     			
             
 		</nav>
@@ -180,6 +176,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -200,11 +198,13 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
+					<li style="width: 25%"><a href="/">主页</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 25%"><a href="/tags/随笔/">随笔</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/archives">文章</a></li>
+					<li style="width: 25%"><a href="/archives">归档</a></li>
+		        
+					<li style="width: 25%"><a href="/categories/">目录</a></li>
 		        
 				</ul>
 			</nav>
@@ -245,22 +245,23 @@
 <p>每个算法的标识问题</p>
 <p>分治：</p>
 <ul>
-<li>[ ] 归并排序</li>
-<li>[ ] 最大子数组</li>
+<li>归并排序</li>
+<li>最大子数组</li>
 </ul>
 <p>动态规划：</p>
 <ul>
-<li>[ ] 最长公共子序列</li>
-<li>[ ] 最长回文子序列</li>
-<li>[ ] 钢条切割问题</li>
-<li>[ ] 最大子数组</li>
+<li>最长公共子序列</li>
+<li>最长回文子序列</li>
+<li>钢条切割问题</li>
+<li>最大子数组</li>
 </ul>
 <p>贪心：</p>
 <ul>
-<li>[ ] 活动选择问题</li>
-<li>[ ] huffman问题</li>
+<li>活动选择问题</li>
+<li>huffman问题</li>
 </ul>
 <hr>
+<a id="more"></a>
 <h3 id="一、分治"><a href="#一、分治" class="headerlink" title="一、分治"></a>一、分治</h3><blockquote>
 <p>分治就是把大的问题分解成互不相交的子问题，递归的求解子问题，然后把子问题的解组合起来</p>
 </blockquote>
@@ -508,13 +509,26 @@
         </div>
         
         
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、分治"><span class="toc-number">1.</span> <span class="toc-text">一、分治</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、动态规划-DP"><span class="toc-number">2.</span> <span class="toc-text">二、动态规划(DP)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#最优子结构"><span class="toc-number">2.1.</span> <span class="toc-text">最优子结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重叠子问题"><span class="toc-number">2.2.</span> <span class="toc-text">重叠子问题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、贪心"><span class="toc-number">3.</span> <span class="toc-text">三、贪心</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
     </div>
 </aside>
 
 
 
   
-  
+
   
 
   
@@ -559,7 +573,7 @@
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
-		innerArchive: false,
+		innerArchive: true,
 		showTags: true
 	}
 </script>
@@ -597,9 +611,15 @@ MathJax.Hub.Queue(function() {
     
     
       
-    
+      
       
     
+      
+      
+      
+    
+      
+      
       
     
     
@@ -608,18 +628,113 @@ MathJax.Hub.Queue(function() {
     
     
       
-        
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
+      
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
+      
+        
+      
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
   </div>
   <div class="tools-wrap">
     
-
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Machine Learning algorithms</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            3、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: false
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
     
 
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me" q-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
     
   </div>
   

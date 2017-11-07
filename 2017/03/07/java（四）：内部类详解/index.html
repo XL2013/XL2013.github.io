@@ -9,24 +9,18 @@
   <title>java(四)：内部类 | Shan&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="一、内部类
-一个类定义在另一个类中， 这就叫内部类内部类的对象默认持有创建它的那个封装类的一个对象的句柄
-
-1.内部类可以隐藏实施细节如果普通的定义一个内部类，那么内部类没什么特别的地方。然而，当我们准备上溯造型到一个基础类（特别是到一个接口）的时候，内部类就开始发挥其关键作用（从用于实现的对象生成一个接口句柄具有与上溯造型至一个基础类相同的效果）。这是由于内部类随后可完全进入不可见或不可用状态—">
+一个类定义在另一个类中， 这就叫内部类内部类的对象默认持有创建它的那个封装类的一个对象的句柄">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java(四)：内部类">
 <meta property="og:url" content="https://xl2013.github.io/2017/03/07/java（四）：内部类详解/index.html">
 <meta property="og:site_name" content="Shan's Blog">
 <meta property="og:description" content="一、内部类
-一个类定义在另一个类中， 这就叫内部类内部类的对象默认持有创建它的那个封装类的一个对象的句柄
-
-1.内部类可以隐藏实施细节如果普通的定义一个内部类，那么内部类没什么特别的地方。然而，当我们准备上溯造型到一个基础类（特别是到一个接口）的时候，内部类就开始发挥其关键作用（从用于实现的对象生成一个接口句柄具有与上溯造型至一个基础类相同的效果）。这是由于内部类随后可完全进入不可见或不可用状态—">
-<meta property="og:updated_time" content="2017-03-07T12:25:07.177Z">
+一个类定义在另一个类中， 这就叫内部类内部类的对象默认持有创建它的那个封装类的一个对象的句柄">
+<meta property="og:updated_time" content="2017-11-07T08:44:43.764Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java(四)：内部类">
 <meta name="twitter:description" content="一、内部类
-一个类定义在另一个类中， 这就叫内部类内部类的对象默认持有创建它的那个封装类的一个对象的句柄
-
-1.内部类可以隐藏实施细节如果普通的定义一个内部类，那么内部类没什么特别的地方。然而，当我们准备上溯造型到一个基础类（特别是到一个接口）的时候，内部类就开始发挥其关键作用（从用于实现的对象生成一个接口句柄具有与上溯造型至一个基础类相同的效果）。这是由于内部类随后可完全进入不可见或不可用状态—">
+一个类定义在另一个类中， 这就叫内部类内部类的对象默认持有创建它的那个封装类的一个对象的句柄">
   
     <link rel="alternative" href="/atom.xml" title="Shan&#39;s Blog" type="application/atom+xml">
   
@@ -69,16 +63,24 @@
 	        
 				<li><a href="/tags/随笔/">随笔</a></li>
 	        
-				<li><a href="/archives">文章</a></li>
+				<li><a href="/archives">归档</a></li>
+	        
+				<li><a href="/categories/">目录</a></li>
 	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
     		
     			
-            
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
     			
             
+    			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
+    			
+            
+    			
+    			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
     			
             
 		</nav>
@@ -123,6 +125,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -143,11 +147,13 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
+					<li style="width: 25%"><a href="/">主页</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 25%"><a href="/tags/随笔/">随笔</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/archives">文章</a></li>
+					<li style="width: 25%"><a href="/archives">归档</a></li>
+		        
+					<li style="width: 25%"><a href="/categories/">目录</a></li>
 		        
 				</ul>
 			</nav>
@@ -185,6 +191,7 @@
         <h3 id="一、内部类"><a href="#一、内部类" class="headerlink" title="一、内部类"></a>一、内部类</h3><blockquote>
 <p>一个类定义在另一个类中， 这就叫内部类<br>内部类的对象默认持有创建它的那个封装类的一个对象的句柄</p>
 </blockquote>
+<a id="more"></a>
 <h4 id="1-内部类可以隐藏实施细节"><a href="#1-内部类可以隐藏实施细节" class="headerlink" title="1.内部类可以隐藏实施细节"></a>1.内部类可以隐藏实施细节</h4><p>如果普通的定义一个内部类，那么内部类没什么特别的地方。然而，当我们准备上溯造型到一个基础类（特别是到一个接口）的时候，内部类就开始发挥其关键作用（从用于实现的对象生成一个接口句柄具有与上溯造型至一个基础类相同的效果）。这是由于内部类随后可完全进入不可见或不可用状态——对任何人都将如此。所以我们可以非常方便地隐藏实施细节。我们得到的全部回报就是一个基础类或者接口的句柄，而且甚至有可能不知道准确的类型。就象下面这样：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Contents</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">abstract</span> <span class="keyword">public</span> <span class="keyword">int</span> <span class="title">value</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Destination</span> </span>&#123;</div><div class="line">  <span class="function">String <span class="title">readLabel</span><span class="params">()</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Parcel3</span> </span>&#123;</div><div class="line">  <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">PContents</span> <span class="keyword">extends</span> <span class="title">Contents</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> i = <span class="number">11</span>;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">value</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> i; &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">protected</span> <span class="class"><span class="keyword">class</span> <span class="title">PDestination</span></span></div><div class="line">      <span class="keyword">implements</span> <span class="title">Destination</span> &#123;</div><div class="line">    <span class="keyword">private</span> String label;</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">PDestination</span><span class="params">(String whereTo)</span> </span>&#123;</div><div class="line">      label = whereTo;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">readLabel</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> label; &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> Destination <span class="title">dest</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> PDestination(s);</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> Contents <span class="title">cont</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> PContents();</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    Parcel3 p = <span class="keyword">new</span> Parcel3();</div><div class="line">    Contents c = p.cont();</div><div class="line">    Destination d = p.dest(<span class="string">"Tanzania"</span>);</div><div class="line">    <span class="comment">// Illegal -- can't access private class: Parcel3.PContents c = p.new PContents();</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>现在，Contents和Destination代表可由客户程序员使用的接口（记住接口会将自己的所有成员都变成public属性）。为方便起见，它们置于单独一个文件里，但原始的Contents和Destination在它们自己的文件中是相互public的。</p>
 <p>在Parcel3中，一些新东西已经加入：内部类PContents被设为private，所以除了Parcel3之外，其他任何东西都不能访问它。PDestination被设为protected，所以除了Parcel3，Parcel3包内的类（因为protected也为包赋予了访问权；也就是说，protected也是“友好的”），以及Parcel3的继承者之外，其他任何东西都不能访问PDestination。这意味着客户程序员对这些成员的认识与访问将会受到限制。</p>
@@ -388,13 +395,26 @@
         </div>
         
         
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、内部类"><span class="toc-number">1.</span> <span class="toc-text">一、内部类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-内部类可以隐藏实施细节"><span class="toc-number">1.1.</span> <span class="toc-text">1.内部类可以隐藏实施细节</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-内部类拥有封装类对象的一个引用：链接到外部类"><span class="toc-number">1.2.</span> <span class="toc-text">2.内部类拥有封装类对象的一个引用：链接到外部类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、方法和作用域中的内部类"><span class="toc-number">2.</span> <span class="toc-text">二、方法和作用域中的内部类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、静态内部类"><span class="toc-number">3.</span> <span class="toc-text">三、静态内部类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、内部类的覆盖"><span class="toc-number">4.</span> <span class="toc-text">四、内部类的覆盖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、内部类的标识符"><span class="toc-number">5.</span> <span class="toc-text">五、内部类的标识符</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
     </div>
 </aside>
 
 
 
   
-  
+
   
 
   
@@ -439,7 +459,7 @@
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
-		innerArchive: false,
+		innerArchive: true,
 		showTags: true
 	}
 </script>
@@ -477,9 +497,15 @@ MathJax.Hub.Queue(function() {
     
     
       
-    
+      
       
     
+      
+      
+      
+    
+      
+      
       
     
     
@@ -488,18 +514,113 @@ MathJax.Hub.Queue(function() {
     
     
       
-        
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
+      
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
+      
+        
+      
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
   </div>
   <div class="tools-wrap">
     
-
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Machine Learning algorithms</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            3、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: false
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
     
 
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me" q-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
     
   </div>
   

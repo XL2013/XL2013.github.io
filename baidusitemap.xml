@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://xl2013.github.io/2017/11/07/%E9%9A%8F%E7%AC%94-%E4%B8%80/</loc>
-    <lastmod>2017-11-08T00:40:13.762Z</lastmod>
+    <lastmod>2017-11-11T13:23:58.125Z</lastmod>
     <data>
         <display>
         <title>随笔(一)</title>
@@ -15,8 +15,45 @@
          
          
            
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://xl2013.github.io/2017/04/12/LogisticsRegression/</loc>
+    <lastmod>2017-11-11T13:23:03.963Z</lastmod>
+    <data>
+        <display>
+        <title>LogisticRegression</title>
+        <pubTime>2017-04-12T13:47:29.446Z</pubTime>
+        
+        <tag>Machine Learning algorithms</tag>
+         
+         
+           
              
-              <breadCrumb title="随笔" url="https://xl2013.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
+              <breadCrumb title="Machine Learning algorithms" url="https://xl2013.github.io/categories/Machine-Learning-algorithms/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://xl2013.github.io/2017/04/09/LinearRegression/</loc>
+    <lastmod>2017-11-11T12:13:12.876Z</lastmod>
+    <data>
+        <display>
+        <title>LinearRegression</title>
+        <pubTime>2017-04-09T08:42:01.248Z</pubTime>
+        
+        <tag>Machine Learning algorithms</tag>
+         
+         
+           
+             
+              <breadCrumb title="Machine Learning algorithms" url="https://xl2013.github.io/categories/Machine-Learning-algorithms/"/>
           
         </display>
     </data>
@@ -134,40 +171,6 @@
         <pubTime>2017-03-07T12:01:38.378Z</pubTime>
         
         <tag>java</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://xl2013.github.io/2017/04/09/LinearRegression/</loc>
-    <lastmod>2017-11-08T00:39:13.087Z</lastmod>
-    <data>
-        <display>
-        <title>LinearRegression</title>
-        <pubTime>2017-04-09T08:42:01.248Z</pubTime>
-        
-        <tag>Machine Learning algorithms</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://xl2013.github.io/2017/04/12/LogisticsRegression/</loc>
-    <lastmod>2017-11-08T00:39:02.899Z</lastmod>
-    <data>
-        <display>
-        <title>LogisticRegression</title>
-        <pubTime>2017-04-12T13:47:29.446Z</pubTime>
-        
-        <tag>Machine Learning algorithms</tag>
          
          
            

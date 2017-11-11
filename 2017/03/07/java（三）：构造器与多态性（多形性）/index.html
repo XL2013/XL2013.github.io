@@ -9,24 +9,18 @@
   <title>java（三）：构造器与多态性（多形性） | Shan&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="一、多态
-多态：多种类型当做同一种类型对待。将发生改变的东西同没有发生改变的东西区分开
-
-1.方法调用绑定方法绑定，将一个方法调用同一个方法主体连接到一起就被称为“绑定”(binding)。如果在程序运行前执行绑定，就叫做“早期绑定”。c编译器只有早期绑定一种方法调用。在运行期进行，以对象为基础的方法绑定称为“后期绑定”，也可称为“动态绑定”。java中的所有方法都采用动态绑定，除非方法声明为fi">
+多态：多种类型当做同一种类型对待。将发生改变的东西同没有发生改变的东西区分开">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java（三）：构造器与多态性（多形性）">
 <meta property="og:url" content="https://xl2013.github.io/2017/03/07/java（三）：构造器与多态性（多形性）/index.html">
 <meta property="og:site_name" content="Shan's Blog">
 <meta property="og:description" content="一、多态
-多态：多种类型当做同一种类型对待。将发生改变的东西同没有发生改变的东西区分开
-
-1.方法调用绑定方法绑定，将一个方法调用同一个方法主体连接到一起就被称为“绑定”(binding)。如果在程序运行前执行绑定，就叫做“早期绑定”。c编译器只有早期绑定一种方法调用。在运行期进行，以对象为基础的方法绑定称为“后期绑定”，也可称为“动态绑定”。java中的所有方法都采用动态绑定，除非方法声明为fi">
-<meta property="og:updated_time" content="2017-11-08T00:39:22.984Z">
+多态：多种类型当做同一种类型对待。将发生改变的东西同没有发生改变的东西区分开">
+<meta property="og:updated_time" content="2017-11-11T13:34:22.815Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java（三）：构造器与多态性（多形性）">
 <meta name="twitter:description" content="一、多态
-多态：多种类型当做同一种类型对待。将发生改变的东西同没有发生改变的东西区分开
-
-1.方法调用绑定方法绑定，将一个方法调用同一个方法主体连接到一起就被称为“绑定”(binding)。如果在程序运行前执行绑定，就叫做“早期绑定”。c编译器只有早期绑定一种方法调用。在运行期进行，以对象为基础的方法绑定称为“后期绑定”，也可称为“动态绑定”。java中的所有方法都采用动态绑定，除非方法声明为fi">
+多态：多种类型当做同一种类型对待。将发生改变的东西同没有发生改变的东西区分开">
   
     <link rel="alternative" href="/atom.xml" title="Shan&#39;s Blog" type="application/atom+xml">
   
@@ -189,10 +183,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="一、多态"><a href="#一、多态" class="headerlink" title="一、多态"></a>一、多态</h3><blockquote>
-<p>多态：多种类型当做同一种类型对待。将发生改变的东西同没有发生改变的东西区分开</p>
-</blockquote>
-<h4 id="1-方法调用绑定"><a href="#1-方法调用绑定" class="headerlink" title="1.方法调用绑定"></a>1.方法调用绑定</h4><p>方法绑定，将一个方法调用同一个方法主体连接到一起就被称为“绑定”(binding)。如果在程序运行前执行绑定，就叫做“早期绑定”。c编译器只有早期绑定一种方法调用。在运行期进行，以对象为基础的方法绑定称为“后期绑定”，也可称为“动态绑定”。java中的所有方法都采用动态绑定，除非方法声明为final。</p>
-<p>动态绑定的例子很常见，在笔记“上溯造型与下溯造型”中，可以看到具体的代码例子，这里不再赘述。java虚拟机怎么实现动态绑定的，可以见<a href="">笔记java虚拟机学习中的多态篇</a>。<br><a id="more"></a></p>
+<p>多态：多种类型当做同一种类型对待。将发生改变的东西同没有发生改变的东西区分开<br><a id="more"></a></p>
+<h4 id="1-方法调用绑定"><a href="#1-方法调用绑定" class="headerlink" title="1.方法调用绑定"></a>1.方法调用绑定</h4></blockquote>
+<p>方法绑定，将一个方法调用同一个方法主体连接到一起就被称为“绑定”(binding)。如果在程序运行前执行绑定，就叫做“早期绑定”。c编译器只有早期绑定一种方法调用。在运行期进行，以对象为基础的方法绑定称为“后期绑定”，也可称为“动态绑定”。java中的所有方法都采用动态绑定，除非方法声明为final。</p>
+<p>动态绑定的例子很常见，在笔记“上溯造型与下溯造型”中，可以看到具体的代码例子，这里不再赘述。java虚拟机怎么实现动态绑定的，可以见<a href="">笔记java虚拟机学习中的多态篇</a>。</p>
 <h4 id="2-覆盖与重载（过载）"><a href="#2-覆盖与重载（过载）" class="headerlink" title="2.覆盖与重载（过载）"></a>2.覆盖与重载（过载）</h4><p>重载：方法名一样，但是参数不同的方法，指同一样东西在不同地方具有多种含义。覆盖：子类继承父类的方法，参数、名字、返回值都相同，但是具体实现不同，指只具有一种含义但是原先的含义被后来者替代。例：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> thinkInJava;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shape</span></span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>&#123;</div><div class="line">		System.out.println(<span class="string">"Shape"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Triangle</span> <span class="keyword">extends</span> <span class="title">Shape</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>&#123;</div><div class="line">		System.out.println(<span class="string">"Triangle"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> <span class="keyword">extends</span> <span class="title">Shape</span></span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>&#123;</div><div class="line">		System.out.println(<span class="string">"Rectangle"</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">(String val)</span></span>&#123;</div><div class="line">		System.out.println(val+<span class="string">": Rectangle"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Override</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">(Shape shape)</span></span>&#123;</div><div class="line">		shape.draw();</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span>  <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</div><div class="line">		Triangle triangle=<span class="keyword">new</span> Triangle();</div><div class="line">		Rectangle rectangle=<span class="keyword">new</span> Rectangle();</div><div class="line">		Override.draw(triangle);</div><div class="line">		Override.draw(rectangle);</div><div class="line">		rectangle.draw(<span class="string">"overload"</span>);</div><div class="line"></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>可以看到，在Shape的子类中draw方法被覆盖，在Triangle子类中，draw方法也被重载。编译器对被覆盖的draw方法的调用都是通过动态绑定的，所以可以正确的执行相应对象的函数。java通过方法覆盖实现多态，而重载与多态无关。</p>

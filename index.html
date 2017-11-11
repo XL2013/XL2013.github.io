@@ -262,7 +262,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="知识准备"><a href="#知识准备" class="headerlink" title="知识准备"></a>知识准备</h2><h3 id="基础数学知识"><a href="#基础数学知识" class="headerlink" title="基础数学知识"></a>基础数学知识</h3><h4 id="sigmoid-函数-logistic-function"><a href="#sigmoid-函数-logistic-function" class="headerlink" title="sigmoid 函数(logistic function)"></a>sigmoid 函数(logistic function)</h4><script type="math/tex; mode=display">
+        <a id="more"></a>
+<h2 id="知识准备"><a href="#知识准备" class="headerlink" title="知识准备"></a>知识准备</h2><h3 id="基础数学知识"><a href="#基础数学知识" class="headerlink" title="基础数学知识"></a>基础数学知识</h3><h4 id="sigmoid-函数-logistic-function"><a href="#sigmoid-函数-logistic-function" class="headerlink" title="sigmoid 函数(logistic function)"></a>sigmoid 函数(logistic function)</h4><script type="math/tex; mode=display">
   g(x) = \frac{1}{1+e^{-x}}</script><p>对它求导可得：</p>
 <script type="math/tex; mode=display">
 \begin{align}
@@ -349,17 +350,6 @@ J(\theta) = - \frac{1}{N}l(\theta)</script><p>所以最小化损失函数，即�
 	</div>
 
       
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Machine-Learning-algorithms//" class="article-tag-list-link color3">Machine Learning algorithms</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
 
       
         <p class="article-more-link">
@@ -413,130 +403,10 @@ J(\theta) = - \frac{1}{N}l(\theta)</script><p>所以最小化损失函数，即�
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="知识准备"><a href="#知识准备" class="headerlink" title="知识准备"></a>知识准备</h2><h3 id="基础数学知识"><a href="#基础数学知识" class="headerlink" title="基础数学知识"></a>基础数学知识</h3><ol>
-<li><p>最小二乘法（least square）</p>
-<p> 最小二乘法是一种数学优化技术。它通过最小化误差的平方和寻找数据的最佳函数匹配。<br> 利用最小二乘法可以简便地求得未知的数据，并使得这些求得的数据与实际数据之间误差的平方和为最小.</p>
-</li>
-</ol>
-<script type="math/tex; mode=display">min \sum_{i=1}^m (y_\theta(x)-y)^2</script><ol>
-<li><p>likehood 似然（最大似然评估 ）</p>
-<p> likehood function：<br> $L(\theta \mid x) = f(x \mid \theta)$</p>
-<p> 在上式中，如果x已经给出，预测 $\theta$ 的值，则该函数为似然函数。如果 $\theta$ 已经给出，预测x的值，那么这就是普通的概率函数。</p>
-<p> 而最大似然估计就是取一定的 $\theta$值，使得似然函数最大，即：</p>
-<script type="math/tex; mode=display">arg  \;max \;L(\theta \mid X)</script></li>
-</ol>
-<ol>
-<li><p>矩阵的迹及其部分等式</p>
-<p> 定义：矩阵的迹 $tr(A) = \sum<em>{i=1}^m a</em>{ii}$ 为标量且A为标量或方阵<br> 一些公式：</p>
-<script type="math/tex; mode=display">tr(ABC) = tr(CAB) = tr(BCA)</script><script type="math/tex; mode=display">tr(A+B) = tr(A) + tr(B)</script><script type="math/tex; mode=display">\Delta_A tr(AB) = B^T</script><script type="math/tex; mode=display">\Delta_{A^T}f(A) = (\Delta_Af(A))^T</script><script type="math/tex; mode=display">\Delta_Atr(ABA^TC) = CAB+C^TAB^T</script><script type="math/tex; mode=display">\Delta_A|A| = |A|(A^{-1})^T</script><p> 等式的证明见参考资料链接</p>
-</li>
-<li><p>矩阵求导公式<br> 矩阵A对矩阵B求导，就是矩阵A中的每个值对矩阵B中的每个值求导，向量同理。</p>
-<p> 一些重要的公式：</p>
-<script type="math/tex; mode=display">\frac{d X}{d X^T } = I</script><script type="math/tex; mode=display">\frac{d X^T}{d X } = I</script><script type="math/tex; mode=display">\frac{d AX}{d X^T } = A</script><script type="math/tex; mode=display">\frac{d AX^T}{d X } = A</script><script type="math/tex; mode=display">\frac{d U^TV}{d X } = \frac{d U^T}{d X}V + \frac{d V^T}{d X }U</script><p> 等式的证明见参考资料链接</p>
-</li>
-</ol>
-<h3 id="基础机器学习知识"><a href="#基础机器学习知识" class="headerlink" title="基础机器学习知识"></a>基础机器学习知识</h3><ol>
-<li>学习过程</li>
-<li>hypothesis</li>
-<li>classification、regression</li>
-<li>loss function(error function)</li>
-</ol>
-<h2 id="LinearRegression"><a href="#LinearRegression" class="headerlink" title="LinearRegression"></a>LinearRegression</h2><h3 id="理论模型"><a href="#理论模型" class="headerlink" title="理论模型"></a>理论模型</h3><blockquote>
-<p>在统计学中，线性回归是利用称为线性回归方程的最小二乘函数对一个或多个自变量和因变量之间关系进行建模的一种回归分析。</p>
-</blockquote>
-<p>在线性回归中，数据使用线性预测函数来建模，并且未知的模型参数也是通过数据来估计。这些模型被叫做线性模型。在机器学习算法中，我们使用如下的线性函数来预测y：</p>
-<script type="math/tex; mode=display">h_\theta(x) = \theta_0 + \theta_1x_1 + \theta_2x_2 ...</script><p>即：</p>
-<script type="math/tex; mode=display">h_\theta(X) = \theta^T x</script><p>其中：</p>
-<script type="math/tex; mode=display">\theta = \begin{bmatrix} \theta_0\\ \theta_1\\... \end{bmatrix}
-   x =  \begin{bmatrix} x_0\\ x_1\\... \end{bmatrix}</script><p>也可写成：</p>
-<script type="math/tex; mode=display">y = Wx + b</script><p>上面式子中,$\theta$和W都是一个意思,称为参数或者权重(weight)。其中 $\theta_0$ 和b表示偏差(bias),也可称为误差项。</p>
-<p>之后我们统一使用$h_\theta(X) = \theta^Tx$</p>
-<p>为了评估线性模型的性能，线性回归使用最小二乘法来作为损失函数（loss function | cost function）：</p>
-<script type="math/tex; mode=display">J(\theta) = 1/2m\sum_{i=1}^m (h(x^i)-y^i)^2</script><p>至于为什么如此选择，后面再进行解释。</p>
-<h3 id="minimize-J-θ"><a href="#minimize-J-θ" class="headerlink" title="minimize J(θ)"></a>minimize J(θ)</h3><p>为了提升预测准确度或者时候模型性能，我们需要选择 $\theta$ 来最小化损失函数即：</p>
-<script type="math/tex; mode=display">\theta = arg \; min \; J(\theta)</script><p>一般有两种方法求解：</p>
-<h4 id="gradient-descent"><a href="#gradient-descent" class="headerlink" title="gradient descent"></a>gradient descent</h4><p>为了选择 $\theta$ 最小化  $J(\theta)$,先给 $\theta$一个初始值，然后重复的改变它,直到收敛得到一个 $\theta$,使得 $J(\theta)$ 最小。</p>
-<p>gradient descent就是这样一个算法，从一个初始 $\theta$开始，然后重复的执行如下更新：</p>
-<script type="math/tex; mode=display">\theta_j = \theta_j - \alpha \frac{\delta}{\delta\theta_j}J(\theta)</script><p>表达式中 $\alpha$代表学习速率，表示 $\theta$值收敛步长。$\frac{\delta}{\delta\theta_j}J(\theta_j)$ 代表 $J(\theta_j)$ 对 $\theta$的偏导。</p>
-<p>对于这个偏导，我们可以很容易的求解：</p>
-<script type="math/tex; mode=display">
-
-  \begin{align}
-    \frac{\delta}{\delta\theta_j}J(\theta) & = \frac{\delta}{\delta\theta_j}J(\theta) \\
-    & =   \frac{\delta}{\delta\theta_j}(1/2m\sum_{i=1}^m (h(x^i)-y^i)^2) \\
-    & =  1/m(\sum_{i=1}^m (h(x^i)-y^i)x_j^i)
-  \end{align}</script><p>向量化表示：</p>
-<script type="math/tex; mode=display">
-    \frac{\delta}{\delta\theta_j}J(\theta)  = 1/m(\sum_{i=1}^m (h(x^i)-y^i)x_j^i)</script><script type="math/tex; mode=display">
-     \begin{align}
-        \frac{\delta}{\delta\theta}J(\theta) &=
-        \begin{bmatrix}
-           \frac{\delta}{\delta\theta_1}J(\theta) \\ \frac{\delta}{\delta\theta_2}J(\theta) \\
-           ...\\
-           \frac{\delta}{\delta\theta_n}J(\theta)
-        \end{bmatrix} \\
-
-      & = 1/m \;\sum_{i=1}^m
-      \begin{bmatrix}  (h(x^i)-y^i)x_1^i \\
-        (h(x^i)-y^i)x_2^i\\
-      ...\\
-      (h(x^i)-y^i)x_n^i
-       \end{bmatrix} \\
-
-      & = 1/m\sum_{i=1}^m((h(x^i)-y^i)x^i) \\
-
-      & = 1/m\;X^T(h(X)-y) \\
-      & = 1/m\;X^T(X\theta - y)
-
-      \end{align}</script><p>所以根据gradient descent：</p>
-<script type="math/tex; mode=display">
-  for \;i \;in \;range(niteration):\\
-      \qquad \theta = \theta - \alpha/m\;X^T(X\theta - y)</script><h4 id="normal-equation-least-square"><a href="#normal-equation-least-square" class="headerlink" title="normal equation(least square)"></a>normal equation(least square)</h4><p>normal equation 其实就是解方程，使得梯度为0即达到最优值，上面我们已经求出梯度表达式：</p>
-<script type="math/tex; mode=display">
-1/m\;X^T(X\theta - y)</script><p>令它为0可求：</p>
-<script type="math/tex; mode=display">
-\begin{align}
-
- 1/m\;X^T(X\theta - y) &= 0\\
- X^TX\theta & = X^Ty \\
- \theta &= (X^TX)^{-1}X^Ty
-\end{align}</script><p>如此一来，不需迭代，直接根据输入的X和y求得预测函数</p>
-<p>除了上面这种解法求梯度，还有两种方法：</p>
-<h4 id="直接矩阵求导"><a href="#直接矩阵求导" class="headerlink" title="直接矩阵求导"></a>直接矩阵求导</h4><script type="math/tex; mode=display">
-\begin{align}
-
-  J(\theta) &= 1/2m(X\theta-y)^T(X\theta-y) \\
-  \frac{\delta}{\delta\theta}J(\theta) &= 1/2m(2\frac{\delta}{\delta\theta}(X\theta-y)^T) (X\theta-y)\\
-  & = 1/mX^T(X\theta-y)
-
-\end{align}</script><h4 id="利用矩阵的迹求导"><a href="#利用矩阵的迹求导" class="headerlink" title="利用矩阵的迹求导"></a>利用矩阵的迹求导</h4><script type="math/tex; mode=display">
-  J(\theta) = 1/2m(X\theta-y)^T(X\theta-y)</script><p>这是一个标量，所以它的迹即为它本身，所以我们可以直接用迹来求解：</p>
-<script type="math/tex; mode=display">
-\begin{align}
-tr J(\theta) &= 1/2m tr(X\theta-y)^T(X\theta-y)\\
-             &= 1/2mtr(\theta^TX^T-y^T)(X\theta-y)\\
-             &= 1/2mtr(\theta^TX^TX\theta - y^TX\theta-\theta^TX^Ty-y^Ty) \\
-=> \\
-\frac{\delta}{\delta\theta}J(\theta)
-  &= 1/2m\frac{\delta}{\delta\theta}tr(\theta^TX^TX\theta - y^TX\theta-\theta^TX^Ty-y^Ty) \\
-  &= 1/2m\frac{\delta}{\delta\theta}tr(\theta^TX^TX\theta - 2y^TX\theta)\\
-  &= 1/2m(X^TX\theta +X^TX\theta -2X^Ty)  \\
-  &= 1/m(X^TX\theta - X^Ty)
-\end{align}</script><h2 id="python代码实现"><a href="#python代码实现" class="headerlink" title="python代码实现"></a>python代码实现</h2><h3 id="基本numpy函数解释"><a href="#基本numpy函数解释" class="headerlink" title="基本numpy函数解释"></a>基本numpy函数解释</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="number">1.</span> np.insert(X,<span class="number">0</span>,<span class="number">1</span>,axis=<span class="number">1</span>):</div><div class="line">    X: numpy narray</div><div class="line">    <span class="number">0</span>: 插入的位置</div><div class="line">    <span class="number">1</span>：初始化的值</div><div class="line">    axis：<span class="number">0</span>为row，<span class="number">1</span>为col</div><div class="line"><span class="number">2.</span> np.random.random((x,y))</div><div class="line">    (row,col) 随机生成值为(<span class="number">0</span>,<span class="number">1</span>)，大小为row*col的数组</div><div class="line"></div><div class="line"><span class="number">3.</span> X.dot：矩阵乘法</div><div class="line">   X.T ： 矩阵转置</div><div class="line">   np.linalg.pinv:矩阵求伪逆</div></pre></td></tr></table></figure>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyLinearRegression</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    params:    </div><div class="line">    n_iterations:</div><div class="line">    learning_rate:</div><div class="line">    gradient_descent:</div><div class="line">    """</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, n_iterations=<span class="number">100</span>, learning_rate=<span class="number">0.01</span>, gradient_descent=True )</span>:</span></div><div class="line">        self.w = <span class="keyword">None</span></div><div class="line">        self.n_iterations = n_iterations</div><div class="line">        self.learning_rate = learning_rate</div><div class="line">        self.gradient_descent = gradient_descent</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self,X,y)</span>:</span></div><div class="line">        <span class="comment"># X :m*n =&gt; m*(n+1) for bias weight</span></div><div class="line">        X = np.insert(X,<span class="number">0</span>,<span class="number">1</span>,axis=<span class="number">1</span>)</div><div class="line">        <span class="comment"># gradient descent</span></div><div class="line">        <span class="keyword">if</span> self.gradient_descent :</div><div class="line">            n_features = np.shape(X)[<span class="number">1</span>]</div><div class="line">            self.w = np.random.random((n_features,))  <span class="comment"># 注意这里col还不能填1</span></div><div class="line">            <span class="keyword">for</span> _ <span class="keyword">in</span> range(self.n_iterations):</div><div class="line">                w_gradient = X.T.dot(X.dot(self.w)-y)</div><div class="line">                self.w = self.w - self.learning_rate * w_gradient</div><div class="line">        <span class="comment"># normal equation  </span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            self.w = (np.linalg.pinv(X.T.dot(X))).dot(X.T.dot(y))</div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">predict</span><span class="params">(self,X)</span>:</span></div><div class="line">        X = np.insert(X,<span class="number">0</span>,<span class="number">1</span>,axis=<span class="number">1</span>)</div><div class="line">        y_pred = X.dot(self.w)</div><div class="line">        <span class="keyword">return</span> y_pred</div></pre></td></tr></table></figure>
-<h3 id="验证："><a href="#验证：" class="headerlink" title="验证："></a>验证：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</div><div class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> linear_model</div><div class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_squared_error</div><div class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeRegressor</div><div class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</div><div class="line">X,y = datasets.make_regression(n_features=<span class="number">1</span>,n_samples=<span class="number">200</span>,bias=<span class="number">100</span>,noise=<span class="number">5</span>)</div><div class="line">X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=<span class="number">0.2</span>)</div><div class="line"></div><div class="line"><span class="comment">#clf = MyLinearRegression(gradient_descent=False)</span></div><div class="line">clf = MyLinearRegression(n_iterations=<span class="number">100</span>)</div><div class="line">clf.fit(X_train,y_train)</div><div class="line">y_pred = clf.predict(X_test)</div><div class="line">mse = mean_squared_error(y_pred,y_test)</div><div class="line">print(mse)</div><div class="line">clf2 = linear_model.LinearRegression()</div><div class="line">clf2.fit(X_train,y_train)</div><div class="line">y_pred2 = clf2.predict(X_test)</div><div class="line">mse2 = mean_squared_error(y_pred2,y_test)</div><div class="line">print(mse2)</div><div class="line"></div><div class="line">clf3 = DecisionTreeRegressor(max_depth=<span class="number">20</span>)</div><div class="line">clf3.fit(X_train,y_train)</div><div class="line">mse3 = mean_squared_error(clf3.predict(X_test),y_test)</div><div class="line">print(mse3)</div></pre></td></tr></table></figure>
-<p>可以从结果中看出，在数据集较小的情况下三个效果差不多，说明我们的算法没有问题。</p>
-<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><h3 id="why-choose-least-squares"><a href="#why-choose-least-squares" class="headerlink" title="why choose least squares"></a>why choose least squares</h3><h3 id="Locally-weighted-linear-regression"><a href="#Locally-weighted-linear-regression" class="headerlink" title="Locally weighted linear regression"></a>Locally weighted linear regression</h3><h3 id="non-parametric-algorithm-and-parametric-algorithm"><a href="#non-parametric-algorithm-and-parametric-algorithm" class="headerlink" title="non-parametric algorithm and parametric algorithm"></a>non-parametric algorithm and parametric algorithm</h3><p>这三个问题比较上面略微复杂，直接看参考资料中Andrew Ng的讲义。</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
-<li><a href="https://zh.wikipedia.org/wiki/%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95" target="_blank" rel="external">wiki：最小二乘法</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Likelihood_function" target="_blank" rel="external">wiki：似然函数</a></li>
-<li><a href="http://dawenl.github.io/files/mat_deriv.pdf" target="_blank" rel="external">矩阵的迹公式证明1</a></li>
-<li><a href="http://math.stackexchange.com/questions/277151/prove-that-gradient-of-operatornametra-cdot-b-cdot-at-cdot-c-with-r?rq=1" target="_blank" rel="external">矩阵的迹公式证明2</a></li>
-<li><a href="https://wenku.baidu.com/view/a90e4c61453610661ed9f479" target="_blank" rel="external">矩阵求导</a></li>
-<li><a href="https://github.com/eriklindernoren/ML-From-Scratch/blob/master/supervised_learning/linear_regression.py" target="_blank" rel="external">github 上linearRegession的实现</a></li>
-<li><a href="http://cs229.stanford.edu/notes/cs229-notes1.pdf" target="_blank" rel="external">Andrew Ng 关于Linear regression和logistic Regression的讲义</a></li>
-</ol>
-
+        <h2 id="知识准备"><a href="#知识准备" class="headerlink" title="知识准备"></a>知识准备</h2>
+        
+          <a class="article-more-a" href="/2017/04/09/LinearRegression/#more">more >></a>
+        
       
 
       
@@ -556,17 +426,6 @@ tr J(\theta) &= 1/2m tr(X\theta-y)^T(X\theta-y)\\
 	</div>
 
       
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Machine-Learning-algorithms//" class="article-tag-list-link color3">Machine Learning algorithms</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
 
       
         <p class="article-more-link">
@@ -620,12 +479,44 @@ tr J(\theta) &= 1/2m tr(X\theta-y)^T(X\theta-y)\\
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="一、性质"><a href="#一、性质" class="headerlink" title="一、性质"></a>一、性质</h3><p>test<br>二叉搜索树是以一颗二叉树来组织的。对任何节点x，其左子树的关键字不大于x.key，其右子树的关键字不小于x.key（二叉搜索树性质）。</p>
+        <a id="more"></a>
+<h3 id="一、性质"><a href="#一、性质" class="headerlink" title="一、性质"></a>一、性质</h3><p>二叉搜索树是以一颗二叉树来组织的。对任何节点x，其左子树的关键字不大于x.key，其右子树的关键字不小于x.key（二叉搜索树性质）。</p>
 <p>二叉搜索树的基本操作和一般的二叉树类似，分为查询操作（找到x节点，x节点的前驱，后继等等），增删操作。但是二叉搜索树和一般的二叉树不同，二叉搜索树操作的耗时与二叉树的高度相关，一般为O(h)。而普通二叉树需要遍历整个树，耗时为O(n)。相比下，二叉搜索树耗时大大减少。</p>
 <p>由于二叉搜索树性质，所以各种操作也有相应的特点。</p>
-        
-          <a class="article-more-a" href="/2017/03/07/算法（二）：二叉搜索树/#more">more >></a>
-        
+<h3 id="二、查询操作"><a href="#二、查询操作" class="headerlink" title="二、查询操作"></a>二、查询操作</h3><ol>
+<li>找到二叉搜索树种的x节点，这很简单，直接上代码：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function">TreeNode <span class="title">search</span><span class="params">(TreeNode root,<span class="keyword">int</span> val)</span></span>&#123;</div><div class="line"></div><div class="line">		<span class="keyword">while</span>(root!=<span class="keyword">null</span>&amp;&amp;root.val!=val)&#123;</div><div class="line">			<span class="keyword">if</span>(root.val&lt;val)</div><div class="line">				root=root.right;</div><div class="line">			<span class="keyword">else</span> &#123;</div><div class="line">				root=root.left;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> root;</div><div class="line"></div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>找到前驱：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function">TreeNode <span class="title">successor</span><span class="params">(TreeNode node)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(node.right!=<span class="keyword">null</span>)</div><div class="line">			<span class="keyword">return</span> minimum(node.right);</div><div class="line">		TreeNode parent=node.parent;</div><div class="line">		<span class="comment">//如果node==parent.left，且node无右子树，则很明显，node的后继为其parent</span></div><div class="line">		<span class="keyword">while</span>(parent!=<span class="keyword">null</span>&amp;&amp;node==parent.right)&#123;</div><div class="line">			node=parent;</div><div class="line">			parent=parent.parent;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> parent;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<p>x节点的后继为第一个比x节点大的节点，由二叉搜索树性质，可知：如果x节点有右子树，则x节点的后继则为右子树中最小的节点。如果x节点没有右子树，因为x节点的左子树都比x节点小，所以只能往x节点的祖先去找 了。如果x节点是父节点的左子树，因为父节点的右子树节点比父节点和左子树节点都大，所以父节点必是x节点的后继。如果x节点是父节点的右子树，则只能继续往父节点的祖先去找。直到找到x节点为父节点的左子树为止。</p>
+<p>3.前驱（类似后继）：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function">TreeNode <span class="title">predecessor</span><span class="params">(TreeNode node)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span>(node.left!=<span class="keyword">null</span>)</div><div class="line">		<span class="keyword">return</span> maximum(node.left);</div><div class="line">	TreeNode parent=node.parent;</div><div class="line">	<span class="keyword">while</span>(parent!=<span class="keyword">null</span>&amp;&amp;node==parent.left)&#123;</div><div class="line">		node=parent;</div><div class="line">		parent=parent.parent;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> parent;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ol>
+<li>最小节点最大节点:</li>
+</ol>
+<p>由于二叉搜索树的性质，可以很简单的找出树中的最大关键字元素和最小的关键字元素即最左或最右。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//返回最小的关键字元素</span></div><div class="line">	<span class="function">TreeNode <span class="title">minimum</span><span class="params">(TreeNode root)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">		<span class="keyword">while</span>(root.left!=<span class="keyword">null</span>)&#123;</div><div class="line">			root=root.left;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> root;</div><div class="line"></div><div class="line">	&#125;</div><div class="line">	<span class="comment">//返回最大的关键字元素</span></div><div class="line">	<span class="function">TreeNode <span class="title">maximum</span><span class="params">(TreeNode root)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(root==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">		<span class="keyword">while</span>(root.right!=<span class="keyword">null</span>)&#123;</div><div class="line">			root=root.right;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> root;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<h3 id="三、插入操作"><a href="#三、插入操作" class="headerlink" title="三、插入操作"></a>三、插入操作</h3><p>插入一个节点也很简单，如果当前节点比需插入的节点大，则往该节点的左子树插入，直到发现空节点。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//向二叉搜索树中插入元素</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(Tree tree,TreeNode node)</span></span>&#123;</div><div class="line">	TreeNode temp=<span class="keyword">null</span>;</div><div class="line">	TreeNode root=tree.root;</div><div class="line"></div><div class="line">	<span class="keyword">while</span>(root!=<span class="keyword">null</span>)&#123;</div><div class="line">		<span class="keyword">if</span>(root.val&lt;node.val)&#123;</div><div class="line">			temp=root;</div><div class="line">			root=root.right;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span>&#123;</div><div class="line">			temp=root;</div><div class="line">			root=root.left;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	node.parent=temp;</div><div class="line">	<span class="keyword">if</span>(temp==<span class="keyword">null</span>)<span class="comment">//树为空</span></div><div class="line">		tree.root=node;</div><div class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(temp.val&lt;node.val)</div><div class="line">		temp.right=node;</div><div class="line">	<span class="keyword">else</span> &#123;</div><div class="line">		temp.left=node;</div><div class="line">	&#125;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在编写该函数时，我发现有两种解决方法，一种是遍历树，找到可插入的空节点后直接插入。另一种是遍历树，找到可插入的空节点后，保存节点信息，然后在进行插入操作。上诉代码就是第二种方法，而我第一次写的是第一种方法。仔细想了下，第二种方法其实更好，它将寻找插入节点和插入两种操作代码分隔开来，降低了代码的耦合度。而我的那种方法直接将两种操作合二为一，代码看起来既繁琐又不美观。以后要注意将不同操作解耦的思想。（先明确有多少种操作，在明确是否可以将操作分隔进行）</p>
+<h3 id="四、删除操作"><a href="#四、删除操作" class="headerlink" title="四、删除操作"></a>四、删除操作</h3><p>删除是二叉搜索树中比较麻烦的一种操作。在删除节点的过程中，由于该节点可能还有子节点，所以还需对树的结构进行调整。具体先分为4种情况：</p>
+<ol>
+<li>该节点的右子树为空</li>
+<li>该节点的左子树为空</li>
+<li>该节点的左右子树都不为空</li>
+<li>该节点的左右子树都为空</li>
+</ol>
+<p>1,2两种情况都类似，直接将节点的非空子树与该节点调换即可。由于需涉及了很多子树调换操作，所以为了解耦，直接将该操作模块化(注意边界情况)：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这个是用子树v代替子树u</span></div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">transplant</span><span class="params">(Tree tree,TreeNode u,TreeNode v)</span></span>&#123;</div><div class="line">		<span class="comment">//如果u是树的根</span></div><div class="line">		<span class="keyword">if</span>(u.parent==<span class="keyword">null</span>)&#123;</div><div class="line">			tree.root=v;</div><div class="line"></div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(u==u.parent.left)&#123;</div><div class="line">			u.parent.left=v;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(u==u.parent.right)</div><div class="line">			u.parent.right=v;</div><div class="line"></div><div class="line">		<span class="keyword">if</span>(v!=<span class="keyword">null</span>)</div><div class="line">			v.parent=u.parent;</div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
+<p>仔细思考下，第四种情况和1,2类似，直接将空子树和节点即可。所以第四种情况包含在1,2中，之后不需为之编写代码。再考虑第三种情况：该节点左右子树都不为空。如果像1,2中情况直接将子树对换的话，势必会丢失另一子树的信息，所以必须对结构进行调整。那么怎么调整呢，可以想到先摘出一个子树作为另一子树中一个节点的子树，那么就变成了1,2中的情况。摘出左右都行，这里选择摘出左子树。</p>
+<p>假设摘出了左子树，那么该怎么选择右子树中的节点呢？其实很简单，因为右子树中的节点都比左子树大，所以摘出的左子树可直接作为右子树中节点的左子树。那么问题就变成了找出右子树中的左孩子为空的节点，而左孩子为空，则表明该节点是右子树中最小的节点。</p>
+<p>这样做是可以保证树的二叉搜索树性质，但是可以发现，每删除一个节点，树的高度就会增大许多。这是因为直接将删除节点的左子树插入到右子树最左节点，很明显，树的高度增加了许多。为了防止这种情况，需要调整删除后的树的结构。</p>
+<p>需要调整的情况分为两种：一是右子树的最左节点即为删除节点的右孩子，这种情况下不需调整，高度最多变化1。<br>二是右子树的最左节点不为删除节点的右孩子，这种情况如果不调整，高度变化最大为左子树的高度，所以需要调整。<br>这里设删除节点为x，左子树根节点（x左孩子）为l，右子树根节点为r，则右子树的最小节点为y=minimum(r);调整代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(y!=r)&#123;</div><div class="line">    transplant(T,y,y.right);</div><div class="line">    y.right=r;</div><div class="line">    r.parent=y;</div><div class="line">&#125;</div><div class="line">y.left=x.left;</div><div class="line">x.left.parent=y;</div><div class="line">transplant(T,x,y);</div></pre></td></tr></table></figure></p>
+<p>第二种情况下，做出这样的调整：将y和它的右子树对换，这样摘出了y节点。然后将y节点作为x节点左右子树的父节点。如此一来相当于x和y节点对换，高度最多变化1。</p>
+<p>综上删除节点的代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">delete</span><span class="params">(Tree tree,TreeNode root)</span></span>&#123;</div><div class="line">		<span class="comment">//case:a</span></div><div class="line">		<span class="keyword">if</span>(root.left==<span class="keyword">null</span>)&#123;</div><div class="line">			transplant(tree,root, root.right);</div><div class="line">		&#125;</div><div class="line">		<span class="comment">//case:b</span></div><div class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(root.right==<span class="keyword">null</span>)&#123;</div><div class="line">			transplant(tree,root, root.left);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span>&#123;</div><div class="line">			TreeNode minimumNode=minimum(root.right);</div><div class="line">			<span class="comment">//case :d</span></div><div class="line">			<span class="keyword">if</span>(minimumNode!=root.right)&#123;</div><div class="line">				transplant(tree, minimumNode, minimumNode.right);</div><div class="line">				minimumNode.right=root.right;</div><div class="line">				root.right.parent=minimumNode;</div><div class="line"></div><div class="line">			&#125;</div><div class="line">			<span class="comment">//case :c</span></div><div class="line">			minimumNode.left=root.left;</div><div class="line">			root.left.parent=minimumNode;</div><div class="line">			transplant(tree, root, minimumNode);</div><div class="line">		&#125;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h3><p>在删除操作了解到，光保持二叉搜索树性质有时候还不够，还需要保持树的高度，保证在进行插入删除操作时，树的高度不能增长太快，毕竟二叉搜索树的操作的效率和树的高度有关（都是O(n)）。</p>
+<p>在4中的删除操作进行了一定调整来保证树高，但是不能总是保证树的高度合理。并且在插入过程中没有做出任何措施去维护树高。为了保证树的平均高度，可以通过“随机构建二叉搜索树”即插入的过程是随机的，还可以通过创建一个新的性质的二叉搜索树-<strong>红黑树</strong>。详情见《算法：红黑树》</p>
+
       
 
       
@@ -698,7 +589,8 @@ tr J(\theta) &= 1/2m tr(X\theta-y)^T(X\theta-y)\\
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
+        <a id="more"></a>
+<blockquote>
 <p>可能这里需要分开讲解三种算法，然后这里写他们的联系与区别以及什么时候使用。</p>
 </blockquote>
 <p>每个算法的标识问题</p>
@@ -720,9 +612,108 @@ tr J(\theta) &= 1/2m tr(X\theta-y)^T(X\theta-y)\\
 <li>huffman问题</li>
 </ul>
 <hr>
-        
-          <a class="article-more-a" href="/2017/03/07/算法（一）：分治、动态规划与贪心算法/#more">more >></a>
-        
+<h3 id="一、分治"><a href="#一、分治" class="headerlink" title="一、分治"></a>一、分治</h3><blockquote>
+<p>分治就是把大的问题分解成互不相交的子问题，递归的求解子问题，然后把子问题的解组合起来</p>
+</blockquote>
+<p>分治策略解决问题，分为三个步骤：</p>
+<ol>
+<li>分解：将问题划分为子问题，子问题和原问题一样，只是规模更小</li>
+<li>解决：步骤递归的求解子问题，如果子问题的规模够小，则停止递归，直接求解</li>
+<li>合并：将子问题的解直接合并成原问题的解</li>
+</ol>
+<p>在使用分治策略解决问题的时候，最重要的步骤就是分解问题。在划分子问题的时候，有的时候一般会出现与原问题不一样的问题，如果出现了，那么这个问题一般可以直接求解。如果这个问题不能直接求解，那么可能子问题的划分不合理，需要重新考虑。</p>
+<p>以归并排序为例，我们需要对数组进行排序。那么原问题就是数组排序，如果我们把数组分为几部分，分别对数组进行排序，那么原问题就划分为子数组的排序问题。当子数组排序完毕，即子问题解决完毕，则进行合并，将子问题的解合并成原问题的解。伪代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(arr,left,right)</span></span>&#123;</div><div class="line"> <span class="comment">//子问题的规模最小，停止递归</span></div><div class="line"> <span class="keyword">if</span>(left==right) <span class="keyword">return</span> arr[left];</div><div class="line"><span class="keyword">int</span> mid=(left+right)/<span class="number">2</span>;</div><div class="line"><span class="comment">//划分子问题，递归求解</span></div><div class="line">sort(arr,left,mid);</div><div class="line">sort(arr,mid+<span class="number">1</span>,right);</div><div class="line"><span class="comment">//求解完毕，合并子问题的解</span></div><div class="line">merge(arr,left,mid,right);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>再以最大子数组为例，要得到最大连续子数组，我们可以先划分成两个子数组的最大连续子数组的问题。但是我们发现，最大连续子数组还可能出现在两个子数组之间，所以又出现了新的问题：求解包含子数组之间的最大连续数组。我们可以发现，这个问题我们可以直接求解，而不需要再次递归求解。所以原问题的划分成功，我们得到了两个和原问题一致的子问题和一个可直接求解的问题。这样，我们就可以编码解决了。</p>
+<p>从这两个问题中，我们可以发现，分治策略是把原问题划分为规模更小的子问题。但是，我们需要注意的是，这两些子问题都是==不相交==的。同一层的子问题不涉及到另一个。那么，如果划分出的子问题之间存在==重叠==(即不同子问题拥有公共子问题)怎么办呢，如果继续使用分治策略，则会出现大量的重复计算的问题，导致耗时大幅增加。</p>
+<p>为了解决重复计算的问题，我们把已计算的子问题的解保存起来，当需使用的 时候不需再次计算，直接使用。这样的方法，我们称为动态规划（dynamic programming）。</p>
+<h3 id="二、动态规划-DP"><a href="#二、动态规划-DP" class="headerlink" title="二、动态规划(DP)"></a>二、动态规划(DP)</h3><blockquote>
+<p>动态规划通常用于最优解问题。</p>
+</blockquote>
+<p>动态规划和分治类似，都需划分子问题，求解子问题，然后合并子问题的解。但是不同的是，划分出的子问题存在重叠，为了不重复计算，动态规划算法只对子问题计算一次，并且保存其值。</p>
+<p>动态规划通常有以下四个步骤：</p>
+<ol>
+<li>刻画一个最优解的结构特征（得到子问题的状态，即如何表示子问题的最优解）（分治没有具体表示）</li>
+<li>递归的定义最优解的值（得到状态转移方程（递归求解公式））  （分治：概念表示）</li>
+<li>计算最优解的值（自顶向下（备忘录）（递归），自底向上（通常选用））（类似分治中的归并）</li>
+<li>利用计算出的信息构造最优解（如果只需要最优解的值，则不需要此步骤）</li>
+</ol>
+<p>上溯4个步骤中，1,2是最重要的。通常，得到子问题的最优解结构和递归求解公式，该DP问题就已解决。在别的资料中，也称为“找出子问题的状态和状态转移方程”。经典的DP问题有钢铁切割问题和最长公共子序列问题等，为了和分治比较，这里继续采用最大子数组作为例子。在分析该例之前，先学习一下动态规划原理：</p>
+<h4 id="最优子结构"><a href="#最优子结构" class="headerlink" title="最优子结构"></a>最优子结构</h4><p>动态规划的第一步就是刻画最优解结构。如果一个问题的最优解包含其子问题的最优解，那么我们就称该问题具有最优子结构。在使用动态规划方法时，我们需要使用子问题的最优解来构造原问题的最优解，所以我们需要考察最优解中使用的所有子问题。以下是发掘最优子结构性质的通用模式：</p>
+<ol>
+<li>做出一次选择。做出这次选择会产生一个或或多个待解问题。</li>
+<li>假定该选择得到最优解。</li>
+<li>确定最优解选择后，可以确定子问题，以及如何最好的刻画子问题空间</li>
+<li>利用“剪切-粘贴”（cut-paste）技术证明：作为构成原问题最优解的构成部分，每个子问题的解就是它本身的最优解。</li>
+</ol>
+<p>在发掘最优子结构的过程中，我们就已经刻画出了最优解的特征。所以这4个步骤也是在求解最优解问题时，首先应该做的。另外一个判断是否能用dp的性质是子问题的无关性。如果两个子问题不同时占用同一资源的话，我们就称两个子问题是无关的。如果子问题之间不是无关的，那么这个问题就不能用DP来解决。</p>
+<h4 id="重叠子问题"><a href="#重叠子问题" class="headerlink" title="重叠子问题"></a>重叠子问题</h4><p>适合动态规划求解的最优解问题应该具备的第二个性质是子问题空间必须足够小，即问题的递归算法会反复的求解相同的问题，而不是一直生成新的子问题。如果递归算法反复求解相同的子问题，我们就称最优化问题具有“重叠子问题”的性质。与之相对应的是，适合用分治解决的问题通常在每一步都生成不同的子问题。动态规划算法通常利用重叠子问题的性质，对每个子问题求解一次，并把每次的结果存入一个表中，当再次需要这个值时直接读表即可，每次查表的时间为常数。</p>
+<p>在了解了动态规划原理（使用动态规划的原因）后，我们再对最大子数组进行分析。首先先回顾最大子数组问题：</p>
+<blockquote>
+<p>给定一个整数数组，数组值有正数和负数。求数组中的和最大的连续子数组。</p>
+</blockquote>
+<p>第一步：刻画最优解的结构特征。我们先使用发掘最优子结构的四个步骤：</p>
+<ol>
+<li>做出一次选择。我们先选择a[i]最为连续子数组的最后一位。</li>
+<li>假设该选择得到最优解。我们假设f[i]为选择a[i]为最后一位后的最优解即最大和。</li>
+<li>确定子问题，刻画子问题空间。a[i-1]在最优解中，那么f[i]=f[i-1]+a[i].如果不在，则f[i]=a[i];那么原问题产生了一个子问题</li>
+<li>利用“剪切-粘贴”原理证明：作为构成原问题最优解的构成部分，每个子问题的解就是它本身的最优解。</li>
+</ol>
+<p>假设f[i-1]不是子问题的最优解，那么存在f’[i-1]&gt;f[i-1]，因为两者都是以a[i-1]为结尾，所以f’[i-1]+a[i]&gt;f[i-1]+a[i]，所以f[i]不是最优解，与原假设矛盾。</p>
+<p>综合上诉4步，我们确定了问题的最优子结构性质，而且同时也得到了最优解结构和递归求解公式。</p>
+<p>第二步：递归定义最优解的值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">f[i]=  f[i-1]+a[i]   f[i-1]&gt;0</div><div class="line"></div><div class="line">    =  a[i]          f[i-1]&lt;0</div></pre></td></tr></table></figure>
+<p>(如果f[i-1]&lt; 0,那么a[i-1]必不在f[i]的最优解中)</p>
+<p>第三步：计算最优解的值</p>
+<ol>
+<li><p>备忘录（自顶向下）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">f[]=-A;</div><div class="line">f[<span class="number">0</span>]=a[<span class="number">0</span>];</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">getMaxSubArr</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> []a)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span>(f[i]&gt;-A)&#123;</div><div class="line">        <span class="keyword">return</span> f[i];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(getMaxSubArr(i-<span class="number">1</span>,a)&gt;<span class="number">0</span>)</div><div class="line">     f[i]=a[i]+f[i-<span class="number">1</span>];</div><div class="line">    <span class="keyword">else</span></div><div class="line">     f[i]=a[i];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>自底向上</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">getMaxSubArr</span><span class="params">(<span class="keyword">int</span>[] a)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> []f=<span class="keyword">new</span> <span class="keyword">int</span>[a.length];</div><div class="line">    f[<span class="number">0</span>]=a[<span class="number">0</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;a.length;i++)&#123;</div><div class="line">        <span class="keyword">if</span>(f[i-<span class="number">1</span>]&lt;<span class="number">0</span>)</div><div class="line">            f[i]=a[i];</div><div class="line">        <span class="keyword">else</span></div><div class="line">            f[i]=f[i-<span class="number">1</span>]+a[i];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> max(f);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>通常情况下，在每个子问题都求解的情况下，自底向下必备忘录算法快（省去了递归的开销）。但是当有的子问题不必求解的时候，备忘录方法比自底向下快，因为备忘录方法只会求解必要的子问题。</p>
+<p>第四步：构造最优解</p>
+<p>构造最优解通常有两种方法，一是根据解的表来构造（即根据f[i]），二是在计算最优解的值时，顺便记录。</p>
+<ol>
+<li><p>根据f[i]:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span> []f)</span></span>&#123;    </div><div class="line">    <span class="keyword">int</span> max=<span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;f.length;i++)&#123;</div><div class="line">        <span class="keyword">if</span>(f[i]&gt;f[max])&#123;</div><div class="line">            max=i;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    print(f,max);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span> []f,<span class="keyword">int</span> index)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span>(index&lt;<span class="number">0</span>) <span class="keyword">return</span>;</div><div class="line">    <span class="keyword">if</span>(f[index]&gt;<span class="number">0</span>)&#123;</div><div class="line">        print(f,index-<span class="number">1</span>)</div><div class="line">        System.out.print(f[i]+<span class="string">" "</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>顺便记录：</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">getMaxSubArr</span><span class="params">(<span class="keyword">int</span>[] a)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> []f=<span class="keyword">new</span> <span class="keyword">int</span>[a.length];</div><div class="line">    f[<span class="number">0</span>]=a[<span class="number">0</span>];</div><div class="line">    <span class="keyword">int</span> []begin=<span class="keyword">new</span> <span class="keyword">int</span>[a.length];</div><div class="line">    <span class="keyword">int</span> end=<span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> sum=f[<span class="number">0</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;a.length;i++)&#123;</div><div class="line">        <span class="keyword">if</span>(f[i-<span class="number">1</span>]&lt;<span class="number">0</span>)&#123;</div><div class="line">            f[i]=a[i];</div><div class="line">            begin[i]=i;</div><div class="line">            &#125;</div><div class="line">        <span class="keyword">else</span></div><div class="line">            f[i]=f[i-<span class="number">1</span>]+a[i];</div><div class="line">        <span class="keyword">if</span>(sum&lt;f[i])&#123;</div><div class="line">            sum=f[i];</div><div class="line">            end=i;</div><div class="line">            &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> sum;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span> []begin,<span class="keyword">int</span> end,<span class="keyword">int</span>[]a)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> b=begin[end];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=b;i&lt;=end;i++)</div><div class="line">        System.out.print(a[i]+<span class="string">","</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>两种方法都可以，一般在使用第二种的时候要多维护一个表。</p>
+<p>总的来说，动态规划步骤中，总是要经历选择。算法本身不筛选选择，而是比较选择后的子问题的最优解从而得到原问题的最优解。动态规划算法的复杂度与子问题的个数和选择的个数成线性相关。以钢条切割为例，以跟n长的钢条，则一共有n个子问题，子问题中最大的选择个数为n，则动态规划的算法复杂度为O(n^2).以最大子数组为例，长度为n的数组，一共有n个子问题，但是只有一种选择，即最后一个数字为最优解的子数组的结尾。所以算法复杂度为O(n)。</p>
+<p>那么，如果有一种选择可以使每次都得到最优解，算法复杂度就可以得到减少。这种选择就是“贪心”选择</p>
+<h3 id="三、贪心"><a href="#三、贪心" class="headerlink" title="三、贪心"></a>三、贪心</h3><blockquote>
+<p>贪心选择性质：通过做出局部最优（贪心）的选择来构造全局最优解。</p>
+</blockquote>
+<p>贪心算法通过做出一系列选择来求出问题的最优解。在每个决策点，它做出当时看起来最佳的选择。这种启发式策略并不能保证找到最优解。但是对有些问题确实有效，比如活动选择问题。贪心算法是基于动态规划算法的，每个贪心算法背后都有一个更繁琐的动态规划算法。</p>
+<p>贪心算法的设计过程如下：</p>
+<ol>
+<li>确定问题的最优解结构（和动态规划一致）</li>
+<li>设计一个递归算法（递归求解公式）(状态转移方程)（和动态规划一致）</li>
+<li>证明如果我们做出一个贪心选择，则只剩一个子问题</li>
+<li>证明贪心选择总是安全的（3,4步骤可以调换）</li>
+<li>设计一个递归算法实现贪心策略</li>
+<li>将递归算法改成迭代算法</li>
+</ol>
+<p>从贪心算法的设计步骤我们可以看出，1,2步骤和动态规划一致，3,4是贪心算法最重要的部分。如何做出一个贪心选择，和证明这个贪心选择是安全的使我们在使用贪心算法时最重要的两个步骤。那么上诉7个步骤可以简化话如下：</p>
+<ol>
+<li>将最优化问题转化为这样的形式：对其做出一次选择后只剩下一个子问题求解</li>
+<li>证明做出贪心选择后，原问题总是存在最优解（即贪心选择包含在原问题最优解中）（安全的贪心策略）</li>
+<li>证明做出贪心选择后剩余的子问题满足性质：其最优解与贪心选择组合即可得到原问题的最优解（即动态规划里的最优子结构性质）</li>
+</ol>
+<p>以活动选择为例，我们使用上诉三个步骤创建贪心算法。</p>
+<ol>
+<li>我们每次选择结束时间最早的活动a[k]，那么s[k]为在a[k]结束后的活动的集合，令A[k]为s[k]的最大兼容活动集。则做出选择后，只剩一个问题，在s[k]中求出A[k]</li>
+<li>设a[j]是A[k]中最早结束的活动，a[m]是s[k]中最早结束的活动。令A’[k]=(A[k]-a[j])Ua[k],因为A[k]中的活动互不相交，且a[j]是A[k]中结束最早的活动，f[m]&lt;=f[j],所以A[k]=A’[k]。所以A’[k]也是s[k]的一个最大兼容活动集，且它包含a[m]</li>
+<li>假设A[k]不是s[k]的最优解，A’[k]是s[k]的最优解。那么A’[k]+a[k]&lt;A[k]+a[k],则与原问题为最优解矛盾，所以存在最优子结构性质。</li>
+</ol>
+<p>由上诉三个步骤，可以得到递归算法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">activitySelect</span><span class="params">(<span class="keyword">int</span>[]s,<span class="keyword">int</span>[]f,k,n)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> m=k+<span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>(m&lt;n&amp;&amp;s[m]&lt;f[k])</div><div class="line">        m++;</div><div class="line">    <span class="keyword">if</span>(m&lt;n)</div><div class="line">        <span class="keyword">return</span> activitySelect(s,f,m,n)+<span class="number">1</span>;</div><div class="line">    <span class="keyword">else</span></div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>改进成迭代算法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">activitySelect</span><span class="params">(<span class="keyword">int</span>[]s,<span class="keyword">int</span>[]f)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span>(s.length==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> k=<span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> max=<span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;s.length;i++)&#123;</div><div class="line">        <span class="keyword">if</span>(s[i]&gt;f[k])&#123;</div><div class="line">            max++;</div><div class="line">            k=i;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> max;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
       
 
       
@@ -874,10 +865,7 @@ tr J(\theta) &= 1/2m tr(X\theta-y)^T(X\theta-y)\\
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="一、多态"><a href="#一、多态" class="headerlink" title="一、多态"></a>一、多态</h3><blockquote>
-<p>多态：多种类型当做同一种类型对待。将发生改变的东西同没有发生改变的东西区分开</p>
-</blockquote>
-<h4 id="1-方法调用绑定"><a href="#1-方法调用绑定" class="headerlink" title="1.方法调用绑定"></a>1.方法调用绑定</h4><p>方法绑定，将一个方法调用同一个方法主体连接到一起就被称为“绑定”(binding)。如果在程序运行前执行绑定，就叫做“早期绑定”。c编译器只有早期绑定一种方法调用。在运行期进行，以对象为基础的方法绑定称为“后期绑定”，也可称为“动态绑定”。java中的所有方法都采用动态绑定，除非方法声明为final。</p>
-<p>动态绑定的例子很常见，在笔记“上溯造型与下溯造型”中，可以看到具体的代码例子，这里不再赘述。java虚拟机怎么实现动态绑定的，可以见<a href="">笔记java虚拟机学习中的多态篇</a>。<br>
+<p>多态：多种类型当做同一种类型对待。将发生改变的东西同没有发生改变的东西区分开<br>
         
           <a class="article-more-a" href="/2017/03/07/java（三）：构造器与多态性（多形性）/#more">more >></a>
         

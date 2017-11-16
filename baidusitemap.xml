@@ -4,8 +4,80 @@
 
     
   <url>
+    <loc>https://xl2013.github.io/2017/11/16/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-%E4%B8%80/</loc>
+    <lastmod>2017-11-16T14:31:28.718Z</lastmod>
+    <data>
+        <display>
+        <title>几篇Deep Reinforcement CV相关的论文笔记</title>
+        <pubTime>2017-11-16T13:57:28.629Z</pubTime>
+        
+        <tag>Deep Learning</tag>
+         
+        <tag>Deep Reinforcement Learning</tag>
+         
+        <tag>CV</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://xl2013.github.io/2017/03/07/%E7%AE%97%E6%B3%95%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E5%88%86%E6%B2%BB%E3%80%81%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B8%8E%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2017-11-11T13:43:32.813Z</lastmod>
+    <data>
+        <display>
+        <title>算法(一)：分治、动态规划与贪心算法</title>
+        <pubTime>2017-03-07T12:02:31.898Z</pubTime>
+        
+        <tag>算法</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://xl2013.github.io/2017/03/07/%E7%AE%97%E6%B3%95%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/</loc>
+    <lastmod>2017-11-11T13:43:13.108Z</lastmod>
+    <data>
+        <display>
+        <title>算法(二)：二叉搜索树</title>
+        <pubTime>2017-03-07T12:02:31.900Z</pubTime>
+        
+        <tag>算法</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://xl2013.github.io/2017/11/07/%E9%9A%8F%E7%AC%94-%E4%B8%80/</loc>
+    <lastmod>2017-11-11T13:42:56.901Z</lastmod>
+    <data>
+        <display>
+        <title>随笔(一)</title>
+        <pubTime>2017-11-07T07:45:03.297Z</pubTime>
+        
+        <tag>随笔</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://xl2013.github.io/2017/04/12/LogisticsRegression/</loc>
-    <lastmod>2017-11-11T13:37:01.522Z</lastmod>
+    <lastmod>2017-11-11T13:42:36.582Z</lastmod>
     <data>
         <display>
         <title>LogisticRegression</title>
@@ -46,57 +118,6 @@
         <pubTime>2017-03-07T12:01:38.387Z</pubTime>
         
         <tag>java</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://xl2013.github.io/2017/03/07/%E7%AE%97%E6%B3%95%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E5%88%86%E6%B2%BB%E3%80%81%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B8%8E%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2017-11-11T13:34:10.526Z</lastmod>
-    <data>
-        <display>
-        <title>算法(一)：分治、动态规划与贪心算法</title>
-        <pubTime>2017-03-07T12:02:31.897Z</pubTime>
-        
-        <tag>算法</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://xl2013.github.io/2017/03/07/%E7%AE%97%E6%B3%95%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/</loc>
-    <lastmod>2017-11-11T13:33:32.215Z</lastmod>
-    <data>
-        <display>
-        <title>算法(二)：二叉搜索树</title>
-        <pubTime>2017-03-07T12:02:31.899Z</pubTime>
-        
-        <tag>算法</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://xl2013.github.io/2017/11/07/%E9%9A%8F%E7%AC%94-%E4%B8%80/</loc>
-    <lastmod>2017-11-11T13:23:58.125Z</lastmod>
-    <data>
-        <display>
-        <title>随笔(一)</title>
-        <pubTime>2017-11-07T07:45:03.296Z</pubTime>
-        
-        <tag>随笔</tag>
          
          
            

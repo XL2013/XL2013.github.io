@@ -8,19 +8,16 @@
   <link rel="dns-prefetch" href="https://xl2013.github.io">
   <title>算法(二)：二叉搜索树 | Shan&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、性质二叉搜索树是以一颗二叉树来组织的。对任何节点x，其左子树的关键字不大于x.key，其右子树的关键字不小于x.key（二叉搜索树性质）。
-二叉搜索树的基本操作和一般的二叉树类似，分为查询操作（找到x节点，x节点的前驱，后继等等），增删操作。但是二叉搜索树和一般的二叉树不同，二叉搜索树操作的耗时与二叉树的高度相关，一般为O(h)。而普通二叉树需要遍历整个树，耗时为O(n)。相比下，二叉搜索树">
+  <meta name="description" content="一、性质">
 <meta property="og:type" content="article">
 <meta property="og:title" content="算法(二)：二叉搜索树">
 <meta property="og:url" content="https://xl2013.github.io/2017/03/07/算法（二）：二叉搜索树/index.html">
 <meta property="og:site_name" content="Shan's Blog">
-<meta property="og:description" content="一、性质二叉搜索树是以一颗二叉树来组织的。对任何节点x，其左子树的关键字不大于x.key，其右子树的关键字不小于x.key（二叉搜索树性质）。
-二叉搜索树的基本操作和一般的二叉树类似，分为查询操作（找到x节点，x节点的前驱，后继等等），增删操作。但是二叉搜索树和一般的二叉树不同，二叉搜索树操作的耗时与二叉树的高度相关，一般为O(h)。而普通二叉树需要遍历整个树，耗时为O(n)。相比下，二叉搜索树">
-<meta property="og:updated_time" content="2017-11-11T13:33:32.215Z">
+<meta property="og:description" content="一、性质">
+<meta property="og:updated_time" content="2017-11-11T13:43:13.108Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法(二)：二叉搜索树">
-<meta name="twitter:description" content="一、性质二叉搜索树是以一颗二叉树来组织的。对任何节点x，其左子树的关键字不大于x.key，其右子树的关键字不小于x.key（二叉搜索树性质）。
-二叉搜索树的基本操作和一般的二叉树类似，分为查询操作（找到x节点，x节点的前驱，后继等等），增删操作。但是二叉搜索树和一般的二叉树不同，二叉搜索树操作的耗时与二叉树的高度相关，一般为O(h)。而普通二叉树需要遍历整个树，耗时为O(n)。相比下，二叉搜索树">
+<meta name="twitter:description" content="一、性质">
   
     <link rel="alternative" href="/atom.xml" title="Shan&#39;s Blog" type="application/atom+xml">
   
@@ -49,7 +46,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/img/ace1.jpeg" class="js-avatar show" style="width: 100%;height: 100%;opacity: 1;">
+			<img src="/img/ace1.jpg" class="js-avatar show" style="width: 100%;height: 100%;opacity: 1;">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">Shan</a></h1>
@@ -109,7 +106,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/img/ace1.jpeg" class="js-avatar">
+				<img src="/img/ace1.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">Shan</h1>
@@ -175,15 +172,15 @@
 
         
         <a href="/2017/03/07/算法（二）：二叉搜索树/" class="archive-article-date">
-  	<time datetime="2017-03-07T12:02:31.899Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-07</time>
+  	<time datetime="2017-03-07T12:02:31.900Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-07</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
-<h3 id="一、性质"><a href="#一、性质" class="headerlink" title="一、性质"></a>一、性质</h3><p>二叉搜索树是以一颗二叉树来组织的。对任何节点x，其左子树的关键字不大于x.key，其右子树的关键字不小于x.key（二叉搜索树性质）。</p>
+        <h3 id="一、性质"><a href="#一、性质" class="headerlink" title="一、性质"></a>一、性质</h3><a id="more"></a>
+<p>二叉搜索树是以一颗二叉树来组织的。对任何节点x，其左子树的关键字不大于x.key，其右子树的关键字不小于x.key（二叉搜索树性质）。</p>
 <p>二叉搜索树的基本操作和一般的二叉树类似，分为查询操作（找到x节点，x节点的前驱，后继等等），增删操作。但是二叉搜索树和一般的二叉树不同，二叉搜索树操作的耗时与二叉树的高度相关，一般为O(h)。而普通二叉树需要遍历整个树，耗时为O(n)。相比下，二叉搜索树耗时大大减少。</p>
 <p>由于二叉搜索树性质，所以各种操作也有相应的特点。</p>
 <h3 id="二、查询操作"><a href="#二、查询操作" class="headerlink" title="二、查询操作"></a>二、查询操作</h3><ol>
@@ -515,6 +512,18 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Deep Reinforcement Learning</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">CV</a>
               </li>
             
             <div class="clearfix"></div>

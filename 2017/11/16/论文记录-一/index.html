@@ -6,17 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://xl2013.github.io">
-  <title>Archives: 2017/11 | Shan&#39;s Blog</title>
+  <title>几篇Deep Reinforcement CV相关的论文笔记 | Shan&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="less is More">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Shan's Blog">
-<meta property="og:url" content="https://xl2013.github.io/archives/2017/11/index.html">
+  <meta name="description" content="一、Active Object Localization with Deep Reinforcement Learning2015年的一篇文章，初步提出了用Deep Reinforcement learning 进行object Localization。
+文章基本贡献
+提出了top-down 搜索策略。从一个大的图片区域出发，经过一系列转换，最后减少为一个tight bouding box。而每">
+<meta property="og:type" content="article">
+<meta property="og:title" content="几篇Deep Reinforcement CV相关的论文笔记">
+<meta property="og:url" content="https://xl2013.github.io/2017/11/16/论文记录-一/index.html">
 <meta property="og:site_name" content="Shan's Blog">
-<meta property="og:description" content="less is More">
+<meta property="og:description" content="一、Active Object Localization with Deep Reinforcement Learning2015年的一篇文章，初步提出了用Deep Reinforcement learning 进行object Localization。
+文章基本贡献
+提出了top-down 搜索策略。从一个大的图片区域出发，经过一系列转换，最后减少为一个tight bouding box。而每">
+<meta property="og:updated_time" content="2017-11-16T14:31:28.718Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Shan's Blog">
-<meta name="twitter:description" content="less is More">
+<meta name="twitter:title" content="几篇Deep Reinforcement CV相关的论文笔记">
+<meta name="twitter:description" content="一、Active Object Localization with Deep Reinforcement Learning2015年的一篇文章，初步提出了用Deep Reinforcement learning 进行object Localization。
+文章基本贡献
+提出了top-down 搜索策略。从一个大的图片区域出发，经过一系列转换，最后减少为一个tight bouding box。而每">
   
     <link rel="alternative" href="/atom.xml" title="Shan&#39;s Blog" type="application/atom+xml">
   
@@ -158,36 +165,164 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-论文记录-一" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/16/论文记录-一/" class="archive-article-date">
-  	<time datetime="2017-11-16T13:57:28.629Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-16</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/16/论文记录-一/">几篇Deep Reinforcement CV相关的论文笔记</a>
+    <h1 class="article-title" itemprop="name">
+      几篇Deep Reinforcement CV相关的论文笔记
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/11/16/论文记录-一/" class="archive-article-date">
+  	<time datetime="2017-11-16T13:57:28.629Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一、Active-Object-Localization-with-Deep-Reinforcement-Learning"><a href="#一、Active-Object-Localization-with-Deep-Reinforcement-Learning" class="headerlink" title="一、Active Object Localization with Deep Reinforcement Learning"></a>一、Active Object Localization with Deep Reinforcement Learning</h3><p>2015年的一篇文章，初步提出了用Deep Reinforcement learning 进行object Localization。</p>
+<h4 id="文章基本贡献"><a href="#文章基本贡献" class="headerlink" title="文章基本贡献"></a>文章基本贡献</h4><ul>
+<li>提出了top-down 搜索策略。<br>从一个大的图片区域出发，经过一系列转换，最后减少为一个tight bouding box。而每一步转换，都是由agent来决定。这个序列决策过程，就是 Markov  Decision problem。从而引入了强化学习。<a id="more"></a></li>
+<li>定义了合适的MDP formulation</li>
+</ul>
+<p><strong>Action</strong>: 9个action，4个位移，缩和放，fatter和taller，triggle</p>
+<p><strong>State</strong>: tuple(o,h)。o 代表当前region的feature vector, h 代表history action。包含10个past action。由于每个action用one-hot表示，所以<script type="math/tex">h\in R^{90}</script>。</p>
+<p><strong>Reward</strong>:</p>
+<script type="math/tex; mode=display">
+R_a(s; s') = sign (IoU(b',g)-IoU(b,g))\\
+
+R_w(s,s') = \begin{cases}
+   +\eta &\text{if } IoU(b,g)\geq\tau \\
+   -\eta &\text{if } otherwise
+\end{cases}</script><h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>作为一篇比较早的论文，为后续使用RL进行目标检测及其他CV相关的工作进行了铺垫。</p>
+<h3 id="二、Hierarchical-Object-Detection-with-Deep-Reinforcement-Learning"><a href="#二、Hierarchical-Object-Detection-with-Deep-Reinforcement-Learning" class="headerlink" title="二、Hierarchical Object Detection with Deep Reinforcement Learning"></a>二、Hierarchical Object Detection with Deep Reinforcement Learning</h3><p>2016年的一篇文章，在前一篇的基础上做了部分改动。</p>
+<h4 id="文章的基本贡献"><a href="#文章的基本贡献" class="headerlink" title="文章的基本贡献"></a>文章的基本贡献</h4><ul>
+<li><p>提出了一个图片分层表示。<br>和上一篇不同，不是通过action来计算下一个区域，而是直接定义了5个子区域，即左上，右上，左下，右下，中心。5个区域即代表5个action。</p>
+</li>
+<li><p>证明通过从regions图片上提取特征，而不是直接从整个图片的feature map 中得到特征，可以减少由于region pooling带来的信息损失。<br>使用RL来寻找pre-define region，从而可以得到少而精确的region，从而使得直接计算region feature可行</p>
+</li>
+<li><p>提出了相应的MDP formulation:</p>
+<p>  <strong>Actoin</strong>: 6个action，其中一个为triggle</p>
+<p>  <strong>State</strong>: 当前region的feature vector和memory vector。memory vector，代表history action，包含了4个past action</p>
+<p>  <strong>Reward</strong>: 和上一篇一致</p>
+</li>
+</ul>
+<h4 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h4><p>文章通过关注图片中信息更多的子区域，从而实现缩小bouding box。文章主要目标是识别图片中的单个小物体。</p>
+<h3 id="三、Tree-Structured-Reinforcement-Learning-for-sequential-Object-Localization"><a href="#三、Tree-Structured-Reinforcement-Learning-for-sequential-Object-Localization" class="headerlink" title="三、Tree-Structured Reinforcement Learning for sequential Object Localization"></a>三、Tree-Structured Reinforcement Learning for sequential Object Localization</h3><p>2016年的一篇文章，不同于前一篇，它将RL应用于多目标检测。</p>
+<h4 id="文章的基本贡献-1"><a href="#文章的基本贡献-1" class="headerlink" title="文章的基本贡献"></a>文章的基本贡献</h4><ul>
+<li><p>提出了一个Tree-structured Reinforcement Learning (Tree RL)方法。从而可以通过RL实现多个目标检测。</p>
+</li>
+<li><p>定义了Tree相应的MDP formulation</p>
+<p>  <strong>Action</strong>：两组Action。一组Scale，在当前区域内寻找目标，生成新的子区域。一组local translation, 在新的区域寻找目标，生成另一个子区域。</p>
+<p>  <strong>State</strong>: 当前区域feature vecotr，整个图片的feature vector，和history vector。history包含了50个past action。</p>
+<p>  <strong>Reward</strong>: 在第一篇的基础上进行了扩展，使得探索过程可以寻找新的目标，而不是一直优化当前目标。而且由于需要一直寻找新目标，所以没有终止action。</p>
+<script type="math/tex; mode=display">
+   R_w(s,s') = \begin{cases}
+     +5 &\text{if } max_{1\leq i\leq n}(f_{i,t+1}-f_{i,t}) \\
+     max_{1\leq i\leq n}sign(IoU(w',g_i)-IoU(w,g_i)) &\text{if } otherwise
+  \end{cases}</script></li>
+</ul>
+<h4 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h4><p>文章通过定义两组action group。每个step，从每个group中选取best action，产生两组sub-image，从而实现二叉树搜索的效果。文章还通过给新找出IoU大于o.5的区域更大的reward(5)，来激励agent寻找新的物体。</p>
+<p>文章的方法虽然可以实现多个物体检测，但是可检测物体的个数受限于树的深度。同时，TreeRL主要的目标是产生高质量的object  propodals，而不是直接进行检测。因此，TreeRL方法一般需要和其他方法的Detector配合。</p>
+<p>文章还比较了TreeRL + fast r-cnn detector 与 fastrer r-cnn。从结果上看，效果差不多。但是文章提到了，Tree RL是从VGG-16上提取proposals，而fast r-cnn是从res-101中提取，所以Tree RL 的网络深度比faster r-cnn小，从而更有效率。 但是依我看来，faster r-cnn实现了end-to-end的训练，而Tree RL需要结合许多模块:pre-trained vgg-16、pre-trained object detecotr、Tree RL。所以就过程复杂度而言，Tree RL 大于 faster r-cnn，更无论现在的mask r-cnn。</p>
+<h3 id="四、Deep-Variation-structured-Reinforcement-Learning-for-Visual-Relationship-and-Attribute-Detection"><a href="#四、Deep-Variation-structured-Reinforcement-Learning-for-Visual-Relationship-and-Attribute-Detection" class="headerlink" title="四、Deep Variation-structured Reinforcement Learning for Visual Relationship and Attribute Detection"></a>四、Deep Variation-structured Reinforcement Learning for Visual Relationship and Attribute Detection</h3><p>2017年的一篇文章，文章将Deep RL应用于图片的视觉关系和属性的识别。</p>
+<h4 id="文章的贡献"><a href="#文章的贡献" class="headerlink" title="文章的贡献"></a>文章的贡献</h4><ul>
+<li>提出通过Deep RL来利用物体间的结构和关系间联系信息。</li>
+<li><p>定义了一个相应的MDP formulation</p>
+<p>  <strong>Action</strong>: 定义了三组ation：relation action，attribute action，next object action</p>
+<p>  <strong>State</strong>：当前object s、比较object s’的feature vector，整个图片的feature vector，history  phrase embedding vector.</p>
+<p>  <strong>Reward</strong>: 三个action都有相应的reward，但是给予了第三个action+5的正向reward。这和上一篇的思想一样，鼓励探索新的物体，加速探索过程。</p>
+</li>
+<li><p>通过Directed Semantic Action Graph 来提取 Variation-structured action space。从而大大减少了actoin的个数，从而加速学习的收敛过程。</p>
+</li>
+</ul>
+<h4 id="总结-3"><a href="#总结-3" class="headerlink" title="总结"></a>总结</h4><p>这篇文章提出三组action，分别实现relation，attribute和next object的获取。利用Directed Semantic Action Graph，使得action个数有限。再使用variation-structured，进一步减少action 个数。</p>
+<p>值得注意的是，文章提到使用lstm来实现history比使用history  phrase embedding vector的效果差不多。</p>
+<h3 id="五、Attention-Aware-Face-Hallucination-via-Deep-Reinforcement-Learning"><a href="#五、Attention-Aware-Face-Hallucination-via-Deep-Reinforcement-Learning" class="headerlink" title="五、Attention-Aware Face Hallucination via Deep Reinforcement Learning"></a>五、Attention-Aware Face Hallucination via Deep Reinforcement Learning</h3><p>17年的文章，使用RL进行Face hallucination，即从低像素人脸生成对应的高像素人脸。</p>
+<h4 id="文章的贡献-1"><a href="#文章的贡献-1" class="headerlink" title="文章的贡献"></a>文章的贡献</h4><ul>
+<li><p>与以往的Face hallucination不同，文章不是直接对整张人脸图片进行增强操作，而是序列的选择图片中的一部分进行增强操作的方法，即attention方法。</p>
+</li>
+<li><p>通过消除试验证明了RL和squentially attending patches的有效性</p>
+</li>
+<li><p>提出对应的MDP formulation</p>
+<p>  <strong>Action</strong>：图片上的每一个位置都对应着action，即一共有WxHg个action</p>
+<p>  <strong>State</strong>: 增强后的图片的feature vector 和history vecotr。由于action数量过多，不能和之前的文章一样使用one-hot进行对历史action的存储。所以history vector采取了LSTM结构存储历史信息。</p>
+<p>  <strong>Reward</strong>: 使用了全局reward</p>
+<script type="math/tex; mode=display">
+
+      L_{\theta_\pi}  = E_{p(1;\pi)}[||I_{hr} - I_T||]
+
+     r_t = \begin{cases}
+     0 &\text{if } IoU(b,g)\geq\tau \\
+     -L_{\theta_\pi} &\text{if } otherwise
+  \end{cases}</script></li>
+</ul>
+<h4 id="总结-4"><a href="#总结-4" class="headerlink" title="总结"></a>总结</h4><p>文章通过使用attention+RL方法，将face hallucination 问题转为Markov decision process，从而显示利用了图片中不同facial parts的联系。</p>
+<p>文章使用全局Reward，即只有最终状态时才能获得reward。由于没有针对这个做消除实验，无法得知global reward和每一时刻reward的区别。</p>
+<p>就我个人认为，这是因为每个action的到的图片都可以通过local enhencement，从而最后得到的图片都经过了增强，也就是说每个action的reward都是positive。每个action都是正反馈的话，很明显，学习过程不能很好的进行下去。因此，这里选择的是global reward</p>
+<h3 id="六、Summary"><a href="#六、Summary" class="headerlink" title="六、Summary"></a>六、Summary</h3><p>通过上述的5篇论文，我们可以发现以下几个关于RL在CV应用中的特点：</p>
+<ul>
+<li><p>任务可以利用图片中目标间的联系。</p>
+</li>
+<li><p>任务可以转换成系列决策问题，及Markov decision process。</p>
+</li>
+<li><p>可以设计出相应问题的MDP formulation，及State、Action、Reward</p>
+</li>
+</ul>
+<p>还有几个RL在使用中的特点：</p>
+<ul>
+<li><p>根据任务实际目标进行action的设计</p>
+</li>
+<li><p>分析action所能得到的reward来决定最终的reward</p>
+</li>
+<li><p>state需要包括整体图像特征(全局信息)，当前状态信息，历史信息</p>
+</li>
+<li><p>历史信息可以使用RNN(LSTM)，也可以直接使用one-hot对action进行编码。具体需要根据action的数量进行选择，action多的话使用LSTM来对历史信息进行Encode，action少的话直接使用one-hot。</p>
+</li>
+<li><p>一般都是使用Q-learning相关算法，还包括了如今广为使用的一些策略，比如action的<script type="math/tex">\epsilon</script>-greedy-search，Experience replay等等。</p>
+</li>
+</ul>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ol>
+<li><a href="https://arxiv.org/pdf/1511.06015.pdf" target="_blank" rel="external">Caicedo J C, Lazebnik S. Active Object Localization with Deep Reinforcement Learning[C]// IEEE International Conference on Computer Vision. IEEE, 2015:2488-2496.</a></li>
+<li><a href="https://arxiv.org/pdf/1611.03718.pdf" target="_blank" rel="external">Bellver M, Giro-I-Nieto X, Marques F, et al. Hierarchical Object Detection with Deep Reinforcement Learning[J]. 2016.</a></li>
+<li><a href="https://arxiv.org/pdf/1703.02710.pdf" target="_blank" rel="external">Jie Z, Liang X, Feng J, et al. Tree-Structured Reinforcement Learning for Sequential Object Localization[J]. 2017.</a></li>
+<li><a href="https://arxiv.org/pdf/1703.03054.pdf" target="_blank" rel="external">Liang X, Lee L, Xing E P. Deep Variation-structured Reinforcement Learning for Visual Relationship and Attribute Detection[J]. 2017.</a></li>
+<li><a href="https://arxiv.org/pdf/1708.03132.pdf" target="_blank" rel="external">Cao Q, Lin L, Shi Y, et al. Attention-Aware Face Hallucination via Deep Reinforcement Learning[J]. 2017.</a></li>
+</ol>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -207,57 +342,119 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://xl2013.github.io/2017/11/16/论文记录-一/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/07/随笔-一/" class="archive-article-date">
-  	<time datetime="2017-11-07T07:45:03.297Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-07</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2017/11/07/随笔-一/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">随笔(一)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/07/随笔-一/">随笔(一)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、Active-Object-Localization-with-Deep-Reinforcement-Learning"><span class="toc-number">1.</span> <span class="toc-text">一、Active Object Localization with Deep Reinforcement Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#文章基本贡献"><span class="toc-number">1.1.</span> <span class="toc-text">文章基本贡献</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#总结"><span class="toc-number">1.2.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、Hierarchical-Object-Detection-with-Deep-Reinforcement-Learning"><span class="toc-number">2.</span> <span class="toc-text">二、Hierarchical Object Detection with Deep Reinforcement Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#文章的基本贡献"><span class="toc-number">2.1.</span> <span class="toc-text">文章的基本贡献</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#总结-1"><span class="toc-number">2.2.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、Tree-Structured-Reinforcement-Learning-for-sequential-Object-Localization"><span class="toc-number">3.</span> <span class="toc-text">三、Tree-Structured Reinforcement Learning for sequential Object Localization</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#文章的基本贡献-1"><span class="toc-number">3.1.</span> <span class="toc-text">文章的基本贡献</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#总结-2"><span class="toc-number">3.2.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、Deep-Variation-structured-Reinforcement-Learning-for-Visual-Relationship-and-Attribute-Detection"><span class="toc-number">4.</span> <span class="toc-text">四、Deep Variation-structured Reinforcement Learning for Visual Relationship and Attribute Detection</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#文章的贡献"><span class="toc-number">4.1.</span> <span class="toc-text">文章的贡献</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#总结-3"><span class="toc-number">4.2.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、Attention-Aware-Face-Hallucination-via-Deep-Reinforcement-Learning"><span class="toc-number">5.</span> <span class="toc-text">五、Attention-Aware Face Hallucination via Deep Reinforcement Learning</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#文章的贡献-1"><span class="toc-number">5.1.</span> <span class="toc-text">文章的贡献</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#总结-4"><span class="toc-number">5.2.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#六、Summary"><span class="toc-number">6.</span> <span class="toc-text">六、Summary</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reference"><span class="toc-number">7.</span> <span class="toc-text">Reference</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
+        
+    </div>
+</aside>
+
+
+
   
 
-    
+  
+
+  
+
+  
+
+  
 
 
           </div>
@@ -288,8 +485,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

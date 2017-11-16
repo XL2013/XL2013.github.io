@@ -14,7 +14,7 @@
 <meta property="og:url" content="https://xl2013.github.io/2017/04/09/LinearRegression/index.html">
 <meta property="og:site_name" content="Shan's Blog">
 <meta property="og:description" content="知识准备">
-<meta property="og:updated_time" content="2017-11-11T13:36:45.230Z">
+<meta property="og:updated_time" content="2017-11-16T14:48:03.885Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LinearRegression">
 <meta name="twitter:description" content="知识准备">
@@ -172,7 +172,7 @@
 
         
         <a href="/2017/04/09/LinearRegression/" class="archive-article-date">
-  	<time datetime="2017-04-09T08:42:01.248Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-09</time>
+  	<time datetime="2017-04-09T08:42:01.249Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-09</time>
 </a>
         
       </header>
@@ -181,18 +181,15 @@
       
         <h2 id="知识准备"><a href="#知识准备" class="headerlink" title="知识准备"></a>知识准备</h2><a id="more"></a>
 <h3 id="基础数学知识"><a href="#基础数学知识" class="headerlink" title="基础数学知识"></a>基础数学知识</h3><ol>
-<li><p>最小二乘法（least square）</p>
-<p> 最小二乘法是一种数学优化技术。它通过最小化误差的平方和寻找数据的最佳函数匹配。<br> 利用最小二乘法可以简便地求得未知的数据，并使得这些求得的数据与实际数据之间误差的平方和为最小.</p>
-</li>
+<li>最小二乘法（least square）</li>
 </ol>
+<p>最小二乘法是一种数学优化技术。它通过最小化误差的平方和寻找数据的最佳函数匹配。<br>利用最小二乘法可以简便地求得未知的数据，并使得这些求得的数据与实际数据之间误差的平方和为最小.</p>
 <script type="math/tex; mode=display">min \sum_{i=1}^m (y_\theta(x)-y)^2</script><ol>
 <li><p>likehood 似然（最大似然评估 ）</p>
 <p> likehood function：<br> $L(\theta \mid x) = f(x \mid \theta)$</p>
 <p> 在上式中，如果x已经给出，预测 $\theta$ 的值，则该函数为似然函数。如果 $\theta$ 已经给出，预测x的值，那么这就是普通的概率函数。</p>
 <p> 而最大似然估计就是取一定的 $\theta$值，使得似然函数最大，即：</p>
 <script type="math/tex; mode=display">arg  \;max \;L(\theta \mid X)</script></li>
-</ol>
-<ol>
 <li><p>矩阵的迹及其部分等式</p>
 <p> 定义：矩阵的迹 $tr(A) = \sum<em>{i=1}^m a</em>{ii}$ 为标量且A为标量或方阵<br> 一些公式：</p>
 <script type="math/tex; mode=display">tr(ABC) = tr(CAB) = tr(BCA)</script><script type="math/tex; mode=display">tr(A+B) = tr(A) + tr(B)</script><script type="math/tex; mode=display">\Delta_A tr(AB) = B^T</script><script type="math/tex; mode=display">\Delta_{A^T}f(A) = (\Delta_Af(A))^T</script><script type="math/tex; mode=display">\Delta_Atr(ABA^TC) = CAB+C^TAB^T</script><script type="math/tex; mode=display">\Delta_A|A| = |A|(A^{-1})^T</script><p> 等式的证明见参考资料链接</p>
@@ -467,6 +464,21 @@ tr J(\theta) &= 1/2m tr(X\theta-y)^T(X\theta-y)\\
   
 
 
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
           </div>
         </div>
       </div>
@@ -598,10 +610,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
               </li>
              
@@ -611,6 +619,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CV</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
             
             <div class="clearfix"></div>

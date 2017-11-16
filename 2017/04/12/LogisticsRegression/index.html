@@ -14,7 +14,7 @@
 <meta property="og:url" content="https://xl2013.github.io/2017/04/12/LogisticsRegression/index.html">
 <meta property="og:site_name" content="Shan's Blog">
 <meta property="og:description" content="知识准备">
-<meta property="og:updated_time" content="2017-11-11T13:42:36.582Z">
+<meta property="og:updated_time" content="2017-11-16T14:52:06.350Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LogisticRegression">
 <meta name="twitter:description" content="知识准备">
@@ -190,7 +190,8 @@ g^{'}(x) &= \frac{-e^{-x}}{(1+e^{-x})^2}\\
 \end{align}</script><p>对应的数学曲线如下：</p>
 
 <h4 id="log-loss-function"><a href="#log-loss-function" class="headerlink" title="log loss function"></a>log loss function</h4><script type="math/tex; mode=display">
-L(Y,P(Y|X)) = -logP(Y|X)</script><h2 id="理论模型"><a href="#理论模型" class="headerlink" title="理论模型"></a>理论模型</h2><h3 id="预测函数"><a href="#预测函数" class="headerlink" title="预测函数"></a>预测函数</h3><p>在线性回归中，预测函数为 $h<em>\theta(x)=\theta^Tx$ .<br>因为线性回归中的值是连续的，所以预测函数可以很好的拟合。但是在分类问题中，数据是离散的，且 $y\in{0,1}$ ,所以不能使用之前的预测函数，而是用 $h</em>\theta(x)=g(\theta^Tx)$ 代替。</p>
+L(Y,P(Y|X)) = -logP(Y|X)</script><h2 id="理论模型"><a href="#理论模型" class="headerlink" title="理论模型"></a>理论模型</h2><h3 id="预测函数"><a href="#预测函数" class="headerlink" title="预测函数"></a>预测函数</h3><p>在线性回归中，预测函数为 $h_\theta(x)=\theta^Tx$</p>
+<p>因为线性回归中的值是连续的，所以预测函数可以很好的拟合。但是在分类问题中，数据是离散的，且 $y\in{0,1}$ ,所以不能使用之前的预测函数，而是用 $h_\theta(x)=g(\theta^Tx)$ 代替。</p>
 <p>至于为什么用在sigmoid函数，因为它的范围在0,1之间，而且曲线平滑。当然，选择这个函数还有更深层次的原因，可以见后面的扩展GLM。</p>
 <h3 id="决策函数"><a href="#决策函数" class="headerlink" title="决策函数"></a>决策函数</h3><p>决策函数一般为</p>
 <script type="math/tex; mode=display">
@@ -411,6 +412,21 @@ J(\theta) = - \frac{1}{N}l(\theta)</script><p>所以最小化损失函数，即�
   
 
 
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
           </div>
         </div>
       </div>
@@ -542,10 +558,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Deep Learning</a>
               </li>
              
@@ -555,6 +567,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CV</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
             
             <div class="clearfix"></div>

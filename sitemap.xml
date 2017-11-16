@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://xl2013.github.io/2017/04/12/LogisticsRegression/</loc>
+    
+    <lastmod>2017-11-16T14:52:06.350Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xl2013.github.io/2017/04/09/LinearRegression/</loc>
+    
+    <lastmod>2017-11-16T14:48:03.885Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://xl2013.github.io/2017/11/16/%E8%AE%BA%E6%96%87%E8%AE%B0%E5%BD%95-%E4%B8%80/</loc>
     
     <lastmod>2017-11-16T14:31:28.718Z</lastmod>
@@ -23,20 +37,6 @@
   </url>
   
   <url>
-    <loc>https://xl2013.github.io/2017/04/12/LogisticsRegression/</loc>
-    
-    <lastmod>2017-11-11T13:42:36.582Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://xl2013.github.io/2017/04/09/LinearRegression/</loc>
-    
-    <lastmod>2017-11-11T13:36:45.230Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://xl2013.github.io/2017/03/07/java%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E6%9E%84%E9%80%A0%E5%99%A8%E4%B8%8E%E5%A4%9A%E6%80%81%E6%80%A7%EF%BC%88%E5%A4%9A%E5%BD%A2%E6%80%A7%EF%BC%89/</loc>
     
     <lastmod>2017-11-11T13:34:22.815Z</lastmod>
@@ -46,7 +46,7 @@
   <url>
     <loc>https://xl2013.github.io/2017/03/07/%E7%AE%97%E6%B3%95%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E7%BA%A2%E9%BB%91%E6%A0%91/</loc>
     
-    <lastmod>2017-11-08T00:39:30.190Z</lastmod>
+    <lastmod>2017-11-08T00:39:30.191Z</lastmod>
     
   </url>
   
@@ -60,7 +60,7 @@
   <url>
     <loc>https://xl2013.github.io/2017/03/07/java%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9A%E5%86%85%E9%83%A8%E7%B1%BB%E8%AF%A6%E8%A7%A3/</loc>
     
-    <lastmod>2017-11-08T00:39:20.953Z</lastmod>
+    <lastmod>2017-11-08T00:39:20.954Z</lastmod>
     
   </url>
   
